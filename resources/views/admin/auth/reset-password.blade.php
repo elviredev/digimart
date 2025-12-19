@@ -139,22 +139,22 @@
           <div class="mb-2">
             <label class="form-label">{{ __('Password') }}</label>
             <div class="input-group input-group-flat">
-              <input type="password" name="password" class="form-control" placeholder="Your new password" autocomplete="current-password" required>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                class="form-control"
+                placeholder="Your new password"
+                autocomplete="current-password"
+                required
+              >
               <span class="input-group-text">
                 <a
                   href="#"
-                  class="link-secondary"
-                  title="Show password"
-                  data-bs-toggle="tooltip">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                    height="24" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" fill="none" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
-                    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
-                  </svg>
+                  class="toggle-password link-secondary"
+                  data-target="password"
+                >
+                  <span class="password-icon"></span>
                 </a>
               </span>
             </div>
@@ -165,22 +165,20 @@
             <label class="form-label">{{ __('Confirm Password') }}</label>
             <div class="input-group input-group-flat">
               <input
+                id="password_confirmation"
                 type="password"
                 name="password_confirmation"
                 class="form-control"
                 placeholder="Confirm new password"
-                autocomplete="off" />
+                autocomplete="off"
+              />
               <span class="input-group-text">
-                <a href="#" class="link-secondary" title="Show password"
-                  data-bs-toggle="tooltip">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                    height="24" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" fill="none" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
-                    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
-                  </svg>
+                <a
+                  href="#"
+                  class="toggle-password link-secondary"
+                  data-target="password_confirmation"
+                >
+                  <span class="password-icon"></span>
                 </a>
               </span>
             </div>
@@ -203,6 +201,53 @@
 <!-- Tabler Core -->
 <script src="{{ asset('assets/admin/js/tabler.min.js') }}" defer></script>
 <script src="{{ asset('assets/admin/js/demo.min.js') }}" defer></script>
+
+<!-- Show Password -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const eyeSvg = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+        fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+        <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6
+                 c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
+      </svg>
+    `
+
+    const eyeOffSvg = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+        fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 3l18 18"/>
+        <path d="M10.58 10.58a2 2 0 0 0 2.83 2.83"/>
+        <path d="M9.363 5.365c.823 -.23 1.714 -.365 2.637 -.365
+                 c3.6 0 6.6 2 9 6a17.888 17.888 0 0 1 -1.546 2.204"/>
+        <path d="M6.53 6.53a17.888 17.888 0 0 0 -3.53 5.47
+                 c2.4 4 5.4 6 9 6c.933 0 1.83 -.136 2.653 -.368"/>
+      </svg>
+    `
+
+    document.querySelectorAll('.toggle-password').forEach(toggle => {
+      const input = document.getElementById(toggle.dataset.target)
+      const icon = toggle.querySelector('.password-icon')
+
+      // icône initiale
+      icon.innerHTML = eyeSvg;
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        const isPassword = input.type === 'password'
+        input.type = isPassword ? 'text' : 'password'
+        icon.innerHTML = isPassword ? eyeOffSvg : eyeSvg
+        toggle.title = isPassword ? 'Hide password' : 'Show password'
+      });
+    })
+  });
+</script>
 </body>
 </html>
 
