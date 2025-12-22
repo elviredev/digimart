@@ -45,6 +45,9 @@
     <div class="container">
       <div class="row">
         <div class="col-xxl-5 col-xl-6 col-md-9 col-lg-7 m-auto">
+          <!-- Session Status -->
+          <x-auth-session-status class="mb-4" :status="session('status')" />
+
           <div class="wsus__login_area">
             <h2>{{ __('Welcome back!') }}</h2>
             <p>{{ __('sign in to continue') }}</p>

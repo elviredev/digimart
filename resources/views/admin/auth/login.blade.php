@@ -29,6 +29,11 @@
         <img src="{{ asset('assets/admin/img/logo.svg') }}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
       </a>
     </div>
+
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
+
+
     <div class="card card-md">
       <div class="card-body">
         <h2 class="h2 text-center mb-4">{{ __('Login to your account') }}</h2>
