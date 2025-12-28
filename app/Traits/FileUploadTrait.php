@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Exception;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 
 trait FileUploadTrait
 {
@@ -25,5 +26,25 @@ trait FileUploadTrait
     }
 
     return null;
+  }
+
+  public function deleteFile(string $path, string $disk = "public"): bool
+  {
+    if(!in_array($disk, ['public', 'local'])) {
+      throw new Exception("Invalid disk type. Disk must be either 'public' or 'local'");
+    }
+    // supprimer le fichier du dossier public
+    if($disk == 'public') {
+      if(File::exists(public_path($path))) {
+        File::delete(public_path($path));
+        return true;
+      }
+    } else { // supprimer le fichier du dossier storage
+      if(File::exists(storage_path($path))) {
+        File::delete(storage_path($path));
+      }
+    }
+
+    return false;
   }
 }

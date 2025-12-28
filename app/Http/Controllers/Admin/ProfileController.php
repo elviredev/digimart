@@ -1,51 +1,40 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\PasswordUpdateRequest;
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\Admin\PasswordUpdateRequest;
+use App\Http\Requests\Admin\ProfileUpdateRequest;
 use App\Services\NotificationService;
 use App\Traits\FileUploadTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
   use FileUploadTrait;
 
-  /**
-  * Display the user profile.
-  */
   public function index(): View
   {
-    $user = Auth::user();
-
-    return view('frontend.dashboard.profile.index', compact('user'));
+    return view('admin.profile.index');
   }
 
-  /**
-  * Update the user's profile information in database.
-  */
   public function update(ProfileUpdateRequest $request): RedirectResponse
   {
-    $user = Auth::user();
+    $user = Auth::guard('admin')->user();
 
-    // upload avatar file
     if ($request->hasFile('avatar')) {
       // supprimer ancienne image
       $this->deleteFile($user->avatar);
       // upload nouvelle image
-      $avatarPath = $this->uploadFile($request->avatar);
+      $avatarPath = $this->uploadFile($request->file('avatar'));
       $user->avatar = $avatarPath;
     }
 
     $user->name = $request->name;
     $user->email = $request->email;
-    $user->country = $request->country;
-    $user->city = $request->city;
-    $user->address = $request->address;
     $user->save();
 
     NotificationService::UPDATED();
@@ -53,12 +42,9 @@ class ProfileController extends Controller
     return redirect()->back();
   }
 
-  /**
-   * Update the user's password in database.
-   */
   public function updatePassword(PasswordUpdateRequest $request): RedirectResponse
   {
-    $user = Auth::user();
+    $user = Auth::guard('admin')->user();
     $user->password = bcrypt($request->password);
     $user->save();
 
@@ -67,13 +53,6 @@ class ProfileController extends Controller
     return redirect()->back();
   }
 }
-
-
-
-
-
-
-
 
 
 
