@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->as('admin.')
@@ -43,4 +44,10 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
       ->name('profile.update');
     Route::put('password', [ProfileController::class, 'updatePassword'])
       ->name('password.update');
+
+    /** Role & Permissions Management Routes */
+    Route::resource('roles', RoleController::class);
+
+
+
 });

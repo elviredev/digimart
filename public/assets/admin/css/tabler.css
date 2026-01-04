@@ -25811,3 +25811,17 @@ Antialiasing
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
+
+/** Custom CSS */
+.ti {
+  font-size: 20px !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover .ti-edit,
+a:hover .ti-trash {
+  color: gray !important;
+}
