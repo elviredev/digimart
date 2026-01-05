@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\RoleUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->as('admin.')
@@ -48,6 +49,6 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     /** Role & Permissions Management Routes */
     Route::resource('roles', RoleController::class);
 
-
-
+    /** Role User Routes */
+    Route::resource('role-users', RoleUserController::class);
 });

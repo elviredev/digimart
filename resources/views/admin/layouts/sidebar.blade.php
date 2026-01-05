@@ -330,7 +330,7 @@
         >
           <span
             class="avatar avatar-sm"
-            style="background-image: url(./static/avatars/000m.jpg)"
+            style="background-image: url({{ asset(auth('admin')->user()->avatar) }})"
           ></span>
           <div class="d-none d-xl-block ps-2">
             <div>Paweł Kuna</div>
@@ -477,8 +477,8 @@
           <div class="dropdown-menu">
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
-                <a class="dropdown-item" href="./layout-horizontal.html">
-                  Horizontal
+                <a class="dropdown-item" href="{{ route('admin.role-users.index') }}">
+                  Role Users
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.roles.index') }}">
                   Role & Permissions
@@ -777,7 +777,7 @@
         >
           <span
             class="avatar avatar-sm"
-            style="background-image: url(./static/avatars/000m.jpg)"
+            style="background-image: url({{ asset(auth('admin')->user()->avatar) }})"
           ></span>
           <div class="d-none d-xl-block ps-2">
             <div>{{ auth()->user()->name }}</div>

@@ -6,9 +6,9 @@
       <div class="container-xl">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">{{ __('All Roles') }}</h3>
+            <h3 class="card-title">{{ __('Role Users') }}</h3>
             <div class="card-actions">
-              <a href="{{ route('admin.roles.create') }}" class="btn btn-primary btn-3">
+              <a href="{{ route('admin.role-users.create') }}" class="btn btn-primary btn-3">
                 <i class="ti ti-plus me-1"></i>
                 {{ __('Add new') }}
               </a>
@@ -21,21 +21,28 @@
                 <table class="table table-vcenter card-table table-striped">
                   <thead>
                   <tr>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Email') }}</th>
                     <th>{{ __('Role') }}</th>
-                    <th>{{ __('Permissions') }}</th>
                     <th class="w-8"></th>
                   </tr>
                   </thead>
                   <tbody>
-                    @forelse ($roles as $role)
+                    @forelse ($admins as $admin)
                       <tr>
-                        <td>{{ $role->name }}</td>
-                        <td class="text-secondary">{{ $role->permissions_count }}</td>
+                        <td>{{ $admin->name }}</td>
+                        <td class="text-secondary">{{ $admin->email }}</td>
+                        <td>
+                         @foreach ($admin->getRoleNames() as $role)
+                           <span class="badge bg-blue text-blue-fg">{{ $role }}</span>
+                         @endforeach
+                        </td>
+
                         <td class="text-end">
-                          <a href="{{ route('admin.roles.edit', $role->id) }}" class="text-primary">
+                          <a href="{{ route('admin.role-users.edit', $admin->id) }}" class="text-primary">
                             <i class="ti ti-edit"></i>
                           </a>
-                          <a class="delete-item text-danger ms-2" href="{{ route('admin.roles.destroy', $role->id) }}">
+                          <a href="{{ route('admin.role-users.destroy', $admin->id) }}" class="delete-item text-danger ms-2" >
                             <i class="ti ti-trash"></i>
                           </a>
                         </td>
