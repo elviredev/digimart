@@ -5,8 +5,6 @@
     name="{{ $name }}"
     {{ $attributes->merge(['class' => 'form-control']) }}
     placeholder="{{ $placeholder }}"
-  >
-    {{ $value }}
-  </textarea>
+  >{{ $value }}</textarea>
   <x-input-error :messages="$errors->get($name)" />
 </div>

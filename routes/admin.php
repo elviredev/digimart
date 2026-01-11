@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\KYCSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RoleUserController;
@@ -51,4 +52,10 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
 
     /** Role User Routes */
     Route::resource('role-users', RoleUserController::class);
+
+    /** KYC Routes */
+    Route::get('kyc-settings', [KYCSettingController::class, 'index'])
+      ->name('kyc-settings.index');
+    Route::put('kyc-settings', [KYCSettingController::class, 'update'])
+      ->name('kyc-settings.update');
 });
