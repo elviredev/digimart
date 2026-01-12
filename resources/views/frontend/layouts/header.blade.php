@@ -32,11 +32,11 @@
     <nav class="header-inner flx-between">
       <!-- Logo Start -->
       <div class="logo">
-        <a href="index.html" class="link white-version">
-          <img src="assets/images/logo/logo-two.png" alt="Logo">
+        <a href="{{ route('home') }}" class="link white-version">
+          <img src="{{ asset('assets/frontend/images/logo/logo-two.png') }}" alt="Logo">
         </a>
-        <a href="index.html" class="link dark-version">
-          <img src="assets/images/logo/white-logo.png" alt="Logo">
+        <a href="{{ route('home') }}" class="link dark-version">
+          <img src="{{ asset('assets/frontend/images/logo/white-logo.png') }}" alt="Logo">
         </a>
       </div>
       <!-- Logo End  -->
@@ -88,7 +88,7 @@
             <a href="contact.html" class="nav-menu__link">Contact</a>
           </li>
           <li class="nav-menu__item">
-            <a href="#" class="nav-menu__link">Start Selling</a>
+            <a href="{{ route('kyc.index') }}" class="nav-menu__link">Start Selling</a>
           </li>
         </ul>
       </div>
@@ -105,12 +105,12 @@
           <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-              <img src="assets/images/icons/user.svg" alt="">
+              <img src="{{ asset('assets/frontend/images/icons/user.svg') }}" alt="user icon">
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{{ route('login') }}">Sign In</a></li>
-              <li><a class="dropdown-item" href="#">Sign Up</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
+              <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
             </ul>
           </div>

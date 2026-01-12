@@ -67,7 +67,7 @@
   </button>
   <div class="mobile-menu__inner">
     <a href="index.html" class="mobile-menu__logo">
-      <img src="assets/images/logo/logo-two.png" alt="Logo" class="white-version">
+      <img src="{{ asset('assets/frontend/images/logo/logo-two.png') }}" alt="Logo" class="white-version">
     </a>
     <div class="mobile-menu__menu">
       <div class="header-right__inner d-lg-none my-3 gap-1 d-flex flx-align">
@@ -80,7 +80,7 @@
           <button
           class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
           aria-expanded="false">
-            <img src="assets/images/icons/user.svg" alt="">
+            <img src="{{ asset('assets/frontend/images/icons/user.svg') }}" alt="">
           </button>
           <ul class="dropdown-menu">
             <li>
@@ -230,48 +230,48 @@
 
               <div class="user-profile">
                 <button class="user-profile__button flex-align">
-                                        <span class="user-profile__thumb">
-                                            <img src="assets/images/thumbs/user-profile.png" class="cover-img" alt="">
-                                        </span>
+                  <span class="user-profile__thumb">
+                    <img src="{{ asset(auth('web')->user()->avatar) }}" class="cover-img" alt="">
+                  </span>
                 </button>
                 <ul class="user-profile-dropdown">
                   <li class="sidebar-list__item">
                     <a href="dashboard-profile.html" class="sidebar-list__link">
-                                                <span class="sidebar-list__icon">
-                                                    <img
-                                                    src="assets/images/icons/sidebar-icon2.svg" alt=""
-                                                    class="icon">
-                                                    <img
-                                                    src="assets/images/icons/sidebar-icon-active2.svg" alt=""
-                                                    class="icon icon-active">
-                                                </span>
+                      <span class="sidebar-list__icon">
+                          <img
+                          src="assets/images/icons/sidebar-icon2.svg" alt=""
+                          class="icon">
+                          <img
+                          src="assets/images/icons/sidebar-icon-active2.svg" alt=""
+                          class="icon icon-active">
+                      </span>
                       <span class="text">Profile</span>
                     </a>
                   </li>
 
                   <li class="sidebar-list__item">
                     <a href="setting.html" class="sidebar-list__link">
-                                                <span class="sidebar-list__icon">
-                                                    <img
-                                                    src="assets/images/icons/sidebar-icon10.svg" alt=""
-                                                    class="icon">
-                                                    <img
-                                                    src="assets/images/icons/sidebar-icon-active10.svg" alt=""
-                                                    class="icon icon-active">
-                                                </span>
+                      <span class="sidebar-list__icon">
+                          <img
+                          src="assets/images/icons/sidebar-icon10.svg" alt=""
+                          class="icon">
+                          <img
+                          src="assets/images/icons/sidebar-icon-active10.svg" alt=""
+                          class="icon icon-active">
+                      </span>
                       <span class="text">Settings</span>
                     </a>
                   </li>
                   <li class="sidebar-list__item">
                     <a href="login.html" class="sidebar-list__link">
-                                                <span class="sidebar-list__icon">
-                                                    <img
-                                                    src="assets/images/icons/sidebar-icon13.svg" alt=""
-                                                    class="icon">
-                                                    <img
-                                                    src="assets/images/icons/sidebar-icon-active13.svg" alt=""
-                                                    class="icon icon-active">
-                                                </span>
+                      <span class="sidebar-list__icon">
+                          <img
+                          src="assets/images/icons/sidebar-icon13.svg" alt=""
+                          class="icon">
+                          <img
+                          src="assets/images/icons/sidebar-icon-active13.svg" alt=""
+                          class="icon icon-active">
+                      </span>
                       <span class="text">Logout</span>
                     </a>
                   </li>

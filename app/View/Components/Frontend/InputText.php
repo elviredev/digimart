@@ -14,6 +14,7 @@ class InputText extends Component
   public string $label;
   public ?string $value;
   public ?string $placeholder;
+  public ?bool $required;
 
   /**
    * Create a new component instance.
@@ -23,7 +24,8 @@ class InputText extends Component
     string $name,
     ?string $label = null,
     ?string $value = null,
-    ?string $placeholder = null
+    ?string $placeholder = null,
+    ?bool $required = false
   )
   {
     $this->type = $type;
@@ -31,6 +33,7 @@ class InputText extends Component
     $this->label = $label ?? Str::title(str_replace('_', ' ', $name));
     $this->value = $value;
     $this->placeholder = $placeholder;
+    $this->required = $required;
   }
 
   /**
