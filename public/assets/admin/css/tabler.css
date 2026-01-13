@@ -25822,6 +25822,7 @@ a {
 }
 
 a:hover .ti-edit,
-a:hover .ti-trash {
+a:hover .ti-trash,
+a:hover .ti-eye {
   color: gray !important;
 }

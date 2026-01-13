@@ -333,7 +333,7 @@
             style="background-image: url({{ asset(auth('admin')->user()->avatar) }})"
           ></span>
           <div class="d-none d-xl-block ps-2">
-            <div>Paweł Kuna</div>
+            <div>{{ auth('admin')->user()->name }}</div>
             <div class="mt-1 small text-secondary">UI Designer</div>
           </div>
         </a>
@@ -350,7 +350,7 @@
     <div class="collapse navbar-collapse" id="sidebar-menu">
       <ul class="navbar-nav pt-lg-3">
         <li class="nav-item">
-          <a class="nav-link" href="./">
+          <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-home"></i>
             </span>
@@ -434,8 +434,11 @@
           <div class="dropdown-menu show">
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
-                <a class="dropdown-item" href="./layout-horizontal.html">
-                  Horizontal
+                <a class="dropdown-item" href="{{ route('admin.kyc.index') }}">
+                  KYC Requests
+                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">
+                    1
+                  </span>
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.kyc-settings.index') }}">
                   KYC Settings
