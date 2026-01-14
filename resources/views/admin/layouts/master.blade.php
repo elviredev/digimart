@@ -28,31 +28,33 @@
       font-feature-settings: "cv03", "cv04", "cv11";
     }
   </style>
+  @stack('styles')
 </head>
 <body >
-<script src="{{ asset('assets/admin/js/demo-theme.min.js') }}"></script>
-<div class="page">
-  <!-- Sidebar -->
-  @include('admin.layouts.sidebar')
+  <script src="{{ asset('assets/admin/js/demo-theme.min.js') }}"></script>
+  <div class="page">
+    <!-- Sidebar -->
+    @include('admin.layouts.sidebar')
 
-  <!-- Contenu dynamique -->
-  @yield('content')
-</div>
+    <!-- Contenu dynamique -->
+    @yield('content')
+  </div>
 
-<!-- jQuery -->
-<script src="{{ asset('assets/admin/js/jquery.js') }}" defer></script>
-<!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Notyf JS -->
-<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <!-- jQuery -->
+  <script src="{{ asset('assets/admin/js/jquery.js') }}"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Notyf JS -->
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
-<!-- Tabler Core -->
-<script src="{{ asset('assets/admin/js/tabler.min.js') }}" defer></script>
-<script src="{{ asset('assets/admin/js/demo.min.js') }}" defer></script>
+  <!-- Tabler Core -->
+  <script src="{{ asset('assets/admin/js/tabler.min.js') }}" defer></script>
+  <script src="{{ asset('assets/admin/js/demo.min.js') }}" defer></script>
 
-<!-- Admin JS -->
-<script src="{{ asset('assets/admin/js/default/admin.js') }}" defer></script>
+  <!-- Admin JS -->
+  <script src="{{ asset('assets/admin/js/default/admin.js') }}" defer></script>
 
+  @stack('scripts')
 
 </body>
 </html>

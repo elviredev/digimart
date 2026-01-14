@@ -23,7 +23,8 @@ class User extends Authenticatable
     'name',
     'email',
     'password',
-    'kyc_status'
+    'kyc_status',
+    'user_type'
   ];
 
   /**
