@@ -79,7 +79,7 @@ class KycController extends Controller
         toMail: $kyc->user->email
       );
     } elseif ($kyc->status == 'rejected') {
-      User::findOrFail($kyc->user_id)?->update(['kyc_status' => 0]);
+      User::findOrFail($kyc->user_id)?->update(['kyc_status' => 0, 'user_type' => 'user']);
       // envoyer email rejet
       MailSenderService::sendMail(
         name: $kyc->user->name,

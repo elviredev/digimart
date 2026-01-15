@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::post('kyc', [KycVerificationController::class, 'store'])
     ->name('kyc.store')
     ->middleware('kyc');
+
 });
 
 require __DIR__.'/auth.php';

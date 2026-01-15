@@ -17,3 +17,11 @@ if (!function_exists('pendingKycCount')) {
     return KycVerification::whereStatus('pending')->count();
   }
 }
+
+/** check if it's author */
+if (!function_exists('isAuthor')) {
+  function isAuthor(): bool
+  {
+    return user()->user_type == 'author' && user()->kyc_status == 1;
+  }
+}
