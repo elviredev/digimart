@@ -476,6 +476,15 @@
           </div>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.settings.index') }}">
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-settings"></i>
+            </span>
+            <span class="nav-link-title">Settings</span>
+          </a>
+        </li>
+
       </ul>
     </div>
   </div>
