@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.21.0/tabler-icons.min.css"
   integrity="sha512-XrgoTBs7P5YtpkeKqKOKkruURsawIaRrhe8QrcWeMnFeyRZiOcRNjBAX+AQeXOvx9/9fSY32dVct1PccRoCICQ=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Bootstrap Tags Input -->
+  <link href="{{ asset('assets/admin/css/bootstrap-tagsinput.css') }}" rel="stylesheet"/>
   <!-- CSS files -->
   <link rel="shortcut icon" href="{{ asset('assets/admin/img/logo.svg') }}" type="image/x-icon"/>
   <link href="{{ asset('assets/admin/css/tabler.css') }}" rel="stylesheet"/>
@@ -19,6 +21,8 @@
   <link href="{{ asset('assets/admin/css/tabler-payments.min.css') }}" rel="stylesheet"/>
   <link href="{{ asset('assets/admin/css/tabler-vendors.min.css') }}" rel="stylesheet"/>
   <link href="{{ asset('assets/admin/css/demo.min.css') }}" rel="stylesheet"/>
+  @stack('styles')
+
   <style>
     @import url('https://rsms.me/inter/inter.css');
     :root {
@@ -28,7 +32,7 @@
       font-feature-settings: "cv03", "cv04", "cv11";
     }
   </style>
-  @stack('styles')
+
 </head>
 <body >
   <script src="{{ asset('assets/admin/js/demo-theme.min.js') }}"></script>
@@ -46,6 +50,8 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Notyf JS -->
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <!-- Bootstrap Tags Input -->
+  <script src="{{ asset('assets/admin/js/bootstrap-tagsinput.min.js') }}"></script>
 
   <!-- Tabler Core -->
   <script src="{{ asset('assets/admin/js/tabler.min.js') }}" defer></script>

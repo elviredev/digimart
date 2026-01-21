@@ -7,5 +7,10 @@
     placeholder="{{ $placeholder }}"
     value="{{ $value }}"
   >
+
+  @if($hint)
+    <span class="form-hint">{{ $hint }}</span>
+  @endif
+
   <x-input-error :messages="$errors->get($name)" />
 </div>

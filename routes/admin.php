@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
@@ -65,6 +66,9 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::put('kyc-status/{kyc}', [KycController::class, 'updateStatus'])
       ->name('kyc.status');
     Route::resource('kyc', KycController::class);
+
+    /** Categories Routes */
+    Route::resource('categories', CategoryController::class);
 
     /** Settings Routes */
     Route::get('settings', [SettingController::class, 'index'])

@@ -5,3 +5,5 @@
 - **Spatie/laravel-permission** : Gestion des rôles et des permissions
 - **SweetAlert2** : Popup de confirmation
 - **Notyf JS** : Notification des messages d'erreurs
+- **Bootstrap Tags Input** : Sélection multiple de tags
+- **EZ Tabler Icon Picker** : Sélecteur d'icones pour Tabler Icons
