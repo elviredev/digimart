@@ -4,6 +4,13 @@ const csrf = $('meta[name="csrf-token"]').attr('content');
 
 let notyf = new Notyf();
 
+/** Initialize select2 elements */
+$(document).ready(function() {
+  $('.select_2').select2();
+});
+
+
+/** Sweet Alert 2 Confirmation Modal */
 $(function () {
   $('.delete-item').on('click', function (e) {
     e.preventDefault();

@@ -14,6 +14,9 @@
   crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Bootstrap Tags Input -->
   <link href="{{ asset('assets/admin/css/bootstrap-tagsinput.css') }}" rel="stylesheet"/>
+  <!-- Select 2 -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/css/select2.min.css') }}">
+
   <!-- CSS files -->
   <link rel="shortcut icon" href="{{ asset('assets/admin/img/logo.svg') }}" type="image/x-icon"/>
   <link href="{{ asset('assets/admin/css/tabler.css') }}" rel="stylesheet"/>
@@ -52,6 +55,8 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   <!-- Bootstrap Tags Input -->
   <script src="{{ asset('assets/admin/js/bootstrap-tagsinput.min.js') }}"></script>
+  <!-- select 2  -->
+  <script src="{{ asset('assets/admin/js/select2.min.js') }}"></script>
 
   <!-- Tabler Core -->
   <script src="{{ asset('assets/admin/js/tabler.min.js') }}" defer></script>

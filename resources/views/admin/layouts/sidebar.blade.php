@@ -391,33 +391,35 @@
           </div>
         </li>
 
-        <li class="nav-item dropdown">
-          <a
-          class="nav-link dropdown-toggle"
-          href="{{ route('admin.categories.index') }}"
-          data-bs-toggle="dropdown"
-          data-bs-auto-close="false"
-          role="button"
-          aria-expanded="true"
-          >
-            <span class="nav-link-icon d-md-none d-lg-inline-block">
-              <i class="ti ti-category"></i>
-            </span>
-            <span class="nav-link-title">{{ __('Manage Categories') }}</span>
-          </a>
-          <div class="dropdown-menu">
-            <div class="dropdown-menu-columns">
-              <div class="dropdown-menu-column">
-                <a class="dropdown-item" href="{{ route('admin.categories.index') }}">
-                  {{ __('Main Categories') }}
-                </a>
-                <a class="dropdown-item" href="{{ route('admin.roles.index') }}">
-                  Role & Permissions
-                </a>
+        @if(canAccess(['manage categories']))
+          <li class="nav-item dropdown">
+            <a
+            class="nav-link dropdown-toggle"
+            href="{{ route('admin.categories.index') }}"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="false"
+            role="button"
+            aria-expanded="true"
+            >
+              <span class="nav-link-icon d-md-none d-lg-inline-block">
+                <i class="ti ti-category"></i>
+              </span>
+              <span class="nav-link-title">{{ __('Manage Categories') }}</span>
+            </a>
+            <div class="dropdown-menu">
+              <div class="dropdown-menu-columns">
+                <div class="dropdown-menu-column">
+                  <a class="dropdown-item" href="{{ route('admin.categories.index') }}">
+                    {{ __('Main Categories') }}
+                  </a>
+                  <a class="dropdown-item" href="{{ route('admin.sub-categories.index') }}">
+                    {{ __('Sub Categories') }}
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
+          </li>
+        @endif
 
         <li class="nav-item dropdown">
           <a

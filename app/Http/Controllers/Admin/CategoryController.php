@@ -9,16 +9,27 @@ use App\Models\Category;
 use App\Services\NotificationService;
 use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Str;
 
-class CategoryController extends Controller
+class CategoryController extends Controller implements HasMiddleware
 {
+
+  /** Middleware for Permission Module Category */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage categories')
+    ];
+  }
+
   /**
    * Display a listing of the resource.
    */
   public function index(): View
   {
-    $categories = Category::paginate(25);
+    $categories = Category::paginate(5);
     return view('admin.category.index', compact('categories'));
   }
 
@@ -82,6 +93,13 @@ class CategoryController extends Controller
   public function destroy(Category $category)
   {
     try {
+      if ($category->subCategories()->exists()) {
+        return response()->json([
+          'status' => 'error',
+          'message' => __('This Category has sub categories, please delete them first.')
+        ], 402);
+      }
+
       $category->delete();
 
       NotificationService::DELETED();

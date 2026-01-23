@@ -71,7 +71,7 @@
                         </td>
                       </tr>
                     @empty
-                      <td colspan="5" class="text-center text-secondary">{{ __('No categories found') }}</td>
+                      <td colspan="6" class="text-center text-secondary">{{ __('No categories found') }}</td>
                     @endforelse
                   </tbody>
                 </table>
@@ -80,7 +80,7 @@
           </div>
 
           <div class="card-footer text-end">
-
+            {{ $categories->links() }}
           </div>
         </div>
       </div>

@@ -34,3 +34,17 @@ if (!function_exists('formatDate')) {
   }
 }
 
+/** Check Permissions */
+if (!function_exists('canAccess')) {
+  function canAccess(array $permissions): bool
+  {
+    $permission = auth()->guard('admin')->user()->hasAnyPermission($permissions);
+    $superAdmin = auth()->guard('admin')->user()->hasRole('super admin');
+
+    if($permission || $superAdmin) return true;
+
+    return false;
+  }
+}
+
+
