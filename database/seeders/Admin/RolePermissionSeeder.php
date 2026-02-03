@@ -34,6 +34,11 @@ class RolePermissionSeeder extends Seeder
         'name' => 'review products',
         'guard_name' => 'admin',
         'group_name' => 'Reviw Products'
+      ],
+      [
+        'name' => 'manage categories',
+        'guard_name' => 'admin',
+        'group_name' => 'Category Module'
       ]
     ]);
   }

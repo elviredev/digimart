@@ -48,14 +48,18 @@ class RedirectIfAuthenticated
   /**
    * Get the default URI the user should be redirected to when they are authenticated.
    */
-  protected function defaultRedirectUri(string $guard): string
+  protected function defaultRedirectUri(?string $guard = null): string
   {
     if($guard === 'admin') {
-      return Route::has('admin.dashboard') ? route('admin.dashboard') : '/admin/dashboard';
+      return Route::has('admin.dashboard')
+        ? route('admin.dashboard')
+        : '/admin/dashboard';
     }
 
-    if($guard === 'web') {
-      return Route::has('dashboard') ? route('dashboard') : '/dashboard';
+    if($guard === 'web' || $guard === null) {
+      return Route::has('dashboard')
+        ? route('dashboard')
+        : '/dashboard';
     }
 
     return '/';

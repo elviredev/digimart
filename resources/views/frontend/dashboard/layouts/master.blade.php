@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/line-awesome.min.css') }}">
   <!-- select 2  -->
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.min.css') }}">
+  <!-- Bootstrap Tags Input -->
+  <link href="{{ asset('assets/admin/css/bootstrap-tagsinput.css') }}" rel="stylesheet"/>
   <!-- Tabler Icons CSS -->
   <link
   rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.21.0/tabler-icons.min.css"
@@ -31,6 +33,7 @@
   <!-- Main css -->
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}">
 
+  @stack('styles')
 </head>
 
 <body>
@@ -344,11 +347,17 @@
 <script src="{{ asset('assets/frontend/js/infiniteslidev2.js') }}"></script>
 <!-- select 2  -->
 <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
+<!-- TinyMCE Rich Editor -->
+<script src="{{ asset('assets/frontend/js/tinymce/tinymce.min.js') }}"></script>
+<!-- Bootstrap Tags Input -->
+<script src="{{ asset('assets/admin/js/bootstrap-tagsinput.min.js') }}"></script>
 
 <!-- main js -->
 <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+<!-- dashboard js -->
+<script src="{{ asset('assets/frontend/js/default/dashboard.js') }}"></script>
 
-
+@stack('scripts')
 </body>
 
 </html>

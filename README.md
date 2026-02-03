@@ -7,3 +7,4 @@
 - **Notyf JS** : Notification des messages d'erreurs
 - **Bootstrap Tags Input** : Sélection multiple de tags
 - **EZ Tabler Icon Picker** : Sélecteur d'icones pour Tabler Icons
+- **Dropzone JS** : Upload de fichiers multiples

@@ -4,7 +4,7 @@
   </label>
   <div>
     <select
-      name="{{ $name }}"
+      name="{{ $name }}" {{ $required ? 'required' : '' }}
       {{ $attributes->merge(['class' => 'common-input border']) }}
       id="{{ $name }}"
     >
