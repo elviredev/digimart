@@ -52,8 +52,8 @@ class CategoryController extends Controller implements HasMiddleware
     $category->name = $request->name;
     $category->slug = Str::slug($request->name);
     $category->file_types = explode(',', $request->file_types);
-    $category->show_at_nav = $request->show_at_nav;
-    $category->show_at_featured = $request->show_at_featured;
+    $category->show_at_nav = $request->boolean('show_at_nav');
+    $category->show_at_featured = $request->boolean('show_at_featured');
     $category->save();
 
     NotificationService::CREATED();
@@ -78,8 +78,8 @@ class CategoryController extends Controller implements HasMiddleware
     $category->name = $request->name;
     $category->slug = Str::slug($request->name);
     $category->file_types = explode(',', $request->file_types);
-    $category->show_at_nav = $request->show_at_nav;
-    $category->show_at_featured = $request->show_at_featured;
+    $category->show_at_nav = $request->boolean('show_at_nav');
+    $category->show_at_featured = $request->boolean('show_at_featured');
     $category->save();
 
     NotificationService::UPDATED();

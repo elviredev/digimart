@@ -1,5 +1,8 @@
 'use strict'
 
+/** Select2 Init */
+$('.select_2').select2()
+
 /** TinyMCE Init */
 tinymce.init({
   selector: 'textarea#editor',

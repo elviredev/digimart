@@ -128,7 +128,7 @@
       <hr>
 
       <div class="row">
-        <div class="col-lg-7 mb-4">
+        <div class="col-lg-12 mb-4">
           <div class="dropzone" id="fileUpload">
             <div class="dz-message text-center">
               <div class="mb-2 file-text-wrapper">
@@ -140,7 +140,34 @@
           </div>
 
           <ul class="list-group" id="fileList">
-            <!-- Uploaded files will appear here -->
+            <!-- Uploaded files -->
+            @foreach ($uploadedItems as $item)
+              <li
+              class="list-group-item file-list-item d-flex align-items-center justify-content-between"
+              id="file-{{ $item->id }}"
+              >
+                <div class="w-100">
+                  <div class="d-flex align-items-center">
+                    <i class="bi {{ getIcon($item->mime_type) }} fs-3 me-3 text-primary"></i>
+                    <span>
+                      {{ $item->name }}
+                      <span class="file-size">({{ formatSize($item->size) }})</span>
+                    </span>
+                  </div>
+                  <div class="progress me-3" style="width:100%; height: 5px;">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                    style="width: 100%;" id=""></div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm justify-content-end ms-3"
+                  onclick="removeFile('{{ $item->id }}')"
+                >
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </li>
+            @endforeach
           </ul>
         </div>
 
@@ -153,8 +180,10 @@
         </div>
 
         <div class="col-md-12">
-          <x-frontend.input-select class="" name="preview_file" :label="__('Preview File')" :required="true" >
-
+          <x-frontend.input-select class="" name="preview_file" :label="__('Preview File')" :required="true" id="preview_file_input" >
+            @foreach ($uploadedItems as $item)
+              <option value="{{ $item->path }}">{{ $item->name }}</option>
+            @endforeach
           </x-frontend.input-select>
         </div>
 
@@ -163,20 +192,24 @@
             {{ __('Main File') }} <span class="text-danger">*</span>
           </label>
           <div class="input-group mb-3">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Upload</a></li>
-              <li><a class="dropdown-item" href="#">Link</a></li>
-            </ul>
-            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <select id="main_source_selector" class="form-select" name="">
+              <option selected value="upload">{{ __('Upload') }}</option>
+              <option value="link">{{ __('Link') }}</option>
+            </select>
+            <select id="upload_source" class="form-select" name="">
+              @foreach ($uploadedItems as $item)
+                <option value="{{ $item->path }}">{{ $item->name }}</option>
+              @endforeach
+            </select>
+            <input type="text" class="form-control d-none" id="link_source" aria-label="Text input with dropdown button">
           </div>
         </div>
 
         <div class="col-md-12">
-          <x-frontend.input-select class="select_2" name="screenshots[]" :label="__('Screenshots')" multiple="multiple">
-            <option value="">Test 1</option>
-            <option value="">Test 2</option>
-            <option value="">Test 3</option>
+          <x-frontend.input-select class="select_2" name="screenshots[]" :label="__('Screenshots')" multiple="multiple" id="screenshots_input">
+            @foreach ($uploadedItems as $item)
+              <option value="{{ $item->path }}">{{ $item->name }}</option>
+            @endforeach
           </x-frontend.input-select>
         </div>
 
@@ -190,6 +223,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 
   <script>
+    var notyf = new Notyf({
+      duration: 5000
+    })
+
     const csrfToken = "{{ csrf_token() }}";
     // Initialize Dropzone
     Dropzone.autoDiscover = false;
@@ -224,8 +261,23 @@
             progressBar.classList.add("bg-success");
             progressBar.style.width = "100%";
           }
+
+          // Set HTML items
+          var fileListWrapper = document.getElementById('fileList')
+          fileListWrapper.innerHTML = response.html
+
+          // Parcourir la réponse et afficher les options
+          setDynamicOptions(response)
+
         });
         this.on("error", function(file, errorMessage) {
+          var errors = errorMessage.errors
+          for (const field in errors) {
+            errors[field].forEach((error) => {
+              notyf.error(error)
+            })
+          }
+
           const listItem = document.getElementById(`file-${file.upload.uuid}`);
           if (listItem) {
             const progressBar = listItem.querySelector(".progress-bar");
@@ -236,6 +288,37 @@
         });
       },
     });
+
+    // Insérer dynamiquement les options dans les listes déroulantes
+    function setDynamicOptions(response) {
+      var previewFileInput = document.getElementById('preview_file_input')
+      var screenshotsInput = document.getElementById('screenshots_input')
+      var uploadSourceInput = document.getElementById('upload_source')
+
+      // Vider le contenu précédent
+      previewFileInput.innerHTML = ''
+      screenshotsInput.innerHTML = ''
+      uploadSourceInput.innerHTML = ''
+
+      for (let i = 0; i < response.files.length; i++) {
+        // Créer element <option>
+        var previewOption = document.createElement('option')
+        previewOption.value = response.files[i].path
+        previewOption.text = response.files[i].name
+        previewFileInput.add(previewOption)
+
+        var screenshotsOption = document.createElement('option')
+        screenshotsOption.value = response.files[i].path
+        screenshotsOption.text = response.files[i].name
+        screenshotsInput.add(screenshotsOption)
+
+        var uploadSourceOption = document.createElement('option')
+        uploadSourceOption.value = response.files[i].path
+        uploadSourceOption.text = response.files[i].name
+        uploadSourceInput.add(uploadSourceOption)
+      }
+    }
+
     // Function to get file icon
     function getIcon(fileType) {
       let fileIcon = "bi-file-earmark"; // Default icon
@@ -247,6 +330,7 @@
       else if (fileType.startsWith("application/")) fileIcon = "bi-file-earmark-zip";
       return fileIcon;
     }
+
     // create list item
     function createListItem(file) {
       // Determine file type icon
@@ -273,19 +357,56 @@
       `;
       document.getElementById("fileList").appendChild(listItem);
     }
+
     // get file size
     function getFileSize(file) {
       const size = file.size;
       const i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
       return `(${(size / Math.pow(1024, i)).toFixed(2) * 1} ${["B", "KB", "MB", "GB", "TB"][i]})`;
     }
+
     // Function to remove file
     function removeFile(uuid) {
       const listItem = document.getElementById(`file-${uuid}`);
       if (listItem) {
         listItem.remove();
       }
+
+      // suppression du fichier en bdd
+      $.ajax({
+        method: 'DELETE',
+        url: '/user/item-destroy/:id'.replace(':id', uuid),
+        data: {
+          _token: csrfToken
+        },
+        success: function(response) {
+          if (response.status == 'success') {
+            notyf.success(response.message)
+            setDynamicOptions(response)
+          } else {
+            notyf.error(response.message)
+          }
+        },
+        error: function() {
+        }
+      })
     }
+
+    // Select Main File
+    document.getElementById('main_source_selector').addEventListener('change', function() {
+      const value = this.value
+      const uploadSource = document.getElementById('upload_source')
+      const linkSource = document.getElementById('link_source')
+
+      if (value === 'upload') {
+        uploadSource.classList.remove('d-none')
+        linkSource.classList.add('d-none')
+      } else {
+        uploadSource.classList.add('d-none')
+        linkSource.classList.remove('d-none')
+      }
+    })
+
   </script>
 @endpush
 

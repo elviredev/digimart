@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/line-awesome.min.css') }}">
   <!-- select 2  -->
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.min.css') }}">
+  <!-- Notyf JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
   <!-- Bootstrap Tags Input -->
   <link href="{{ asset('assets/admin/css/bootstrap-tagsinput.css') }}" rel="stylesheet"/>
   <!-- Tabler Icons CSS -->
@@ -332,28 +334,30 @@
 <!-- Bootstrap Bundle Js -->
 <script src="{{ asset('assets/frontend/js/boostrap.bundle.min.js') }}"></script>
 <!-- CountDown -->
-<script src="{{ asset('assets/frontend/js/countdown.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/js/countdown.js') }}"></script>--}}
 <!-- counter up -->
-<script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script>--}}
 <!-- Slick js -->
-<script src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>--}}
 <!-- magnific popup -->
-<script src="{{ asset('assets/frontend/js/jquery.magnific-popup.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/js/jquery.magnific-popup.js') }}"></script>--}}
 <!-- apex chart -->
-<script src="{{ asset('assets/frontend/js/apexchart.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/js/apexchart.js') }}"></script>--}}
 <!-- marquee -->
-<script src="{{ asset('assets/frontend/js/marquee.min.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/js/marquee.min.js') }}"></script>--}}
 <!-- infinite slide  -->
-<script src="{{ asset('assets/frontend/js/infiniteslidev2.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/js/infiniteslidev2.js') }}"></script>--}}
 <!-- select 2  -->
 <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
 <!-- TinyMCE Rich Editor -->
 <script src="{{ asset('assets/frontend/js/tinymce/tinymce.min.js') }}"></script>
 <!-- Bootstrap Tags Input -->
 <script src="{{ asset('assets/admin/js/bootstrap-tagsinput.min.js') }}"></script>
+<!-- Notyf JS -->
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
 <!-- main js -->
-<script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/js/main.js') }}"></script>--}}
 <!-- dashboard js -->
 <script src="{{ asset('assets/frontend/js/default/dashboard.js') }}"></script>
 

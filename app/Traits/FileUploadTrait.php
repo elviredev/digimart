@@ -5,6 +5,7 @@ namespace App\Traits;
 use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Throwable;
 
 trait FileUploadTrait
 {
@@ -21,7 +22,7 @@ trait FileUploadTrait
       // store the file
       $file->storeAs($dir, $filename, $disk);
       return "$dir/$filename";
-    } catch (\Throwable $th) {
+    } catch (Throwable $th) {
       throw $th;
     }
 
@@ -40,8 +41,8 @@ trait FileUploadTrait
         return true;
       }
     } else { // supprimer le fichier du dossier storage
-      if(File::exists(storage_path($path))) {
-        File::delete(storage_path($path));
+      if(File::exists(storage_path('app/private/' . $path))) {
+        File::delete(storage_path('app/private/' . $path));
       }
     }
 

@@ -16,11 +16,11 @@
             </div>
           </div>
 
-          <div class="card-body">
-            <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
-              @csrf
-              @method('PUT')
+          <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+            @csrf
+            @method('PUT')
 
+            <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
                   <x-admin.input-icon name="icon" :label="__('Category Icon')" :value="$category->icon" />
@@ -36,7 +36,7 @@
                     :label="__('File Types')"
                     data-role="tagsinput"
                     :value="implode(',', $category->file_types)"
-                    :hint="__('The allowed files to be uploaded as main file, like ZIP, MP3, MP4, PNG, JPG, etc')"
+                    :hint="__('The allowed files to be uploaded as main file, like zip, rar, mp3, mp4, png, jpg, etc')"
                   />
                 </div>
 
@@ -50,12 +50,12 @@
                   <x-admin.input-toggle name="show_at_featured" :label="__('Show at featured')" :checked="$category->show_at_featured" />
                 </div>
               </div>
-            </form>
-          </div>
+            </div>
 
-          <div class="card-footer text-end">
-            <x-admin.submit-button :label="__('Update Category')" onclick="$('form').submit()" />
-          </div>
+            <div class="card-footer text-end">
+              <x-admin.submit-button :label="__('Update Category')" />
+            </div>
+          </form>
         </div>
       </div>
     </div>
