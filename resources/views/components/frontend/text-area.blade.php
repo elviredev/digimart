@@ -6,10 +6,7 @@
   <textarea
     name="{{ $name }}"
     {{ $attributes->merge(['class' => 'common-input border']) }}
-    placeholder="{{ $placeholder }}"
-  >
-    {!! $value !!}
-  </textarea>
+    placeholder="{{ $placeholder }}">{!! $value !!}</textarea>
 
   <x-input-error :messages="$errors->get($name)" />
 </div>

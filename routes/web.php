@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::get('items/create', [ItemController::class, 'create'])->name('items.create');
     Route::post('item-uploads', [ItemController::class, 'itemUploads'])->name('items.uploads');
     Route::delete('item-destroy/{id}', [ItemController::class, 'itemDestroy'])->name('items.destroy');
+    Route::post('item/store', [ItemController::class, 'storeItem'])->name('items.store');
   });
 });
 

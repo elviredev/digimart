@@ -61,7 +61,8 @@
   </div>
 
   <!-- Formulaire -->
-  <form action="">
+  <form action="" method="POST" enctype="multipart/form-data" id="product_form">
+    @csrf
 
     <div class="wsus__dash_order_table mt-3">
       <div>
@@ -96,11 +97,12 @@
               </option>
             @endforeach
           </x-frontend.input-select>
+          <input type="hidden" name="category" value="{{ $selectedCategory->id }}">
         </div>
         <div class="col-md-12">
           <x-frontend.input-select class="select_2" name="sub_category" :label="__('Sub Category')" :required="true" >
             @foreach ($selectedCategory->subCategories as $subCategory)
-              <option value="{{ $subCategory->slug }}">{{ $subCategory->name }}</option>
+              <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
             @endforeach
           </x-frontend.input-select>
         </div>
@@ -116,7 +118,7 @@
             {{ __('Tags') }} <span class="text-danger">*</span>
           </label>
           <br>
-          <input type="text" value="" data-role="tagsinput" />
+          <input type="text" name="tags[]" value="" data-role="tagsinput" />
         </div>
       </div>
     </div>
@@ -172,7 +174,7 @@
         </div>
 
         <div class="col-md-12">
-          <x-frontend.input-select class="" name="preview_type" :label="__('Preview Type')" :required="true" >
+          <x-frontend.input-select name="preview_type" :label="__('Preview Type')" :required="true" >
             <option value="image">{{ __('Image') }}</option>
             <option value="video">{{ __('Video') }}</option>
             <option value="audio">{{ __('Audio') }}</option>
@@ -180,7 +182,7 @@
         </div>
 
         <div class="col-md-12">
-          <x-frontend.input-select class="" name="preview_file" :label="__('Preview File')" :required="true" id="preview_file_input" >
+          <x-frontend.input-select name="preview_file" :label="__('Preview File')" :required="true" id="preview_file_input" >
             @foreach ($uploadedItems as $item)
               <option value="{{ $item->path }}">{{ $item->name }}</option>
             @endforeach
@@ -192,16 +194,16 @@
             {{ __('Main File') }} <span class="text-danger">*</span>
           </label>
           <div class="input-group mb-3">
-            <select id="main_source_selector" class="form-select" name="">
+            <select id="main_source_selector" class="form-select" name="source_type">
               <option selected value="upload">{{ __('Upload') }}</option>
               <option value="link">{{ __('Link') }}</option>
             </select>
-            <select id="upload_source" class="form-select" name="">
+            <select id="upload_source" class="form-select" name="upload_source">
               @foreach ($uploadedItems as $item)
                 <option value="{{ $item->path }}">{{ $item->name }}</option>
               @endforeach
             </select>
-            <input type="text" class="form-control d-none" id="link_source" aria-label="Text input with dropdown button">
+            <input type="text" class="form-control d-none" id="link_source" name="link_source" aria-label="Text input with dropdown button">
           </div>
         </div>
 
@@ -215,6 +217,83 @@
 
       </div>
     </div>
+
+    <div class="wsus__dash_order_table mt-3">
+      <div>
+        <h6>{{ __('Support') }}</h6>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12">
+          <x-frontend.input-select id="support_input" name="support" :label="__('Item will be supported?')" :required="true" >
+            <option value="1">{{ __('Yes') }}</option>
+            <option value="0">{{ __('No') }}</option>
+          </x-frontend.input-select>
+        </div>
+
+        <div class="col-md-12 d-none" id="support_instructions" >
+          <x-frontend.text-area name="support_instructions" :label="__('Support Instructions')" />
+        </div>
+      </div>
+    </div>
+
+    <div class="wsus__dash_order_table mt-3">
+      <div>
+        <h6>{{ __('Pricing') }}</h6>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-6">
+          <x-frontend.input-text name="price" :label="__('Regular Price')" :required="true" />
+        </div>
+        <div class="col-md-6">
+          <x-frontend.input-text name="discount_price" :label="__('Discount Price')" />
+        </div>
+      </div>
+    </div>
+
+    <div class="wsus__dash_order_table mt-3">
+      <div>
+        <h6>{{ __('Free item') }}</h6>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <p class="text-muted">{{ __('You can allow downloading the item free, please note that everyone can download the item directly from the item page without purchasing.') }}</p>
+          </div>
+          <x-frontend.input-select id="is_free" name="is_free" :label="__('Is item will be free?')" :required="true" >
+            <option value="0">{{ __('No') }}</option>
+            <option value="1">{{ __('Yes') }}</option>
+          </x-frontend.input-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="wsus__dash_order_table mt-3">
+      <div>
+        <h6>{{ __('Message to the reviewer') }}</h6>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12" >
+          <x-frontend.text-area name="message_for_reviewer" :label="__('Message')" />
+        </div>
+      </div>
+    </div>
+
+    <div class="wsus__dash_order_table mt-3">
+      <div class="row">
+        <div class="col-md-12" >
+          <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+        </div>
+      </div>
+    </div>
+
   </form>
 @endsection
 
@@ -407,6 +486,72 @@
       }
     })
 
+    // Gérer le textarea "Support Instructions"
+    document.getElementById('support_input').addEventListener('change', function() {
+      const value = this.value
+      const supportInstructions = document.getElementById('support_instructions')
+
+      if (value === '1') {
+        supportInstructions.classList.remove('d-none')
+      } else if (value === '0') {
+        supportInstructions.classList.add('d-none')
+      }
+    })
+
+    /** Submit Form */
+    $('#product_form').on('submit', function(e) {
+      e.preventDefault()
+
+      //let formData = $(this).serialize()
+      let formData = new FormData(this)
+
+      // 🔑 Forcer TinyMCE
+      formData.set('description', tinymce.get('editor').getContent())
+
+      $.ajax({
+        method: 'POST',
+        url: '/user/item/store',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          if (response.status == 'success') {
+            window.location.href = response.redirect
+          }
+        },
+        error: function (xhr, status, error) {
+          var errors = xhr.responseJSON.errors
+          $.each(errors, function (key, value) {
+            notyf.error(value[0])
+          })
+        }
+      })
+
+    })
+
   </script>
 @endpush
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -13,6 +13,11 @@ tinymce.init({
   toolbar_mode: 'sliding',
   contextmenu: 'link image table',
   content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+  setup: function (editor) {
+    editor.on('change', function () {
+      editor.save();
+    });
+  },
   file_picker_callback: function(callback, value, meta) {
     // Create input element and trigger click
     var input = document.createElement('input');

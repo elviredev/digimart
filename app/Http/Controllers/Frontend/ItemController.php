@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\ItemStoreRequest;
 use App\Models\Category;
+use App\Models\Item;
+use App\Services\NotificationService;
 use App\Traits\FileUploadTrait;
 use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
@@ -46,9 +50,9 @@ class ItemController extends Controller
     return view('frontend.dashboard.item.create', compact('selectedCategory', 'categories', 'uploadedItems'));
   }
 
-
   /**
    * Upload multiple files
+   * @return JsonResponse
    */
   public function itemUploads(Request $request)
   {
@@ -92,6 +96,11 @@ class ItemController extends Controller
 
   /**
    * Télécharger le fichier dans le storage et retourner un tableau avec les informations du fichier
+   * @param UploadedFile $file
+   * @param string $dir
+   * @param string $disk
+   * @return array|null
+   * @throws Exception|Throwable
    */
   public function uploadFile(UploadedFile $file, string $dir = "uploads/items", string $disk = 'local'): ?array
   {
@@ -121,6 +130,11 @@ class ItemController extends Controller
     return null;
   }
 
+  /**
+   * Supprimer un fichier
+   * @param string $id
+   * @return JsonResponse
+   */
   public function itemDestroy(string $id)
   {
     $file = \App\Models\UploadedFile::whereId($id)->where('author_id', user()->id)->first();
@@ -154,6 +168,40 @@ class ItemController extends Controller
         'message' => $th->getMessage()
       ], 200);
     }
+  }
+
+  public function storeItem(ItemStoreRequest $request): JsonResponse
+  {
+    $item = new Item();
+    $item->author_id = user()->id;
+    $item->name = $request->name;
+    $item->description = $request->description;
+    $item->category_id = $request->category;
+    $item->sub_category_id = $request->sub_category;
+    $item->version = $request->version;
+    $item->demo_link = $request->demo_link;
+    $item->tags = $request->tags;
+    $item->preview_type = $request->preview_type;
+    $item->preview_image = $request->preview_file;
+    $item->preview_video = $request->preview_file;
+    $item->preview_audio = $request->preview_file;
+    $item->main_file = $request->source_type == 'upload' ? $request->upload_source : $request->link_source;
+    $item->is_main_file_external = $request->source_type == 'upload' ? 0 : 1;
+    $item->screenshots = $request->screenshots;
+    $item->price = $request->price;
+    $item->discount_price = $request->discount_price;
+    $item->is_supported = $request->support;
+    $item->support_instructions = $request->support_instructions;
+    $item->status = 'pending';
+    $item->is_free = $request->is_free;
+    $item->save();
+
+    NotificationService::CREATED();
+
+    return response()->json([
+      'status' => 'success',
+      'redirect' => route('user.items.index')
+    ], 200);
   }
 }
 
