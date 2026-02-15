@@ -53,9 +53,9 @@
       </div>
       <div>
 
-      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <a href="{{ route('user.items.index') }}" class="btn btn-dark">
         {{ __('Back') }}
-      </button>
+      </a>
       </div>
     </div>
   </div>

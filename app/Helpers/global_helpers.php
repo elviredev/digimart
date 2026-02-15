@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Item;
 use App\Models\KycVerification;
 use Illuminate\Support\Facades\Auth;
 
@@ -75,6 +76,16 @@ if (!function_exists('canAccess')) {
       else if(str_starts_with($mimeType, 'application/')) $fileIcon = 'bi-file-earmark-zip';
 
       return $fileIcon;
+    }
+  }
+
+  /** Check author, product, status */
+  if (!function_exists('authorProductStatus')) {
+    function authorProductStatus(string $product_id): string | bool
+    {
+      $item = Item::where('id', $product_id)->where('author_id', user()->id)->first();
+      if($item) return $item->status;
+      return false;
     }
   }
 }

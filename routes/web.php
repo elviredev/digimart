@@ -49,6 +49,12 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::post('item-uploads', [ItemController::class, 'itemUploads'])->name('items.uploads');
     Route::delete('item-destroy/{id}', [ItemController::class, 'itemDestroy'])->name('items.destroy');
     Route::post('item/store', [ItemController::class, 'storeItem'])->name('items.store');
+    Route::get('item/{id}/edit', [ItemController::class, 'editItem'])->name('items.edit');
+    Route::put('item/{id}/update', [ItemController::class, 'updateItem'])->name('items.update');
+    Route::get('item/{id}/download', [ItemController::class, 'itemDownload'])->name('items.download');
+    Route::get('item/{id}/changelog', [ItemController::class, 'itemChangelog'])->name('items.changelog');
+    Route::post('item/{id}/changelog', [ItemController::class, 'storeChangelog'])->name('items.changelog.store');
+    Route::get('item/{id}/history', [ItemController::class, 'itemHistory'])->name('items.history');
   });
 });
 
