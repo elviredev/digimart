@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ItemReviewController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -77,5 +78,13 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
       ->name('settings.index');
     Route::put('general-settings', [SettingController::class, 'updateGeneralSettings'])
       ->name('settings.general.update');
+
+    /** Item Review Routes */
+    Route::get('item-reviews/pending', [ItemReviewController::class, 'pendingIndex'])
+      ->name('item-reviews.pending.index');
+    Route::get('item-reviews/{id}/show', [ItemReviewController::class, 'show'])
+      ->name('item-reviews.show');
+    Route::post('item-reviews/{id}/status', [ItemReviewController::class, 'updateStatus'])
+      ->name('item-reviews.status');
 
   });

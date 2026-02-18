@@ -265,7 +265,7 @@ class ItemController extends Controller
   {
     $item = Item::whereId($id)->where('author_id', user()->id)->firstOrFail();
 
-    if ($item->status !== 'approved' || $item->status !== 'soft_rejected') return abort(404);
+    if (!in_array($item->status, ['approved', 'soft_rejected'])) return abort(404);
 
     $item->name = $request->name;
     $item->description = $request->description;
