@@ -435,7 +435,7 @@
             </span>
             <span class="nav-link-title">KYC</span>
           </a>
-          <div class="dropdown-menu show">
+          <div class="dropdown-menu">
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
                 <a class="dropdown-item" href="{{ route('admin.kyc.index') }}">
@@ -452,7 +452,8 @@
           </div>
         </li>
 
-        <li class="nav-item dropdown">
+        @if(canAccess(['review products']))
+          <li class="nav-item dropdown">
           <a
           class="nav-link dropdown-toggle"
           href="{{ route('admin.kyc-settings.index') }}"
@@ -466,22 +467,35 @@
             </span>
             <span class="nav-link-title">Product Review</span>
           </a>
-          <div class="dropdown-menu show">
+          <div class="dropdown-menu">
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
                 <a class="dropdown-item" href="{{ route('admin.item-reviews.pending.index') }}">
                   Pending
                   <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">
-                    0
+                    {{ getItemStatusCount('pending') }}
                   </span>
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.kyc-settings.index') }}">
-                  KYC Settings
+                <a class="dropdown-item" href="{{ route('admin.item-reviews.resubmitted.index') }}">
+                  Resubmitted
+                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">
+                    {{ getItemStatusCount('resubmitted') }}
+                  </span>
+                </a>
+                <a class="dropdown-item" href="{{ route('admin.item-reviews.soft-rejected.index') }}">
+                  Soft Rejected
+                </a>
+                <a class="dropdown-item" href="{{ route('admin.item-reviews.hard-rejected.index') }}">
+                  Hard Rejected
+                </a>
+                <a class="dropdown-item" href="{{ route('admin.item-reviews.approved.index') }}">
+                  Approved
                 </a>
               </div>
             </div>
           </div>
         </li>
+        @endif
 
         <li class="nav-item dropdown">
           <a

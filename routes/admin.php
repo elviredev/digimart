@@ -82,9 +82,19 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     /** Item Review Routes */
     Route::get('item-reviews/pending', [ItemReviewController::class, 'pendingIndex'])
       ->name('item-reviews.pending.index');
+    Route::get('item-reviews/approved', [ItemReviewController::class, 'approvedIndex'])
+      ->name('item-reviews.approved.index');
+    Route::get('item-reviews/hard-rejected', [ItemReviewController::class, 'hardRejectedIndex'])
+      ->name('item-reviews.hard-rejected.index');
+    Route::get('item-reviews/soft-rejected', [ItemReviewController::class, 'softRejectedIndex'])
+      ->name('item-reviews.soft-rejected.index');
+    Route::get('item-reviews/resubmitted', [ItemReviewController::class, 'resubmittedIndex'])
+      ->name('item-reviews.resubmitted.index');
     Route::get('item-reviews/{id}/show', [ItemReviewController::class, 'show'])
       ->name('item-reviews.show');
     Route::post('item-reviews/{id}/status', [ItemReviewController::class, 'updateStatus'])
       ->name('item-reviews.status');
+    Route::get('item/{id}/download', [ItemReviewController::class, 'itemDownload'])
+      ->name('item.download');
 
   });

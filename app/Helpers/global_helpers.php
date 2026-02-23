@@ -95,6 +95,14 @@ if (!function_exists('canAccess')) {
       return false;
     }
   }
+
+  /** Get item status count */
+  if (!function_exists('getItemStatusCount')) {
+    function getItemStatusCount(string $status): int
+    {
+      return Item::select('status')->where('status', $status)->count();
+    }
+  }
 }
 
 

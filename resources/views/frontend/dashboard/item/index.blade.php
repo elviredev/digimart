@@ -82,7 +82,7 @@
               @elseif($item->status == 'soft_rejected')
                 <div class="badge bg-secondary">{{ __('Soft Rejected') }}</div>
               @elseif($item->status == 'hard_rejected')
-                <div class="badge bg-secondary">{{ __('Hard Rejected') }}</div>
+                <div class="badge bg-danger">{{ __('Hard Rejected') }}</div>
               @endif
             </td>
             <td class="action">

@@ -17,7 +17,7 @@ class KYCSettingController extends Controller
    */
   public function index(): View
   {
-    $kycSetting = KycSetting::first();
+    $kycSetting = KycSetting::firstOrCreate(['id' => 1]);
     return view('admin.kyc.kyc-setting.index', compact('kycSetting'));
   }
 

@@ -338,9 +338,16 @@
               <span>{{ formatDate($item->created_at) }}</span>
             </div>
 
-
             <div class="col-12">
-              <a href="{{ route('user.items.download', $item->id) }}" class="btn btn-sm btn-primary w-100">{{ __('Download') }}</a>
+              @if($item->demo_link)
+                <a href="{{ $item->demo_link }}" class="btn btn-danger w-100 mb-2" target="_blank">{{ __('Demo') }}</a>
+              @endif
+
+              @if($item->is_main_file_external == 1)
+                <a href="{{ $item->main_file }}" class="btn btn-primary w-100" target="_blank">{{ __('Open Link') }}</a>
+              @else
+                <a href="{{ route('user.items.download', $item->id) }}" class="btn btn-sm btn-primary w-100">{{ __('Download') }}</a>
+              @endif
             </div>
           </div>
         </div>

@@ -10,10 +10,20 @@ use App\Services\MailSenderService;
 use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Storage;
 
-class ItemReviewController extends Controller
+class ItemReviewController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Module Review Item */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:review products')
+    ];
+  }
+
   /**
    * @desc Afficher la liste des items en attente de validation
    */
@@ -22,6 +32,44 @@ class ItemReviewController extends Controller
     $items = Item::where('status', 'pending')->paginate(10);
     return view('admin.item-review.pending-index', compact('items'));
   }
+
+  /**
+   * @desc Afficher la liste des items approuvés
+   */
+  public function approvedIndex(): View
+  {
+    $items = Item::where('status', 'approved')->paginate(10);
+    return view('admin.item-review.approved-index', compact('items'));
+  }
+
+  /**
+   * @desc Afficher la liste des items rejetés définitivement
+   */
+  public function hardRejectedIndex(): View
+  {
+    $items = Item::where('status', 'hard_rejected')->paginate(10);
+    return view('admin.item-review.hard-rejected-index', compact('items'));
+  }
+
+  /**
+   * @desc Afficher la liste des items rejetés temporairement
+   */
+  public function softRejectedIndex(): View
+  {
+    $items = Item::where('status', 'soft_rejected')->paginate(10);
+    return view('admin.item-review.soft-rejected-index', compact('items'));
+  }
+
+  /**
+   * @desc Afficher la liste des items resoumis
+   */
+  public function resubmittedIndex(): View
+  {
+    $items = Item::where('status', 'resubmitted')->paginate(10);
+    return view('admin.item-review.resubmitted-index', compact('items'));
+  }
+
+
 
   /**
   * @desc Afficher un item en particulier
@@ -79,6 +127,20 @@ class ItemReviewController extends Controller
     NotificationService::UPDATED();
 
     return redirect()->back();
+  }
+
+  /**
+   * Télécharger le fichier principal d'un item
+   */
+  public function itemDownload(string $id)
+  {
+    $item = Item::whereId($id)->firstOrFail();
+
+    if (Storage::disk('local')->exists($item->main_file)) {
+      return Storage::disk('local')->download($item->main_file);
+    }
+
+    abort(404);
   }
 }
 
