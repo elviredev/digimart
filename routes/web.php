@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::put('item/{id}/update', [ItemController::class, 'updateItem'])->name('items.update');
     Route::get('item/{id}/download', [ItemController::class, 'itemDownload'])->name('items.download');
     Route::get('item/{id}/changelog', [ItemController::class, 'itemChangelog'])->name('items.changelog');
-    Route::post('item/{id}/changelog', [ItemController::class, 'storeChangelog'])->name('items.changelog.store');
+    Route::post('item/{id}/changelog', [ItemController::class, 'itemChangelogStore'])->name('items.changelog.store');
     Route::get('item/{id}/history', [ItemController::class, 'itemHistory'])->name('items.history');
   });
 });

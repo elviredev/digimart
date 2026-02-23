@@ -345,7 +345,10 @@ class ItemController extends Controller
     return view('frontend.dashboard.item.history', compact('item', 'histories'));
   }
 
-  public function storeChangelog(Request $request, string $id): RedirectResponse
+  /*
+   * Store changelog of the specified resource.
+   */
+  public function itemChangelogStore(Request $request, string $id)
   {
     $request->validate([
       'version' => ['required', 'string', 'max:30'],
@@ -353,14 +356,10 @@ class ItemController extends Controller
     ]);
 
     $item = Item::whereId($id)->where('author_id', user()->id)->firstOrFail();
-
-    if ($item->status !== 'approved') return abort(404);
-
-    $changelog = new ItemChangelog();
-    $changelog->version = $request->version;
-    $changelog->description = $request->description;
-    $changelog->item_id = $item->id;
-    $changelog->save();
+    $item->changelogs()->create([
+      'version' => $request->version,
+      'description' => $request->description,
+    ]);
 
     NotificationService::CREATED();
 

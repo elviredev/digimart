@@ -42,6 +42,11 @@ class Item extends Model
     return $this->hasMany(ItemHistory::class, 'item_id')->latest();
   }
 
+  public function changelogs(): HasMany
+  {
+    return $this->hasMany(ItemChangelog::class, 'item_id')->latest();
+  }
+
   protected $casts = [
     'tags' => 'array',
     'screenshots' => 'array',
