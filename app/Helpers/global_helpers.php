@@ -103,6 +103,18 @@ if (!function_exists('canAccess')) {
       return Item::select('status')->where('status', $status)->count();
     }
   }
+
+  /** Get file size */
+  if (!function_exists('getFileSize')) {
+    function getFileSize(string $path): ?string
+    {
+      try {
+        return formatSize(File::size(storage_path('app/private/' . $path)));
+      } catch (\Exception $e) {
+        return '0B';
+      }
+    }
+  }
 }
 
 

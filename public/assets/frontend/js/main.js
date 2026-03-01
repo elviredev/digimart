@@ -141,15 +141,15 @@
     // ================================ Remove Sale Offer Js End =============================
 
     // ================================ CountDown Js Start =============================
-    if (document.querySelector('.countdown')) {
-      const myCountdown = new countdown({
-        target: '.countdown',
-        dayWord: ' Days:',
-        hourWord: ' Hour: ',
-        minWord: ' Min:',
-        secWord: ' Sec:'
-      });
-    }
+    // if (document.querySelector('.countdown')) {
+    //   const myCountdown = new countdown({
+    //     target: '.countdown',
+    //     dayWord: ' Days:',
+    //     hourWord: ' Hour: ',
+    //     minWord: ' Min:',
+    //     secWord: ' Sec:'
+    //   });
+    // }
     // ================================ CountDown Js End =============================
 
     // ========================= popular Category Js Start ==============

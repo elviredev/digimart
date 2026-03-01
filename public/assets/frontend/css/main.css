@@ -13900,3 +13900,6 @@ select {
   color: white !important;
 }
 
+.product-item:hover .product-item__thumb::before {
+  height: 0 !important;
+}

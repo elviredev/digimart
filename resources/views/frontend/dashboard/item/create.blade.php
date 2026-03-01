@@ -118,7 +118,7 @@
             {{ __('Tags') }} <span class="text-danger">*</span>
           </label>
           <br>
-          <input type="text" name="tags[]" value="" data-role="tagsinput" />
+          <input type="text" name="tags" value="" data-role="tagsinput" />
         </div>
       </div>
     </div>

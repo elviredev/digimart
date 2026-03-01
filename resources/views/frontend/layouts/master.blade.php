@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/line-awesome.min.css') }}">
   <!-- Select 2 -->
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.min.css') }}">
+  <!-- Plyr CSS Media Player -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.8.4/plyr.css" />
   <!-- Tabler Icons CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.21.0/tabler-icons.min.css"
   integrity="sha512-XrgoTBs7P5YtpkeKqKOKkruURsawIaRrhe8QrcWeMnFeyRZiOcRNjBAX+AQeXOvx9/9fSY32dVct1PccRoCICQ=="
@@ -173,7 +175,7 @@
 <!-- Bootstrap Bundle Js -->
 <script src="{{ asset('assets/frontend/js/boostrap.bundle.min.js') }}"></script>
 <!-- CountDown -->
-<script src="{{ asset('assets/frontend/js/countdown.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/js/countdown.js') }}"></script>--}}
 <!-- counter up -->
 <script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script>
 <!-- Slick js -->
@@ -188,10 +190,13 @@
 <script src="{{ asset('assets/frontend/js/infiniteslidev2.js') }}"></script>
 <!-- select 2  -->
 <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
+<!-- Plyr JS Media Player -->
+<script src="https://cdn.plyr.io/3.8.4/plyr.js"></script>
 
 <!-- main js -->
 <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 
+@stack('scripts')
 
 </body>
 

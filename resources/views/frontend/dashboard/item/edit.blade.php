@@ -119,7 +119,7 @@
                 {{ __('Tags') }} <span class="text-danger">*</span>
               </label>
               <br>
-              <input type="text" name="tags[]" value="{{ implode(',', $item->tags) }}" data-role="tagsinput" />
+              <input type="text" name="tags" value="{{ implode(',', $item->tags ?? []) }}" data-role="tagsinput" />
             </div>
           </div>
         </div>
