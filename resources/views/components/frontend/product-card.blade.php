@@ -82,11 +82,9 @@
         </div>
       </div>
       <div class="product_item_footer">
-        <a class="product_cart" href="#">
-          <i class="ti ti-shopping-cart-plus"></i>
-        </a>
-        <a href="{{ route('products.show', $product->slug) }}" class="btn btn-outline-light btn-sm">
-          Live Demo
+        <a class="product_cart add-cart" data-id="{{ $product->id }}" href="javascript:;">
+          <i class="ti ti-shopping-cart-plus me-2"></i>
+          <span id="cart-btn-{{ $product->id }}">{{ __('Add to cart') }}</span>
         </a>
       </div>
     </div>

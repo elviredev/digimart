@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Title -->
   <title> Digital Market Place HTML Template</title>
   <!-- Favicon -->
@@ -24,6 +25,8 @@
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.min.css') }}">
   <!-- Plyr CSS Media Player -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.8.4/plyr.css" />
+  <!-- Notyf CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
   <!-- Tabler Icons CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.21.0/tabler-icons.min.css"
   integrity="sha512-XrgoTBs7P5YtpkeKqKOKkruURsawIaRrhe8QrcWeMnFeyRZiOcRNjBAX+AQeXOvx9/9fSY32dVct1PccRoCICQ=="
@@ -31,6 +34,7 @@
   <!-- Main css -->
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}">
 
+  @routes
 </head>
 
 <body>
@@ -192,9 +196,15 @@
 <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
 <!-- Plyr JS Media Player -->
 <script src="https://cdn.plyr.io/3.8.4/plyr.js"></script>
+<!-- Notyf JS -->
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
 <!-- main js -->
 <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+<!-- Variables Globales JS  -->
+<script src="{{ asset('assets/frontend/js/default/default-variables.js') }}"></script>
+<!-- cart JS  -->
+<script src="{{ asset('assets/frontend/js/default/cart.js') }}"></script>
 
 @stack('scripts')
 
