@@ -10,7 +10,7 @@
           </div>
 
           <div class="card-body">
-            <form action="{{ route('admin.kyc-settings.update') }}" method="POST">
+            <form action="{{ route('admin.kyc-settings.update') }}" method="POST" id="x-form">
               @csrf
               @method('PUT')
 
@@ -50,7 +50,7 @@
           </div>
 
           <div class="card-footer text-end">
-            <x-admin.submit-button :label="__('Save')" onclick="$('form').submit()" />
+            <x-admin.submit-button :label="__('Save')" onclick="$('#x-form').submit()" />
           </div>
         </div>
       </div>

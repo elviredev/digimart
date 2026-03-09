@@ -342,8 +342,16 @@
           <a href="{{ route('admin.profile.index') }}" class="dropdown-item">{{ __('Profile') }}</a>
           <a href="#" class="dropdown-item">Feedback</a>
           <div class="dropdown-divider"></div>
-          <a href="./settings.html" class="dropdown-item">Settings</a>
-          <a href="./sign-in.html" class="dropdown-item">Logout</a>
+          <a href="{{ route('admin.settings.index') }}" class="dropdown-item">Settings</a>
+          <form method="POST" action="{{ route('admin.logout') }}">
+            @csrf
+
+            <a
+            href="javascript:;"
+            class="dropdown-item"
+            onclick="event.preventDefault(); this.closest('form').submit();"
+            >Logout</a>
+          </form>
         </div>
       </div>
     </div>
@@ -531,6 +539,15 @@
               <i class="ti ti-settings"></i>
             </span>
             <span class="nav-link-title">Settings</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-credit-card-pay"></i>
+            </span>
+            <span class="nav-link-title">Payment Settings</span>
           </a>
         </li>
 
@@ -835,7 +852,7 @@
           <a href="{{ route('admin.profile.index') }}" class="dropdown-item">{{ __('Profile') }}</a>
           <a href="#" class="dropdown-item">Feedback</a>
           <div class="dropdown-divider"></div>
-          <a href="./settings.html" class="dropdown-item">Settings</a>
+          <a href="{{ route('admin.settings.index') }}" class="dropdown-item">Settings</a>
 
           <form method="POST" action="{{ route('admin.logout') }}">
             @csrf

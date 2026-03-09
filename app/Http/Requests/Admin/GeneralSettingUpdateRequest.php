@@ -25,6 +25,11 @@ class GeneralSettingUpdateRequest extends FormRequest
     return [
       'site_name' => ['required', 'string', 'max:255'],
       'site_email' => ['required', 'string', 'email', 'max:100'],
+      'country' => ['required', 'string', 'max:40'],
+      'time_zone' => ['required', 'string', 'max:40'],
+      'default_currency' => ['required', 'string', 'max:40'],
+      'currency_icon' => ['required', 'string', 'max:40'],
+      'currency_position' => ['required', 'string', 'in:left,right'],
     ];
   }
 }

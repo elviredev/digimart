@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ItemReviewController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
+use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RoleUserController;
@@ -73,12 +74,6 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::resource('categories', CategoryController::class);
     Route::resource('sub-categories', SubCategoryController::class);
 
-    /** Settings Routes */
-    Route::get('settings', [SettingController::class, 'index'])
-      ->name('settings.index');
-    Route::put('general-settings', [SettingController::class, 'updateGeneralSettings'])
-      ->name('settings.general.update');
-
     /** Item Review Routes */
     Route::get('item-reviews/pending', [ItemReviewController::class, 'pendingIndex'])
       ->name('item-reviews.pending.index');
@@ -97,4 +92,11 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::get('item/{id}/download', [ItemReviewController::class, 'itemDownload'])
       ->name('item.download');
 
+    /** Settings Routes */
+    Route::get('settings', [SettingController::class, 'index'])
+      ->name('settings.index');
+    Route::put('general-settings', [SettingController::class, 'updateGeneralSettings'])
+      ->name('settings.general.update');
+    Route::get('payment-settings', [PaymentSettingController::class, 'index'])
+      ->name('payment-settings.index');
   });
