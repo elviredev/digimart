@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\KycVerificationController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -50,11 +51,18 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('checkout', CheckoutController::class)
     ->name('checkout.index');
 
+  /** Payment Routes */
+  Route::get('order/completed', [PaymentController::class, 'completed'])
+    ->name('order.completed');
+  Route::get('order/canceled', [PaymentController::class, 'canceled'])
+    ->name('order.canceled');
 
-  // Author Routes Group
-  // Route::group(['middleware' => 'is_author'], function () {
-    // Route::get('items', [ItemController::class, 'index'])->name('items.index');
-  // });
+  Route::get('payment/paypal', [PaymentController::class, 'payWithPaypal'])
+    ->name('payment.paypal');
+  Route::get('payment/paypal/success', [PaymentController::class, 'paypalSuccess'])
+    ->name('payment.paypal.success');
+  Route::get('payment/paypal/cancel', [PaymentController::class, 'paypalCancel'])
+    ->name('payment.paypal.cancel');
 
 });
 

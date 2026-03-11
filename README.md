@@ -10,3 +10,4 @@
 - **Dropzone JS** : Upload de fichiers multiples
 - **Laravel Sluggable** : Gestion automatique des slugs
 - **Plyr** : Media Player vidéo, audio
+- **Laravel-Paypal** : Implémentation Paypal

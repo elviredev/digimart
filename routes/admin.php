@@ -99,4 +99,6 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
       ->name('settings.general.update');
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])
       ->name('payment-settings.index');
+    Route::put('paypal-settings', [PaymentSettingController::class, 'updatePaypalSettings'])
+      ->name('paypal-settings.update');
   });

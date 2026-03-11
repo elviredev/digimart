@@ -3,6 +3,7 @@
 use App\Models\CartItem;
 use App\Models\Item;
 use App\Models\KycVerification;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 /** get logged in user */
@@ -141,6 +142,14 @@ if (!function_exists('canAccess')) {
       }
 
       return $total;
+    }
+  }
+
+  /** Get cart items */
+  if (!function_exists('getCartItems')) {
+    function getCartItems(): Collection
+    {
+      return CartItem::where('user_id', user()->id)->get();
     }
   }
 }
