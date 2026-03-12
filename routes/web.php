@@ -57,12 +57,21 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('order/canceled', [PaymentController::class, 'canceled'])
     ->name('order.canceled');
 
+  /** PayPal Routes */
   Route::get('payment/paypal', [PaymentController::class, 'payWithPaypal'])
     ->name('payment.paypal');
   Route::get('payment/paypal/success', [PaymentController::class, 'paypalSuccess'])
     ->name('payment.paypal.success');
   Route::get('payment/paypal/cancel', [PaymentController::class, 'paypalCancel'])
     ->name('payment.paypal.cancel');
+
+  /** Stripe Routes */
+  Route::get('payment/stripe', [PaymentController::class, 'payWithStripe'])
+    ->name('payment.stripe');
+  Route::get('payment/stripe/success', [PaymentController::class, 'stripeSuccess'])
+    ->name('payment.stripe.success');
+  Route::get('payment/stripe/cancel', [PaymentController::class, 'stripeCancel'])
+    ->name('payment.stripe.cancel');
 
 });
 

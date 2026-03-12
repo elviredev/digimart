@@ -9,7 +9,7 @@ use App\Models\Transaction;
 
 class OrderService
 {
-  static function storeOrder(string $paymentId, string $paidInAmount, string $paidInCurrencyIcon, string $exchangeRate): void
+  static function storeOrder(string $paymentId, string $paidInAmount, string $paidInCurrencyIcon, string $exchangeRate, string $paymentGateway): void
   {
     // enregistrer la commande
     $purchase = new Purchase();
@@ -34,6 +34,7 @@ class OrderService
     $transaction = new Transaction();
     $transaction->user_id = user()->id;
     $transaction->purchase_id = $purchase->id;
+    $transaction->payment_gateway = $paymentGateway;
     $transaction->payment_id = $paymentId;
     $transaction->paid_amount = getCartTotal();
     $transaction->paid_in_amount = $paidInAmount;
