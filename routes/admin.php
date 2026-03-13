@@ -92,11 +92,8 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::get('item/{id}/download', [ItemReviewController::class, 'itemDownload'])
       ->name('item.download');
 
-    /** Settings Routes */
-    Route::get('settings', [SettingController::class, 'index'])
-      ->name('settings.index');
-    Route::put('general-settings', [SettingController::class, 'updateGeneralSettings'])
-      ->name('settings.general.update');
+
+    /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])
       ->name('payment-settings.index');
 
@@ -107,4 +104,14 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
       ->name('stripe-settings.index');
     Route::put('stripe-settings', [PaymentSettingController::class, 'updateStripeSettings'])
       ->name('stripe-settings.update');
+
+    /** Settings Routes */
+    Route::get('settings', [SettingController::class, 'index'])
+      ->name('settings.index');
+    Route::put('general-settings', [SettingController::class, 'updateGeneralSettings'])
+      ->name('settings.general.update');
+    Route::get('commission-settings', [SettingController::class, 'commissionSettings'])
+      ->name('settings.commission.index');
+    Route::put('commission-settings', [SettingController::class, 'updateCommissionSettings'])
+      ->name('settings.commission.update');
   });

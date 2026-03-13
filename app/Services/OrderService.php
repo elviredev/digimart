@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\AuthorSale;
 use App\Models\CartItem;
 use App\Models\Purchase;
 use App\Models\PurchaseItem;
@@ -9,6 +10,15 @@ use App\Models\Transaction;
 
 class OrderService
 {
+  /**
+   * @desc Enregistrer la commande
+   * @param string $paymentId
+   * @param string $paidInAmount
+   * @param string $paidInCurrencyIcon
+   * @param string $exchangeRate
+   * @param string $paymentGateway
+   * @return void
+   */
   static function storeOrder(string $paymentId, string $paidInAmount, string $paidInCurrencyIcon, string $exchangeRate, string $paymentGateway): void
   {
     // enregistrer la commande
@@ -42,6 +52,20 @@ class OrderService
     $transaction->exchange_rate = $exchangeRate;
     $transaction->status = 'completed';
     $transaction->save();
+
+    // Author Commission
+    foreach (getCartItems() as $cartItem) {
+      $amount = $cartItem->item->discount_price > 0 ? $cartItem->item->discount_price : $cartItem->item->price;
+
+      $sale = new AuthorSale();
+      $sale->author_id = $cartItem->item->author_id;
+      $sale->user_id = user()->id;
+      $sale->item_id = $cartItem->item->id;
+      $sale->amount = $amount;
+      $sale->author_commission_rate = config('settings.author_commission');
+      $sale->author_earning = $amount * (config('settings.author_commission') / 100);
+      $sale->save();
+    }
 
     // vider le panier
     CartItem::where('user_id', user()->id)->delete();

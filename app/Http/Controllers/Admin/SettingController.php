@@ -40,4 +40,33 @@ class SettingController extends Controller
 
     return redirect()->back();
   }
+
+  public function commissionSettings(): View
+  {
+    return view('admin.setting.pages.commission-setting');
+  }
+
+  public function updateCommissionSettings(Request $request)
+  {
+    $validatedData = $request->validate([
+      'author_commission' => ['required', 'numeric']
+    ]);
+
+    // Insérer ou mettre à jour les données dans la table settings
+    foreach ($validatedData as $key => $value) {
+      Setting::updateOrCreate(
+        ['key' => $key],
+        ['value' => $value]
+      );
+    }
+
+    // Créer une nouvelle instance de SettingService
+    $setting = app()->make(SettingService::class);
+    // Vider le cache
+    $setting->clearCashedSettings();
+
+    NotificationService::UPDATED();
+
+    return redirect()->back();
+  }
 }
