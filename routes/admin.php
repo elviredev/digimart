@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ItemReviewController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
@@ -92,6 +93,11 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::get('item/{id}/download', [ItemReviewController::class, 'itemDownload'])
       ->name('item.download');
 
+    /** Order Routes */
+    Route::get('orders', [OrderController::class, 'index'])
+      ->name('orders.index');
+    Route::get('orders/{id}', [OrderController::class, 'show'])
+      ->name('orders.show');
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])

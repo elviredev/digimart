@@ -441,19 +441,50 @@
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-user-scan"></i>
             </span>
-            <span class="nav-link-title">KYC</span>
+            <span class="nav-link-title">{{ __('Manage Orders') }}</span>
+          </a>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-columns">
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="{{ route('admin.orders.index') }}">
+                  {{ __('Orders') }}
+                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">
+                    0
+                  </span>
+                </a>
+                <a class="dropdown-item" href="{{ route('admin.kyc-settings.index') }}">
+                  {{ __('Transactions') }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+          class="nav-link dropdown-toggle"
+          href="{{ route('admin.kyc-settings.index') }}"
+          data-bs-toggle="dropdown"
+          data-bs-auto-close="false"
+          role="button"
+          aria-expanded="true"
+          >
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-user-scan"></i>
+            </span>
+            <span class="nav-link-title">{{ __('KYC') }}</span>
           </a>
           <div class="dropdown-menu">
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
                 <a class="dropdown-item" href="{{ route('admin.kyc.index') }}">
-                  KYC Requests
+                  {{ __('KYC Requests') }}
                   <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">
                     {{ pendingKycCount() }}
                   </span>
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.kyc-settings.index') }}">
-                  KYC Settings
+                  {{ __('KYC Settings') }}
                 </a>
               </div>
             </div>
@@ -473,31 +504,31 @@
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-user-scan"></i>
             </span>
-            <span class="nav-link-title">Product Review</span>
+            <span class="nav-link-title">{{ __('Product Review') }}</span>
           </a>
           <div class="dropdown-menu">
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
                 <a class="dropdown-item" href="{{ route('admin.item-reviews.pending.index') }}">
-                  Pending
+                  {{ __('Pending') }}
                   <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">
                     {{ getItemStatusCount('pending') }}
                   </span>
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.item-reviews.resubmitted.index') }}">
-                  Resubmitted
+                  {{ __('Resubmitted') }}
                   <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">
                     {{ getItemStatusCount('resubmitted') }}
                   </span>
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.item-reviews.soft-rejected.index') }}">
-                  Soft Rejected
+                  {{ __('Soft Rejected') }}
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.item-reviews.hard-rejected.index') }}">
-                  Hard Rejected
+                  {{ __('Hard Rejected') }}
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.item-reviews.approved.index') }}">
-                  Approved
+                  {{ __('Approved') }}
                 </a>
               </div>
             </div>
@@ -517,16 +548,16 @@
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-user-circle"></i>
             </span>
-            <span class="nav-link-title">Access Management</span>
+            <span class="nav-link-title">{{ __('Access Management') }}</span>
           </a>
           <div class="dropdown-menu">
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
                 <a class="dropdown-item" href="{{ route('admin.role-users.index') }}">
-                  Role Users
+                  {{ __('Role Users') }}
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.roles.index') }}">
-                  Role & Permissions
+                  {{ __('Role & Permissions') }}
                 </a>
               </div>
             </div>
@@ -538,7 +569,7 @@
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-settings"></i>
             </span>
-            <span class="nav-link-title">Settings</span>
+            <span class="nav-link-title">{{ __('Settings') }}</span>
           </a>
         </li>
 
@@ -547,7 +578,7 @@
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-credit-card-pay"></i>
             </span>
-            <span class="nav-link-title">Payment Settings</span>
+            <span class="nav-link-title">{{ __('Payment Settings') }}</span>
           </a>
         </li>
 
