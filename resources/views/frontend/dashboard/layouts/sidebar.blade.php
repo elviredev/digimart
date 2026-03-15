@@ -37,6 +37,15 @@
             <span class="text">My Items</span>
           </a>
         </li>
+
+        <li class="sidebar-list__item">
+          <a href="{{ route('sales.index') }}" class="sidebar-list__link">
+          <span class="sidebar-list__icon">
+            <i class="ti ti-report-money"></i>
+          </span>
+            <span class="text">Sales</span>
+          </a>
+        </li>
       @endif
 
       <li class="sidebar-list__item">

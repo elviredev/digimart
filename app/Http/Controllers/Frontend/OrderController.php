@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AuthorSale;
 use App\Models\PurchaseItem;
 use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
@@ -25,5 +26,13 @@ class OrderController extends Controller
   {
     $transactions = Transaction::where('user_id', user()->id)->latest()->paginate(15);
     return view('frontend.dashboard.order.transaction', compact('transactions'));
+  }
+
+  public function sales(): View
+  {
+    abort_if(user()->user_type != 'author', 403, 'Unauthorized action.');
+
+    $sales = AuthorSale::where('author_id', user()->id)->latest()->paginate(15);
+    return view('frontend.dashboard.order.sales', compact('sales'));
   }
 }

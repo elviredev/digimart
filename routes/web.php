@@ -59,6 +59,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     ->name('orders.show');
   Route::get('transactions', [OrderController::class, 'transactions'])
     ->name('transactions.index');
+  Route::get('sales', [OrderController::class, 'sales'])
+    ->name('sales.index');
 
   /** Payment Routes */
   Route::get('order/completed', [PaymentController::class, 'completed'])

@@ -31,7 +31,7 @@
               <td><span class="badge bg-success text-bg-success">{{ $transaction->status }}</span></td>
             </tr>
           @empty
-
+            <tr><td colspan="5" class="text-center">{{ __('No transactions found.') }}</td></tr>
           @endforelse
         </tbody>
       </table>
