@@ -32,7 +32,9 @@ class OrderService
     foreach (getCartItems() as $cartItem) {
       $purchaseItem = new PurchaseItem();
       $purchaseItem->purchase_id = $purchase->id;
+      $purchaseItem->purchase_key = uniqid();
       $purchaseItem->author_id = $cartItem->item->author_id;
+      $purchaseItem->user_id = user()->id;
       $purchaseItem->item_id = $cartItem->item->id;
       $purchaseItem->price = $cartItem->item->discount_price > 0 ? $cartItem->item->discount_price : $cartItem->item->price;
       $purchaseItem->quantity = 1;

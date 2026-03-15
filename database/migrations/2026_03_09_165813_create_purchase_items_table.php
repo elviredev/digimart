@@ -12,8 +12,10 @@ return new class extends Migration {
   {
     Schema::create('purchase_items', function (Blueprint $table) {
       $table->id();
+      $table->string('purchase_key')->unique();
       $table->foreignId('purchase_id')->constrained('purchases')->cascadeOnDelete();
       $table->foreignId('author_id')->constrained('users');
+      $table->foreignId('user_id')->constrained('users');
       $table->foreignId('item_id')->constrained('items');
       $table->double('price')->default(0)->nullable();
       $table->integer('quantity')->default(1);

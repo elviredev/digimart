@@ -13907,3 +13907,9 @@ select {
 .text-primary {
   color: var(--colorPrimary) !important;
 }
+
+.cover-img-item {
+  width: 100px;
+  height: 100px;
+  object-fit: cover !important;
+}

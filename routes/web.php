@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\KycVerificationController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -50,6 +51,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   /** checkout */
   Route::get('checkout', CheckoutController::class)
     ->name('checkout.index');
+
+  /** Order Routes */
+  Route::get('orders', [OrderController::class, 'index'])
+    ->name('orders.index');
+  Route::get('orders/{id}', [OrderController::class, 'show'])
+    ->name('orders.show');
+  Route::get('transactions', [OrderController::class, 'transactions'])
+    ->name('transactions.index');
 
   /** Payment Routes */
   Route::get('order/completed', [PaymentController::class, 'completed'])
