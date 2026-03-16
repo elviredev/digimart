@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RoleUserController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\WithdrawMethodController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->as('admin.')
@@ -98,6 +99,9 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
       ->name('orders.index');
     Route::get('orders/{id}', [OrderController::class, 'show'])
       ->name('orders.show');
+
+    /** Withdrawal Methods Routes */
+    Route::resource('withdrawal-methods', WithdrawMethodController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])

@@ -152,6 +152,16 @@ if (!function_exists('canAccess')) {
       return CartItem::where('user_id', user()->id)->get();
     }
   }
+
+  /** Get currency position */
+  if (!function_exists('currencyPosition')) {
+    function currencyPosition($amount): string
+    {
+      return config('settings.currency_position') == 'right'
+        ? $amount . config('settings.currency_icon')
+        : config('settings.currency_icon') . $amount;
+    }
+  }
 }
 
 

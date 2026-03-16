@@ -439,7 +439,7 @@
           aria-expanded="true"
           >
             <span class="nav-link-icon d-md-none d-lg-inline-block">
-              <i class="ti ti-user-scan"></i>
+              <i class="ti ti-shopping-cart"></i>
             </span>
             <span class="nav-link-title">{{ __('Manage Orders') }}</span>
           </a>
@@ -460,6 +460,15 @@
           </div>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.withdrawal-methods.index') }}">
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-credit-card"></i>
+            </span>
+            <span class="nav-link-title">Withdraw Methods</span>
+          </a>
+        </li>
+
         <li class="nav-item dropdown">
           <a
           class="nav-link dropdown-toggle"
@@ -470,7 +479,7 @@
           aria-expanded="true"
           >
             <span class="nav-link-icon d-md-none d-lg-inline-block">
-              <i class="ti ti-user-scan"></i>
+              <i class="ti ti-e-passport"></i>
             </span>
             <span class="nav-link-title">{{ __('KYC') }}</span>
           </a>
@@ -502,7 +511,7 @@
           aria-expanded="true"
           >
             <span class="nav-link-icon d-md-none d-lg-inline-block">
-              <i class="ti ti-user-scan"></i>
+              <i class="ti ti-building-store"></i>
             </span>
             <span class="nav-link-title">{{ __('Product Review') }}</span>
           </a>
@@ -576,7 +585,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('admin.payment-settings.index') }}">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
-              <i class="ti ti-credit-card-pay"></i>
+              <i class="ti ti-settings-dollar"></i>
             </span>
             <span class="nav-link-title">{{ __('Payment Settings') }}</span>
           </a>
