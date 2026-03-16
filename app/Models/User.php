@@ -6,6 +6,7 @@ namespace App\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -64,5 +65,13 @@ class User extends Authenticatable
   public function products(): HasMany
   {
     return $this->hasMany(Item::class, 'author_id', 'id')->where('status', 'approved');
+  }
+
+  /**
+   * User dispose d'une information de retrait
+   */
+  public function authorWithdrawInfo(): HasOne
+  {
+    return $this->hasOne(AuthorWithdrawInformation::class, 'author_id', 'id');
   }
 }

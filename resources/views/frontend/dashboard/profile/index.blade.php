@@ -73,11 +73,13 @@
                 {{ __('Personal Info') }}
               </button>
             </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link font-18 font-heading" id="pills-payouts-tab" data-bs-toggle="pill" data-bs-target="#pills-payouts" type="button" role="tab" aria-controls="pills-payouts" aria-selected="false" tabindex="-1">
-                {{ __('Payouts') }}
-              </button>
-            </li>
+            @if(isAuthor())
+              <li class="nav-item" role="presentation">
+                <button class="nav-link font-18 font-heading" id="pills-payouts-tab" data-bs-toggle="pill" data-bs-target="#pills-payouts" type="button" role="tab" aria-controls="pills-payouts" aria-selected="false" tabindex="-1">
+                  {{ __('Payouts') }}
+                </button>
+              </li>
+            @endif
             <li class="nav-item" role="presentation">
               <button class="nav-link font-18 font-heading" id="pills-changePassword-tab" data-bs-toggle="pill" data-bs-target="#pills-changePassword" type="button" role="tab" aria-controls="pills-changePassword" aria-selected="false" tabindex="-1">
                 {{ __('Change Password') }}
@@ -132,44 +134,23 @@
             </div>
             <div class="tab-pane fade" id="pills-payouts" role="tabpanel" aria-labelledby="pills-payouts-tab" tabindex="0">
               <!-- Formulaire Payouts -->
-              <form action="#" autocomplete="off">
+              <form action="{{ route('user.withdraw.info') }}" method="POST" autocomplete="off">
+                @csrf
+
                 <div class="row">
-                  <div class="col-sm-6 col-xs-6">
-                    <div class="form_box">
-                      <label for="name" class="form-label mb-2 font-18 font-heading fw-600">Full
-                        Name</label>
-                      <input type="text" class="common-input border" id="name" value="Michel" placeholder="Full Name">
-                    </div>
+                  <x-frontend.input-select name="payout_method" :label="__('Payout Method')" class="select_2 withdraw-method">
+                    @foreach($withdrawMethods as $method)
+                      <option @selected($user?->authorWithdrawInfo?->withdraw_method_id == $method->id) value="{{ $method->id }}" >{{ $method->name }}</option>
+                    @endforeach
+                  </x-frontend.input-select>
+                  <div>
+                    @foreach($withdrawMethods as $method)
+                      <div class="method-{{ $method->id }} {{ $user?->authorWithdrawInfo?->withdraw_method_id == $method->id ? '' : 'd-none' }} alert alert-info">{!! nl2br($method->description) !!}</div>
+                    @endforeach
                   </div>
-                  <div class="col-sm-6 col-xs-6">
-                    <div class="form_box">
-                      <label for="phone" class="form-label mb-2 font-18 font-heading fw-600">Phone
-                        Number</label>
-                      <input type="tel" class="common-input border" id="phone" value="+880 15589 236 45" placeholder="Phone Number">
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-xs-6">
-                    <div class="form_box">
-                      <label for="emailAdd" class="form-label mb-2 font-18 font-heading fw-600">Email
-                        Address</label>
-                      <input type="email" class="common-input border" id="emailAdd" value="michel15@gmail.com" placeholder="Email Address">
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-xs-6">
-                    <div class="form_box">
-                      <label for="city" class="form-label mb-2 font-18 font-heading fw-600">City</label>
-                      <div class="select-has-icon">
-                        <select class="common-input border" id="city">
-                          <option value="1">Dhaka</option>
-                          <option value="1">Chandpur</option>
-                          <option value="1">Comilla</option>
-                          <option value="1">Rangpur</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
+                  <x-frontend.text-area name="information" :label="__('Information')" :value="$user?->authorWithdrawInfo?->information"  />
                   <div class="col-sm-12">
-                    <button class="btn btn-main btn-lg"> Pay Now</button>
+                    <button class="btn btn-main btn-lg">{{ __('Update Payout') }}</button>
                   </div>
                 </div>
               </form>
@@ -210,3 +191,15 @@
   </div>
 </div>
 @endsection
+
+@push('scripts')
+  <script>
+    $(function () {
+      $('.withdraw-method').on('change', function(){
+        const methodId = $(this).val();
+        $('.method-' + methodId).removeClass('d-none');
+        $('.method-' + methodId).siblings().addClass('d-none');
+      })
+    })
+  </script>
+@endpush

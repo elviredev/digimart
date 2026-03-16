@@ -101,6 +101,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::get('item/{id}/changelog', [ItemController::class, 'itemChangelog'])->name('items.changelog');
     Route::post('item/{id}/changelog', [ItemController::class, 'itemChangelogStore'])->name('items.changelog.store');
     Route::get('item/{id}/history', [ItemController::class, 'itemHistory'])->name('items.history');
+    Route::post('withdraw-info', [ProfileController::class, 'withdrawInfo'])->name('withdraw.info');
   });
 });
 
