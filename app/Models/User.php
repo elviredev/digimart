@@ -51,6 +51,12 @@ class User extends Authenticatable
     ];
   }
 
+  // accesseur pour formater le montant du solde
+  public function getBalanceFormattedAttribute()
+  {
+    return number_format($this->balance, 2, '.', '');
+  }
+
   /**
    * User peut avoir plusieurs demandes de vérifications kyc
    */
