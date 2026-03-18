@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\AuthorWithdrawController;
 use App\Http\Controllers\Frontend\CartItemController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
@@ -102,6 +103,9 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::post('item/{id}/changelog', [ItemController::class, 'itemChangelogStore'])->name('items.changelog.store');
     Route::get('item/{id}/history', [ItemController::class, 'itemHistory'])->name('items.history');
     Route::post('withdraw-info', [ProfileController::class, 'withdrawInfo'])->name('withdraw.info');
+    Route::get('withdraws', [AuthorWithdrawController::class, 'index'])->name('withdraws.index');
+    Route::get('withdraws/create', [AuthorWithdrawController::class, 'create'])->name('withdraw.create');
+    Route::post('withdraws', [AuthorWithdrawController::class, 'store'])->name('withdraw.store');
   });
 });
 

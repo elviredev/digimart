@@ -74,4 +74,20 @@ class User extends Authenticatable
   {
     return $this->hasOne(AuthorWithdrawInformation::class, 'author_id', 'id');
   }
+
+  /**
+   * Obtenir les demandes de retrait d'un auteur spécifique
+   */
+  public function withdraws(): HasMany
+  {
+    return $this->hasMany(Withdraw::class, 'author_id', 'id')->orderBy('created_at', 'desc');
+  }
+
+  /**
+   * Obtenir les informations sur les ventes d'un auteur spécifique
+   */
+  public function authorSales(): HasMany
+  {
+    return $this->hasMany(AuthorSale::class, 'author_id', 'id');
+  }
 }

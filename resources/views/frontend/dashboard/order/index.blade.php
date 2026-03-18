@@ -7,11 +7,6 @@
         <h5>{{ __('Purchases') }}</h5>
         <p>{{ __('Your purchase items.') }}</p>
       </div>
-      <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          {{ __('Add Item') }}
-        </button>
-      </div>
     </div>
 
     <div class="table-responsive">

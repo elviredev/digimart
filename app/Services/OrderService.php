@@ -7,6 +7,7 @@ use App\Models\CartItem;
 use App\Models\Purchase;
 use App\Models\PurchaseItem;
 use App\Models\Transaction;
+use App\Models\User;
 
 class OrderService
 {
@@ -67,6 +68,11 @@ class OrderService
       $sale->author_commission_rate = config('settings.author_commission');
       $sale->author_earning = $amount * (config('settings.author_commission') / 100);
       $sale->save();
+
+      // Update author balance
+      $author = User::where('id', $cartItem->item->author_id)->first();
+      $author->balance = $author->balance + $sale->author_earning;
+      $author->save();
     }
 
     // vider le panier
