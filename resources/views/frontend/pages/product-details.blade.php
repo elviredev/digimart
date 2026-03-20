@@ -107,7 +107,7 @@
               aria-labelledby="pills-profile-tab" tabindex="0">
                 <div class="wsus__pro_det_comment">
                   <h4>{{ __('Comments All') }}</h4>
-                  @forelse ($product->comments as $comment)
+                  @forelse ($comments as $comment)
                   <div class="wsus__single_comment">
                     <div class="comment_footer d-flex flex-wrap">
                       <div class="img">
@@ -128,7 +128,6 @@
                         <i class="far fa-calendar-alt"></i>
                         {{ formatDate($comment->created_at) }}
                       </span>
-                      <a href="#"><i class="fas fa-reply"></i>Reply</a>
                     </p>
                   </div>
                   @empty
@@ -165,6 +164,9 @@
                           <legend>{{ __('comment*') }}</legend>
                           <textarea name="comment" rows="7" placeholder="Type here.."></textarea>
                         </fieldset>
+                        @if($errors->has('comment'))
+                          <span class="text-danger">{{ $errors->first('comment') }}</span>
+                        @endif
                       </div>
                       <button class="btn btn-main btn-lg" type="submit">{{ __('Submit Comment') }}</button>
                     </div>
@@ -179,131 +181,48 @@
               <div class="tab-pane fade" id="pills-contact" role="tabpanel"
               aria-labelledby="pills-contact-tab" tabindex="0">
                 <div class="wsus__pro_det_review">
-                  <h3>Reviews</h3>
-                  <div class="wsus__single_comment">
+                  <h3>{{ __('Reviews') }}</h3>
+                  @forelse ($reviews as $review)
+                    <div class="wsus__single_comment">
                     <div class="comment_footer d-flex flex-wrap">
                       <div class="img">
-                        <img src="assets/images/thumbs/comment_img_1.png" alt="useer"
-                        class="img-fluid w-100">
+                        <img
+                        src="{{ asset($review->user->avatar) }}"
+                        alt="user avatar"
+                        class="img-fluid w-100"
+                        >
                       </div>
                       <div class="text">
-                        <h3>Abdur Rohman
+                        <h3>{{ $review->user->name }}
                           <span>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            {{-- Étoiles pleines --}}
+                            @for ($i = 1; $i <= $review->stars; $i++)
+                              <i class="fas fa-star"></i>
+                            @endfor
+                            {{-- Étoiles vides --}}
+                            @for($i = $review->stars + 1; $i <= 5; $i++)
+                                <i class="fas fa-star text-secondary"></i>
+                            @endfor
                           </span>
                         </h3>
-                        <p>London,UK</p>
+                        <p>{{ __('user') }}</p>
                       </div>
                     </div>
-                    <p class="comment_des">Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                      text ever since the redi 1500s,</p>
+                    <p class="comment_des">{{ $review->body }}</p>
                     <p class="comment_date">
                       <span class="date">
                         <i class="far fa-calendar-alt"></i>
-                        Octobor 28,2018 At 9.00am
+                        {{ formatDate($review->created_at) }}
                       </span>
-                      <a href="#"><i class="fas fa-reply"></i>Reply</a>
-                    </p>
-                    <div class="wsus__single_comment reply">
-                      <div class="comment_footer d-flex flex-wrap">
-                        <div class="img">
-                          <img src="assets/images/thumbs/comment_img_2.png" alt="useer"
-                          class="img-fluid w-100">
-                        </div>
-                        <div class="text">
-                          <h3>Shinzing Pang
-                            <span>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                          </h3>
-                          <p>London,UK</p>
-                        </div>
-                      </div>
-                      <p class="comment_des">Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                        text ever since the redi 1500s,</p>
-                      <p class="comment_date">
-                        <span class="date">
-                          <i class="far fa-calendar-alt"></i>
-                          Octobor 28,2018 At 9.00am
-                        </span>
-                      <a href="#"><i class="fas fa-reply"></i>Reply</a>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="wsus__single_comment">
-                    <div class="comment_footer d-flex flex-wrap">
-                      <div class="img">
-                        <img src="assets/images/thumbs/comment_img_3.png" alt="useer"
-                        class="img-fluid w-100">
-                      </div>
-                      <div class="text">
-                        <h3>Gurtokh Jhon
-                          <span>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                          </span>
-                        </h3>
-                        <p>London,UK</p>
-                      </div>
-                    </div>
-                    <p class="comment_des">Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                      text ever since the redi 1500s,</p>
-                    <p class="comment_date">
-                      <span class="date">
-                        <i class="far fa-calendar-alt"></i>
-                        Octobor 28,2018 At 9.00am
-                      </span>
-                      <a href="#"><i class="fas fa-reply"></i>Reply</a>
                     </p>
                   </div>
-                  <div class="wsus__single_comment">
-                    <div class="comment_footer d-flex flex-wrap">
-                      <div class="img">
-                        <img src="assets/images/thumbs/comment_img_1.png" alt="useer"
-                        class="img-fluid w-100">
-                      </div>
-                      <div class="text">
-                        <h3>noyon bond
-                          <span>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                          </span>
-                        </h3>
-                        <p>London,UK</p>
-                      </div>
-                    </div>
-                    <p class="comment_des">Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                      text ever since the redi 1500s,</p>
-                    <p class="comment_date">
-                      <span class="date">
-                        <i class="far fa-calendar-alt"></i>
-                        Octobor 28,2018 At 9.00am
-                      </span>
-                      <a href="#"><i class="fas fa-reply"></i>Reply</a>
-                    </p>
-                  </div>
+                  @empty
+                    <div class="text-center">{{ __('There is no review.') }}</div>
+                  @endforelse
                 </div>
 
                 <nav aria-label="Page navigation example">
-                  <ul class="pagination common-pagination mt-0">
+                  {{--}}<ul class="pagination common-pagination mt-0">
                     <li class="page-item"><a class="page-link" href="#">1</a></li>
                     <li class="page-item"><a class="page-link" href="#">2</a></li>
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -315,47 +234,49 @@
                           class="las la-arrow-right"></i></span>
                       </a>
                     </li>
-                  </ul>
+                  </ul>--}}
+
+                  {{ $reviews->links() }}
                 </nav>
 
-                <form class="wsus__comment_input_area">
-                  <h3>Write Your Reviews</h3>
-                  <p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <span>(0.0)</span>
-                  </p>
+                @if(auth()->check())
+                  <form action="{{ route('item.review.store', $product->id) }}" method="POST" class="wsus__comment_input_area">
+                  @csrf
+
+                  <h3>{{ __('Write Your Reviews') }}</h3>
                   <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-12">
                       <div class="wsus__comment_single_input">
-                        <fieldset>
-                          <legend>name*</legend>
-                          <input type="text" placeholder="Name">
-                        </fieldset>
-                      </div>
-                    </div>
-                    <div class="col-xl-6">
-                      <div class="wsus__comment_single_input">
-                        <fieldset>
-                          <legend>email*</legend>
-                          <input type="email" placeholder="Email">
-                        </fieldset>
+                        <legend>{{ __('rating') }}*</legend>
+                        <select name="rating" id="" class="form-select">
+                          @for ($i = 5; $i >= 1; $i--)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                        </select>
+                        @if($errors->has('rating'))
+                          <span class="text-danger">{{ $errors->first('rating') }}</span>
+                        @endif
                       </div>
                     </div>
                     <div class="col-xl-12">
                       <div class="wsus__comment_single_input">
                         <fieldset>
-                          <legend>message*</legend>
-                          <textarea rows="7" placeholder="Type here.."></textarea>
+                          <legend>{{ __('review') }}*</legend>
+                          <textarea name="review" rows="7" placeholder="Type here.."></textarea>
                         </fieldset>
+                        @if($errors->has('review'))
+                          <span class="text-danger">{{ $errors->first('review') }}</span>
+                        @endif
                       </div>
-                      <button class="btn btn-main btn-lg" type="submit">Submit Review</button>
+                      <button class="btn btn-main btn-lg" type="submit">{{ __('Submit Review') }}</button>
                     </div>
                   </div>
                 </form>
+                @else
+                  <div class="wsus__comment_input_area">
+                    <div class="alert alert-info text-center">{{ __('You need to login to add a review.') }}</div>
+                  </div>
+                @endif
               </div>
             </div>
           </div>

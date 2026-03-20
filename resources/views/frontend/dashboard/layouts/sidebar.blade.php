@@ -58,6 +58,15 @@
       @endif
 
       <li class="sidebar-list__item">
+        <a href="{{ route('reviews.index') }}" class="sidebar-list__link">
+          <span class="sidebar-list__icon">
+            <i class="ti ti-star"></i>
+          </span>
+          <span class="text">Reviews</span>
+        </a>
+      </li>
+
+      <li class="sidebar-list__item">
         <a href="{{ route('orders.index') }}" class="sidebar-list__link">
           <span class="sidebar-list__icon">
             <i class="ti ti-shopping-bag"></i>

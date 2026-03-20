@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\ItemComment;
+use App\Models\ItemReview;
 use Illuminate\Contracts\View\View;
 
 class ProductController extends Controller
@@ -22,7 +23,8 @@ class ProductController extends Controller
   {
     $product = Item::where('slug', $slug)->whereStatus('approved')->firstOrFail();
     $comments = ItemComment::where('item_id', $product->id)->paginate();
+    $reviews = ItemReview::where('item_id', $product->id)->paginate();
 
-    return view('frontend.pages.product-details', compact('product', 'comments'));
+    return view('frontend.pages.product-details', compact('product', 'comments', 'reviews'));
   }
 }
