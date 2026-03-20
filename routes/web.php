@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\CartItemController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ItemCommentController;
 use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\KycVerificationController;
 use App\Http\Controllers\Frontend\OrderController;
@@ -62,6 +63,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     ->name('transactions.index');
   Route::get('sales', [OrderController::class, 'sales'])
     ->name('sales.index');
+
+  /** Item Comments Routes */
+  Route::post('item/{id}/comment', [ItemCommentController::class, 'store'])
+    ->name('item.comment.store');
 
   /** Payment Routes */
   Route::get('order/completed', [PaymentController::class, 'completed'])

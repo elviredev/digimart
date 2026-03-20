@@ -52,4 +52,13 @@ class Item extends Model
     'screenshots' => 'array',
   ];
 
+  /**
+   * Un produit peut avoir plusieurs commentaires
+   * @return HasMany
+   */
+  public function comments(): HasMany
+  {
+    return $this->hasMany(ItemComment::class, 'item_id')->latest();
+  }
+
 }
