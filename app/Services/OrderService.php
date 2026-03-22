@@ -72,6 +72,7 @@ class OrderService
       // Update author balance
       $author = User::where('id', $cartItem->item->author_id)->first();
       $author->balance = $author->balance + $sale->author_earning;
+      $author->total_sales = $author->total_sales + 1;
       $author->save();
     }
 

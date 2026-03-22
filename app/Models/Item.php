@@ -47,10 +47,6 @@ class Item extends Model
     return $this->hasMany(ItemChangelog::class, 'item_id')->latest();
   }
 
-  protected $casts = [
-    'tags' => 'array',
-    'screenshots' => 'array',
-  ];
 
   /**
    * Un produit peut avoir plusieurs commentaires
@@ -60,5 +56,28 @@ class Item extends Model
   {
     return $this->hasMany(ItemComment::class, 'item_id')->latest();
   }
+
+  /**
+   * Un produit peut avoir plusieurs avis
+   * @return HasMany
+   */
+  public function reviews(): HasMany
+  {
+    return $this->hasMany(ItemReview::class, 'item_id')->latest();
+  }
+
+  /**
+   * Un produit peut avoir plusieurs ventes
+   * @return HasMany
+   */
+  public function sales(): HasMany
+  {
+    return $this->hasMany(PurchaseItem::class, 'item_id', 'id');
+  }
+
+  protected $casts = [
+    'tags' => 'array',
+    'screenshots' => 'array',
+  ];
 
 }

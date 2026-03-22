@@ -31,31 +31,26 @@
 
           <div class="d-flex align-items-center gap-1">
             <ul class="star-rating">
-              <li class="star-rating__item font-11">
-                <i class="fas fa-star"></i>
-              </li>
-              <li class="star-rating__item font-11">
-                <i class="fas fa-star"></i>
-              </li>
-              <li class="star-rating__item font-11">
-                <i class="fas fa-star"></i>
-              </li>
-              <li class="star-rating__item font-11">
-                <i class="fas fa-star"></i>
-              </li>
-              <li class="star-rating__item font-11">
-                <i class="fas fa-star"></i>
-              </li>
+              @for ($i = 1; $i <= 5; $i++)
+                @if(round($product->reviews_avg_stars) >= $i)
+                  <li class="star-rating__item font-11">
+                    <i class="fas fa-star"></i>
+                  </li>
+                @else
+                  <li class="star-rating__item font-11">
+                    <i class="fas fa-star text-muted"></i>
+                  </li>
+                @endif
+              @endfor
             </ul>
             <span class="star-rating__text text-heading fw-500 font-14">
-              (16)
+              ({{ $product->reviews_count }})
             </span>
           </div>
           <span class="product-item__sales font-14">
-            <i class="ti ti-download"></i>
-            1200
+            <i class="ti ti-shopping-bag"></i>
+            {{ $product->sales_count }}
           </span>
-
         </div>
       </div>
       <h6 class="product-item__title">

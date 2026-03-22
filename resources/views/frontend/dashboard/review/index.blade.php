@@ -4,8 +4,8 @@
   <div class="wsus__dash_order_table">
     <div class="d-flex justify-content-between align-items-center">
       <div>
-        <h5>{{ __('Review List') }}</h5>
-        <p>{{ __('All reviews.') }}</p>
+        <h5>{{ __('All Reviews') }}</h5>
+        <p>{{ __('Your reviews information.') }}</p>
       </div>
     </div>
 
