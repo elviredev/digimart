@@ -18,10 +18,28 @@ class ProductController extends Controller
     $query->withCount(['sales', 'reviews']);
     $query->withAvg('reviews', 'stars');
     $query->where('status', 'approved');
+
     // filtrer les produits en fonction de la catégorie
     $query->when($request->filled('category'), function ($query) use ($request) {
       $query->whereHas('category', function ($query) use ($request) {
         $query->whereSlug($request->category);
+      });
+    });
+    // rechercher un produit approuvé
+    $query->when($request->filled('search'), function ($query) use ($request) {
+      $query->where(function ($query) use ($request) {
+        $query->where('name', 'LIKE', "%$request->search%")
+              ->orWhere('description', 'LIKE', "%$request->search%");
+      });
+    });
+    // rechercher un produit par note
+    $query->when($request->filled('rating'), function ($query) use ($request) {
+        $query->whereHas('reviews', function ($query) use ($request) {
+        $query->where('stars', $request->rating);
+
+        // $rating = (int) $request->rating;
+        // $query->having('reviews_avg_stars', '>=', $rating)
+        //  ->having('reviews_avg_stars', '<', $rating + 1);
       });
     });
     $products = $query->get();

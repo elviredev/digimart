@@ -102,9 +102,22 @@
         <div class="col-xl-3 col-lg-4">
           <!-- ===================== Filter Sidebar Start ============================= -->
           <div class="filter-sidebar">
-            <!-- <button type="button"
-                            class="filter-sidebar__close p-2 position-absolute end-0 top-0 z-index-1 text-body hover-text-main font-20 d-lg-none d-block"><i
-                                class="las la-times"></i></button> -->
+            <!-- <button type="button" class="filter-sidebar__close p-2 position-absolute end-0 top-0 z-index-1 text-body hover-text-main font-20 d-lg-none d-block">
+              <i class="las la-times"></i>
+            </button> -->
+
+            <div class="filter-sidebar__item">
+              <button type="button" class="filter-sidebar__button font-16 text-capitalize fw-500">
+                {{ __('Search') }}
+              </button>
+              <div class="filter-sidebar__content">
+                <form action="{{ route('products') }}">
+                  <input type="text" class="form-control" name="search" value="{{ request()?->search }}" placeholder="search...">
+                  <button class="nav-menu__link btn btn-sm btn-main mt-2">Search</button>
+                </form>
+              </div>
+            </div>
+
             <div class="filter-sidebar__item">
               <button type="button"
               class="filter-sidebar__button font-16 text-capitalize fw-500">{{ __('Category') }}</button>
@@ -125,7 +138,9 @@
                 </ul>
               </div>
             </div>
-            <div class="filter-sidebar__item">
+
+            <form action="{{ route('products') }}">
+              <div class="filter-sidebar__item">
               <button type="button"
               class="filter-sidebar__button font-16 text-capitalize fw-500">{{ __('Rating') }}</button>
               <div class="filter-sidebar__content">
@@ -199,6 +214,10 @@
                 </ul>
               </div>
             </div>
+              <div>
+                <button class="nav-menu__link btn btn-sm btn-main mt-2">Filter</button>
+              </div>
+            </form>
           </div>
           <!-- ===================== Filter Sidebar End ============================= -->
         </div>
