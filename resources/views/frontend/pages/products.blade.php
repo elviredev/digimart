@@ -58,45 +58,7 @@
               </li>
             </ul>
           </div>
-          <form action="#" class="filter-form pb-4 ">
-            <div class="row gy-3">
-              <div class="col-sm-4 col-xs-6">
-                <div class="flx-between gap-1">
-                  <label for="tag" class="form-label font-16">Tag</label>
-                  <button type="reset" class="text-body font-14">Clear</button>
-                </div>
-                <div class="position-relative">
-                  <input type="text" class="common-input border-gray-five common-input--withLeftIcon"
-                  id="tag" placeholder="Search By Tag...">
-                  <span class="input-icon input-icon--left"><img
-                    src="assets/images/icons/search-two.svg" alt=""></span>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-6">
-                <div class="flx-between gap-1">
-                  <label for="Price" class="form-label font-16">Price</label>
-                  <button type="reset" class="text-body font-14">Clear</button>
-                </div>
-                <div class="position-relative">
-                  <input type="text" class="common-input border-gray-five" id="Price"
-                  placeholder="$7 - $29">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="flx-between gap-1">
-                  <label for="time" class="form-label font-16">Time Frame</label>
-                  <button type="reset" class="text-body font-14">Clear</button>
-                </div>
-                <div class="position-relative select-has-icon">
-                  <select id="time" class="common-input border-gray-five">
-                    <option value="1">Now</option>
-                    <option value="2">Yesterday</option>
-                    <option value="2">1 Month Ago</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </form>
+
         </div>
 
         <div class="col-xl-3 col-lg-4">
@@ -215,7 +177,10 @@
               </div>
             </div>
               <div>
-                <button class="nav-menu__link btn btn-sm btn-main mt-2">Filter</button>
+                <button class="nav-menu__link btn btn-sm btn-main mt-2">
+                  <span class="icon icon-left"><i class="ti ti-filter"></i></span>
+                  <span class="font-14 fw-500">Filters</span>
+                </button>
               </div>
             </form>
           </div>
@@ -230,25 +195,11 @@
                 @forelse($products as $product)
                   <x-frontend.product-card :product="$product" />
                 @empty
-                  <p>No data found!</p>
+                  <p class="text-center">No data found!</p>
                 @endforelse
               </div>
               <!-- Pagination Start -->
-              <nav aria-label="Page navigation example">
-                <ul class="pagination common-pagination">
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-                  <li class="page-item">
-                    <a class="page-link flx-align gap-2 flex-nowrap" href="#">Next
-                      <span class="icon line-height-1 font-20"><i
-                        class="las la-arrow-right"></i></span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+                <x-frontend.pagination :paginator="$products" />
               <!-- Pagination End -->
 
             </div>

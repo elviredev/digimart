@@ -42,7 +42,7 @@ class ProductController extends Controller
         //  ->having('reviews_avg_stars', '<', $rating + 1);
       });
     });
-    $products = $query->get();
+    $products = $query->paginate(12);
 
     // total des produits approuvés
     $productsCount = Item::where('status', 'approved')->count();

@@ -77,10 +77,17 @@
         </div>
       </div>
       <div class="product_item_footer">
-        <a class="product_cart add-cart" data-id="{{ $product->id }}" href="javascript:;">
-          <i class="ti ti-shopping-cart-plus me-2"></i>
-          <span id="cart-btn-{{ $product->id }}">{{ __('Add to cart') }}</span>
-        </a>
+        @if(in_array($product->id, session('purchase_ids', [])))
+          <a class="product_cart bg-warning text-white" href="javascript:;">
+            <i class="ti ti-shopping-cart-plus me-2"></i>
+            <span id="cart-btn-{{ $product->id }}">{{ __('Already purchased') }}</span>
+          </a>
+        @else
+          <a class="product_cart add-cart" data-id="{{ $product->id }}" href="javascript:;">
+            <i class="ti ti-shopping-cart-plus me-2"></i>
+            <span id="cart-btn-{{ $product->id }}">{{ __('Add to cart') }}</span>
+          </a>
+        @endif
       </div>
     </div>
   </div>
