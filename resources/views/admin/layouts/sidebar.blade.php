@@ -366,38 +366,6 @@
           </a>
         </li>
 
-        <li class="nav-item active dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#navbar-layout"
-            data-bs-toggle="dropdown"
-            data-bs-auto-close="false"
-            role="button"
-            aria-expanded="true"
-          >
-            <span class="nav-link-icon d-md-none d-lg-inline-block">
-              <i class="ti ti-layout"></i>
-            </span>
-            <span class="nav-link-title">Layout</span>
-          </a>
-          <div class="dropdown-menu show">
-            <div class="dropdown-menu-columns">
-              <div class="dropdown-menu-column">
-                <a class="dropdown-item" href="./layout-horizontal.html">
-                  Horizontal
-                </a>
-                <a class="dropdown-item" href="./layout-boxed.html">
-                  Boxed
-                  <span
-                    class="badge badge-sm bg-green-lt text-uppercase ms-auto"
-                  >
-                    New
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </li>
 
         @if(canAccess(['manage categories']))
           <li class="nav-item dropdown">
@@ -428,6 +396,31 @@
             </div>
           </li>
         @endif
+
+        <li class="nav-item dropdown">
+          <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          data-bs-toggle="dropdown"
+          data-bs-auto-close="false"
+          role="button"
+          aria-expanded="true"
+          >
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-section"></i>
+            </span>
+            <span class="nav-link-title">{{ __('Sections') }}</span>
+          </a>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-columns">
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="{{ route('admin.hero-section.index') }}">
+                  {{ __('Hero Section') }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
 
         <li class="nav-item dropdown">
           <a

@@ -50,36 +50,10 @@
       <div class="header-menu d-lg-block d-none">
         <ul class="nav-menu flx-align ">
           <li class="nav-menu__item">
-            <a href="{{ route('home') }}" class="nav-menu__link">Home</a>
+            <a href="{{ route('home') }}" class="nav-menu__link">{{ __('Home') }}</a>
           </li>
           <li class="nav-menu__item">
-            <a href="{{ route('products') }}" class="nav-menu__link">Products</a>
-          </li>
-          <li class="nav-menu__item has-submenu">
-            <a href="javascript:void(0)" class="nav-menu__link">Pages</a>
-            <ul class="nav-submenu">
-              <li class="nav-submenu__item">
-                <a href="profile.html" class="nav-submenu__link">Test 01</a>
-              </li>
-              <li class="nav-submenu__item">
-                <a href="profile.html" class="nav-submenu__link">Test 02</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-menu__item">
-            <a href="javascript:void(0)" class="nav-menu__link">Blog</a>
-            <ul class="nav-submenu">
-              <li class="nav-submenu__item">
-                <a href="blog.html" class="nav-submenu__link"> Blog</a>
-              </li>
-              <li class="nav-submenu__item">
-                <a href="blog-details.html" class="nav-submenu__link"> Blog Details</a>
-              </li>
-              <li class="nav-submenu__item">
-                <a href="blog-details-sidebar.html" class="nav-submenu__link"> Blog Details
-                  Sidebar</a>
-              </li>
-            </ul>
+            <a href="{{ route('products') }}" class="nav-menu__link">{{ __('Products') }}</a>
           </li>
           <li class="nav-menu__item">
             <a href="contact.html" class="nav-menu__link">Contact</a>
@@ -105,10 +79,14 @@
               <img src="{{ asset('assets/frontend/images/icons/user.svg') }}" alt="user icon">
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('login') }}">Sign In</a></li>
-              <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
-              <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
+              @guest
+                <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('Sign In') }}</a></li>
+                <li><a class="dropdown-item" href="{{ route('register') }}">{{ __('Sign Up') }}</a></li>
+              @endguest
+              @auth
+                <li><a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
+                <li><a class="dropdown-item" href="{{ route('profile') }}">{{ __('Profile') }}</a></li>
+              @endauth
             </ul>
           </div>
         </div>

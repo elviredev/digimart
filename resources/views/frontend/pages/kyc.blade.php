@@ -47,17 +47,17 @@
         <div class="col-xxl-5 col-xl-6 col-md-9 col-lg-7 m-auto">
           <div class="wsus__login_area">
             <h4>{{ __('KYC Verification') }}</h4>
-            <p>{{ $kycSetting->instructions }}</p>
+            <p>{{ $kycSetting?->instructions }}</p>
             <form method="POST" action="{{ route('kyc.store') }}" enctype="multipart/form-data" >
               @csrf
 
               <div class="row">
                 <div class="col-md-12">
                   <x-frontend.input-select name="document_type" :label="__('Document Type')" :required="true" >
-                    @if($kycSetting->nid_verification == 1)
+                    @if($kycSetting?->nid_verification == 1)
                       <option value="nid">{{ __('NID') }}</option>
                     @endif
-                    @if($kycSetting->passport_verification == 1)
+                    @if($kycSetting?->passport_verification == 1)
                       <option value="passport">{{ __('Passport') }}</option>
                     @endif
                   </x-frontend.input-select>
