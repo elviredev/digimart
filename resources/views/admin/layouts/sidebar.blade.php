@@ -418,6 +418,11 @@
                   {{ __('Hero Section') }}
                 </a>
               </div>
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="{{ route('admin.featured-categories-section.index') }}">
+                  {{ __('Featured Categories') }}
+                </a>
+              </div>
             </div>
           </div>
         </li>

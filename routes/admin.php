@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FeaturedCategoryController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\ItemReviewController;
 use App\Http\Controllers\Admin\KycController;
@@ -117,6 +118,7 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::get('ajax/product-search', [HeroSectionController::class, 'productSearch'])
       ->name('ajax.product-search');
     Route::resource('hero-section', HeroSectionController::class);
+    Route::resource('featured-categories-section', FeaturedCategoryController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])
