@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeaturedCategoryController;
 use App\Http\Controllers\Admin\HeroSectionController;
+use App\Http\Controllers\Admin\HighlightedProductController;
 use App\Http\Controllers\Admin\ItemReviewController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\KYCSettingController;
@@ -119,6 +120,7 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
       ->name('ajax.product-search');
     Route::resource('hero-section', HeroSectionController::class);
     Route::resource('featured-categories-section', FeaturedCategoryController::class);
+    Route::resource('highlighted-products-section', HighlightedProductController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\FeaturedCategory;
 use App\Models\HeroSection;
+use App\Models\HighlightedProduct;
 use App\Models\Item;
 use Illuminate\Contracts\View\View;
 
@@ -13,12 +14,15 @@ class HomeController extends Controller
 {
   public function index(): View
   {
+    // Get hero section data
     $heroSection = HeroSection::first();
 
+    // Get featured categories
     $featuredCategories = Category::withCount(['items' => function($query) {
       $query->where('status', 'approved');
     }])->where('show_at_featured', 1)->get();
 
+    // Filter products by featured sub-categories
     $subCategory = FeaturedCategory::first()?->category_ids;
 
     $featuredItems = Item::whereIn('sub_category_id', $subCategory)
@@ -31,6 +35,36 @@ class HomeController extends Controller
       ->get()
       ->groupBy(fn($item) => $item->subCategory->name);
 
-    return view('frontend.home.index', compact('heroSection', 'featuredCategories', 'featuredItems'));
+    // Get highlighted products
+    $highlightedProductSection = HighlightedProduct::first();
+
+    $highlightedProducts = Item::whereIn('id', $highlightedProductSection->item_ids)
+      ->withCount(['sales', 'reviews'])
+      ->withAvg('reviews', 'stars')
+      ->where('status', 'approved')
+      ->take(4)
+      ->get();
+
+    return view(
+      'frontend.home.index',
+      compact(
+        'heroSection',
+        'featuredCategories',
+        'featuredItems',
+        'highlightedProductSection',
+        'highlightedProducts')
+    );
+  }
+
+  public function highlightedProducts(): View
+  {
+    $highlightedProductSection = HighlightedProduct::first();
+    $highlightedProducts = Item::whereIn('id', $highlightedProductSection->item_ids)
+      ->withCount(['sales', 'reviews'])
+      ->withAvg('reviews', 'stars')
+      ->where('status', 'approved')
+      ->paginate(12);
+
+    return view('frontend.pages.highlighted-products', compact('highlightedProducts'));
   }
 }

@@ -22,6 +22,8 @@ Route::get('/products', [ProductController::class, 'index'])
   ->name('products');
 Route::get('/products/{slug}', [ProductController::class, 'show'])
   ->name('products.show');
+Route::get('/highlighted-products', [HomeController::class, 'highlightedProducts'])
+  ->name('highlighted.products');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
   // Dashboard Frontend

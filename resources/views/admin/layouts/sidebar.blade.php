@@ -423,6 +423,11 @@
                   {{ __('Featured Categories') }}
                 </a>
               </div>
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="{{ route('admin.highlighted-products-section.index') }}">
+                  {{ __('Highlighted Products') }}
+                </a>
+              </div>
             </div>
           </div>
         </li>

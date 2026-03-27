@@ -4,5 +4,5 @@
     <option value="">{{ __('Select') }}</option>
     {{ $slot }}
   </select>
-  <x-input-error :messages="$errors->get($name)" />
+  <x-input-error :messages="$errors->get(str_replace('[]', '', $name))" />
 </div>
