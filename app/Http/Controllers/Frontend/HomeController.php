@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\FeaturedAuthorSection;
 use App\Models\FeaturedCategory;
 use App\Models\HeroSection;
 use App\Models\HighlightedProduct;
@@ -25,7 +26,6 @@ class HomeController extends Controller
 
     // Filter products by featured sub-categories
     $subCategory = FeaturedCategory::first()?->category_ids;
-
     $featuredItems = Item::whereIn('sub_category_id', $subCategory)
       ->withCount(['sales', 'reviews'])
       ->withAvg('reviews', 'stars')
@@ -38,7 +38,6 @@ class HomeController extends Controller
 
     // Get highlighted products
     $highlightedProductSection = HighlightedProduct::first();
-
     $highlightedProducts = Item::whereIn('id', $highlightedProductSection->item_ids)
       ->withCount(['sales', 'reviews'])
       ->withAvg('reviews', 'stars')
@@ -48,12 +47,18 @@ class HomeController extends Controller
 
     // Get monthly picked products
     $monthlyPickedProductSection = MonthlyPickedProduct::first();
-
     $monthlyPickedProducts = Item::whereIn('id', $monthlyPickedProductSection->item_ids)
       ->withCount(['sales', 'reviews'])
       ->withAvg('reviews', 'stars')
       ->where('status', 'approved')
       ->take(8)
+      ->get();
+
+    // Get Featured Author Products
+    $featuredAuthorSection = FeaturedAuthorSection::first();
+    $featuredAuthorProducts = Item::where('author_id', $featuredAuthorSection->author_id)
+      ->latest()
+      ->take(4)
       ->get();
 
     return view(
@@ -65,7 +70,9 @@ class HomeController extends Controller
         'highlightedProductSection',
         'highlightedProducts',
         'monthlyPickedProductSection',
-        'monthlyPickedProducts'
+        'monthlyPickedProducts',
+        'featuredAuthorSection',
+        'featuredAuthorProducts'
       )
     );
   }
