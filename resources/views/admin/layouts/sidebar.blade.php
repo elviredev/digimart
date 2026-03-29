@@ -428,6 +428,11 @@
                   {{ __('Highlighted Products') }}
                 </a>
               </div>
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="{{ route('admin.monthly-picked-products-section.index') }}">
+                  {{ __('Monthly Products') }}
+                </a>
+              </div>
             </div>
           </div>
         </li>

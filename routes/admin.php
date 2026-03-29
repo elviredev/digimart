@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\WithdrawMethodController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
+use App\Http\Controllers\MonthlyPickedProductsController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->as('admin.')
@@ -121,6 +122,7 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::resource('hero-section', HeroSectionController::class);
     Route::resource('featured-categories-section', FeaturedCategoryController::class);
     Route::resource('highlighted-products-section', HighlightedProductController::class);
+    Route::resource('monthly-picked-products-section', MonthlyPickedProductsController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])

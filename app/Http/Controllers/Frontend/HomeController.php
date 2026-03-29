@@ -8,6 +8,7 @@ use App\Models\FeaturedCategory;
 use App\Models\HeroSection;
 use App\Models\HighlightedProduct;
 use App\Models\Item;
+use App\Models\MonthlyPickedProduct;
 use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
@@ -45,6 +46,16 @@ class HomeController extends Controller
       ->take(4)
       ->get();
 
+    // Get monthly picked products
+    $monthlyPickedProductSection = MonthlyPickedProduct::first();
+
+    $monthlyPickedProducts = Item::whereIn('id', $monthlyPickedProductSection->item_ids)
+      ->withCount(['sales', 'reviews'])
+      ->withAvg('reviews', 'stars')
+      ->where('status', 'approved')
+      ->take(8)
+      ->get();
+
     return view(
       'frontend.home.index',
       compact(
@@ -52,7 +63,10 @@ class HomeController extends Controller
         'featuredCategories',
         'featuredItems',
         'highlightedProductSection',
-        'highlightedProducts')
+        'highlightedProducts',
+        'monthlyPickedProductSection',
+        'monthlyPickedProducts'
+      )
     );
   }
 
