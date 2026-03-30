@@ -443,6 +443,11 @@
                   {{ __('Counter Section') }}
                 </a>
               </div>
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="{{ route('admin.banner-section.index') }}">
+                  {{ __('Banner Section') }}
+                </a>
+              </div>
             </div>
           </div>
         </li>

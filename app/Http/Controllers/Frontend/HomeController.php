@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\BannerSection;
 use App\Models\Category;
 use App\Models\CounterSection;
 use App\Models\FeaturedAuthorSection;
@@ -65,6 +66,9 @@ class HomeController extends Controller
     // Get Counter Section data
     $counterSection = CounterSection::first();
 
+    // Get Banner Section data
+    $bannerSection = BannerSection::first();
+
     return view(
       'frontend.home.index',
       compact(
@@ -77,7 +81,8 @@ class HomeController extends Controller
         'monthlyPickedProducts',
         'featuredAuthorSection',
         'featuredAuthorProducts',
-        'counterSection'
+        'counterSection',
+        'bannerSection'
       )
     );
   }

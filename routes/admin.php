@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\BannerSectionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CounterSectionController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -127,6 +128,12 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::resource('monthly-picked-products-section', MonthlyPickedProductsController::class);
     Route::resource('featured-author-section', FeaturedAuthorSectionController::class);
     Route::resource('counter-section', CounterSectionController::class);
+
+    Route::put('banner-one-update', [BannerSectionController::class, 'updateBannerOne'])
+      ->name('banner-one.update');
+    Route::put('banner-two-update', [BannerSectionController::class, 'updateBannerTwo'])
+      ->name('banner-two.update');
+    Route::resource('banner-section', BannerSectionController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])
