@@ -4,61 +4,47 @@
       <div class="col-lg-5">
         <div class="section-content">
           <div class="section-heading style-left">
-            <h3 class="section-heading__title">
-              Top
-              Performance</h3>
+            <h3 class="section-heading__title">{{ $counterSection?->title }}</h3>
             <p class="section-heading__desc font-18 w-sm">
-              Every
-              month
-              we
-              pick
-              some
-              best
-              products
-              for
-              you.
-              This
-              month's
-              best
-              web
-              themes
-              &
-              templates
-              have
-              arrived,
-              chosen
-              by
-              our
-              content
-              specialists.</p>
+              {{ $counterSection?->subtitle }}
+            </p>
           </div>
-          <a href="register.html" class="btn btn-main btn-lg  fw-300">
-            Get
-            Started </a>
         </div>
       </div>
       <div class="col-lg-7 pe-lg-5">
         <div class="position-relative">
           <div class="performance-content">
             <div class="performance-content__item">
-              <span class="performance-content__text font-18">Email Subscription</span>
+              <span class="performance-content__text font-18">
+                {{ $counterSection?->label_one }}
+              </span>
               <h4 class="performance-content__count">
-                49,000+</h4>
+                {{ $counterSection?->counter_one }}+
+              </h4>
             </div>
             <div class="performance-content__item">
-              <span class="performance-content__text font-18"> Total Products</span>
+              <span class="performance-content__text font-18">
+                {{ $counterSection?->label_two }}
+              </span>
               <h4 class="performance-content__count">
-                45,000+</h4>
+                {{ $counterSection?->counter_two }}+
+              </h4>
             </div>
             <div class="performance-content__item">
-              <span class="performance-content__text font-18"> Total Download</span>
+              <span class="performance-content__text font-18">
+                {{ $counterSection?->label_three }}
+              </span>
               <h4 class="performance-content__count">
-                48,000+</h4>
+                {{ $counterSection?->counter_three }}+
+              </h4>
             </div>
             <div class="performance-content__item">
-              <span class="performance-content__text font-18"> Monthly Visitor</span>
+              <span class="performance-content__text font-18">
+                {{ $counterSection?->label_four }}
+              </span>
               <h4 class="performance-content__count">
-                65,000+</h4>
+                {{ $counterSection?->counter_four }}+
+              </h4>
             </div>
           </div>
         </div>

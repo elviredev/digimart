@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\CounterSection;
 use App\Models\FeaturedAuthorSection;
 use App\Models\FeaturedCategory;
 use App\Models\HeroSection;
@@ -61,6 +62,9 @@ class HomeController extends Controller
       ->take(4)
       ->get();
 
+    // Get Counter Section data
+    $counterSection = CounterSection::first();
+
     return view(
       'frontend.home.index',
       compact(
@@ -72,7 +76,8 @@ class HomeController extends Controller
         'monthlyPickedProductSection',
         'monthlyPickedProducts',
         'featuredAuthorSection',
-        'featuredAuthorProducts'
+        'featuredAuthorProducts',
+        'counterSection'
       )
     );
   }

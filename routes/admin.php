@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CounterSectionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeaturedAuthorSectionController;
 use App\Http\Controllers\Admin\FeaturedCategoryController;
@@ -125,6 +126,7 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::resource('highlighted-products-section', HighlightedProductController::class);
     Route::resource('monthly-picked-products-section', MonthlyPickedProductsController::class);
     Route::resource('featured-author-section', FeaturedAuthorSectionController::class);
+    Route::resource('counter-section', CounterSectionController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])
