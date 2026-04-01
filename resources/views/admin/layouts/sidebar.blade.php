@@ -448,8 +448,22 @@
                   {{ __('Banner Section') }}
                 </a>
               </div>
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="{{ route('admin.footer-section.index') }}">
+                  {{ __('Footer Section') }}
+                </a>
+              </div>
             </div>
           </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.social-links.index') }}">
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-social"></i>
+            </span>
+            <span class="nav-link-title">{{ __('Social Links') }}</span>
+          </a>
         </li>
 
         <li class="nav-item dropdown">

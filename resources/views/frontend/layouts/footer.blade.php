@@ -1,3 +1,8 @@
+@php
+  $footerSection = \App\Models\FooterSection::first();
+  $socialLinks = \App\Models\SocialLink::all();
+@endphp
+
 <footer class="footer-section "
   style="background: url({{ asset('assets/frontend/images/shapes/footer-bg.png') }}"
 >
@@ -36,32 +41,16 @@
             </a>
           </div>
           <p class="footer-widget__desc">
-            {{ __('Lorem consultancy elitsed do eiusmod tempor inci didunt ut
-            labore dolore magna aliqua sed do eiusmod.') }}
+            {{ $footerSection?->description }}
           </p>
           <div class="footer-widget__social">
             <ul class="social-icon-list">
+              @foreach ($socialLinks as $socialLink)
               <li class="social-icon-list__item">
-                <a href="https://www.facebook.com" class="social-icon-list__link flx-center">
-                  <i
-                  class="fab fa-facebook-f"></i></a>
+                <a href="{{ $socialLink?->url }}" class="social-icon-list__link flx-center font-5">
+                  <i class="{{ $socialLink?->icon }}"></i></a>
               </li>
-              <li class="social-icon-list__item">
-                <a href="https://www.twitter.com" class="social-icon-list__link flx-center">
-                  <i class="fab fa-twitter"></i></a>
-              </li>
-              <li class="social-icon-list__item">
-                <a href="https://www.linkedin.com" class="social-icon-list__link flx-center">
-                  <i class="fab fa-linkedin-in"></i></a>
-              </li>
-              <li class="social-icon-list__item">
-                <a href="https://www.pinterest.com" class="social-icon-list__link flx-center">
-                  <i class="fab fa-pinterest-p"></i></a>
-              </li>
-              <li class="social-icon-list__item">
-                <a href="https://www.pinterest.com" class="social-icon-list__link flx-center">
-                  <i class="fab fa-youtube"></i></a>
-              </li>
+              @endforeach
             </ul>
           </div>
         </div>
@@ -113,18 +102,22 @@
       <div class="col-xl-4 col-sm-6">
         <div class="footer_widget_count">
           <ul>
-            <li>
-              <h4>58,547,547</h4>
-              <p>{{ __('items sold') }}</p>
-            </li>
-            <li>
-              <h4>$1,190,099,074 </h4>
-              <p>{{ __('community earnings') }}</p>
-            </li>
+            @if($footerSection?->items_sold)
+              <li>
+                <h4>{{ $footerSection?->items_sold }}</h4>
+                <p>{{ __('items sold') }}</p>
+              </li>
+            @endif
+            @if($footerSection?->community_earnings)
+              <li>
+                <h4>{{ $footerSection?->community_earnings }}</h4>
+                <p>{{ __('community earnings') }}</p>
+              </li>
+            @endif
           </ul>
           <div class="img">
             <img
-              src="{{ asset('assets/frontend/images/thumbs/pay_brand.png') }}"
+              src="{{ asset($footerSection?->gateway_image) }}"
               alt="Payment" class="img-fluid w-100"
             >
           </div>
@@ -136,13 +129,8 @@
   <!-- bottom Footer -->
   <div class="bottom-footer">
     <div class="container container-two">
-      <div class="bottom-footer__inner flx-between gap-3">
-        <p class="bottom-footer__text font-14"> {{ __('Copyright') }} &copy; {{ date('Y') }} {{ __('DigiMart, All rights reserved.') }}</p>
-        <div class="footer-links">
-          <a href="#" class="footer-link font-14">Terms of service</a>
-          <a href="#" class="footer-link font-14">Privacy Policy</a>
-          <a href="contact.html" class="footer-link font-14">cookies</a>
-        </div>
+      <div class="bottom-footer__inner text-center">
+        <p class="bottom-footer__text font-14"> {{ $footerSection?->copyright }}</p>
       </div>
     </div>
   </div>

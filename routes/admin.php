@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CounterSectionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeaturedAuthorSectionController;
 use App\Http\Controllers\Admin\FeaturedCategoryController;
+use App\Http\Controllers\Admin\FooterSectionController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\HighlightedProductController;
 use App\Http\Controllers\Admin\ItemReviewController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RoleUserController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\WithdrawMethodController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
@@ -128,12 +130,16 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::resource('monthly-picked-products-section', MonthlyPickedProductsController::class);
     Route::resource('featured-author-section', FeaturedAuthorSectionController::class);
     Route::resource('counter-section', CounterSectionController::class);
+    Route::resource('footer-section', FooterSectionController::class);
 
     Route::put('banner-one-update', [BannerSectionController::class, 'updateBannerOne'])
       ->name('banner-one.update');
     Route::put('banner-two-update', [BannerSectionController::class, 'updateBannerTwo'])
       ->name('banner-two.update');
     Route::resource('banner-section', BannerSectionController::class);
+
+    /** Social Links Routes */
+    Route::resource('social-links', SocialLinkController::class);
 
     /** Payment Settings Routes */
     Route::get('payment-settings', [PaymentSettingController::class, 'index'])
