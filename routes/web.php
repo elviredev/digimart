@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\ItemCommentController;
 use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\ItemReviewController;
 use App\Http\Controllers\Frontend\KycVerificationController;
+use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProductController;
@@ -24,6 +25,8 @@ Route::get('/products/{slug}', [ProductController::class, 'show'])
   ->name('products.show');
 Route::get('/highlighted-products', [HomeController::class, 'highlightedProducts'])
   ->name('highlighted.products');
+Route::post('/newsletter', NewsletterController::class)
+  ->name('newsletter.store');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
   // Dashboard Frontend

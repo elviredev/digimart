@@ -20,10 +20,12 @@
         <div class="col-xl-6 col-lg-6 wow fadeInRight"
         style="visibility: visible; animation-name: fadeInRight;">
           <div class="subscription_right">
-            <form action="#">
-              <input type="text" placeholder="enter your mail">
-              <button class="btn btn-main btn-lg" type="submit">
-                {{ __('subscription') }}
+            <form action="#" class="subscription_form" method="POST">
+              @csrf
+
+              <input type="email" placeholder="enter your mail" name="email">
+              <button class="btn btn-main btn-lg subscribe-btn" type="submit">
+                {{ __('Subscribe') }}
               </button>
             </form>
           </div>
@@ -135,3 +137,44 @@
     </div>
   </div>
 </footer>
+
+@push('scripts')
+  <script>
+    'use strict';
+
+    // Notyf init
+    var notyf = new Notyf();
+
+    $(function() {
+      $('.subscription_form').on('submit', function(e) {
+        e.preventDefault();
+
+        // récupérer toutes les valeurs du formulaire
+        let formData = $(this).serialize();
+
+        // les tansmettre via requête Ajax
+        $.ajax({
+          method: 'POST',
+          url: route('newsletter.store'),
+          data: formData,
+          beforeSend: function() {
+            $('.subscribe-btn').text('Loading...')
+          },
+          success: function(response) {
+            if(response.status == 'success'){
+              $('.subscribe-btn').text('Subscribe')
+              $('.subscription_form').get(0).reset()
+              notyf.success(response.message)
+            }
+          },
+          error: function(xhr, status, error) {
+            let errorMessage = xhr.responseJSON.message
+            notyf.error(errorMessage)
+
+            $('.subscribe-btn').text('Subscribe')
+          }
+        })
+      })
+    })
+  </script>
+@endpush

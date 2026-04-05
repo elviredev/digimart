@@ -62,6 +62,9 @@
   <script src="{{ asset('assets/admin/js/tabler.min.js') }}" defer></script>
   <script src="{{ asset('assets/admin/js/demo.min.js') }}" defer></script>
 
+  <!-- TinyMCE Rich Editor -->
+  <script src="{{ asset('assets/frontend/js/tinymce/tinymce.min.js') }}"></script>
+
   <!-- Admin JS -->
   <script src="{{ asset('assets/admin/js/default/admin.js') }}" defer></script>
 

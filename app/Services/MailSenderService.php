@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Mail\DefaultMail;
+use App\Mail\NewsletterMail;
 use Illuminate\Support\Facades\Mail;
 
 class MailSenderService
@@ -14,6 +15,14 @@ class MailSenderService
       mailSubject: $subject,
       content: $content,
       toMail: $toMail
+    ));
+  }
+
+  public static function sendBulkNewsletterMail(string $subject, string $content, array $emails)
+  {
+    Mail::to($emails)->send(new NewsletterMail(
+      mailSubject: $subject,
+      content: $content
     ));
   }
 }
