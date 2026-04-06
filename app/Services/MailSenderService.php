@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Mail\ContactMail;
 use App\Mail\DefaultMail;
 use App\Mail\NewsletterMail;
 use Illuminate\Support\Facades\Mail;
@@ -23,6 +24,17 @@ class MailSenderService
     Mail::to($emails)->send(new NewsletterMail(
       mailSubject: $subject,
       content: $content
+    ));
+  }
+
+  public static function sendContactMail(string $name, string $subject, string $content, string $fromMail, string $toMail)
+  {
+    Mail::send(new ContactMail(
+      name: $name,
+      mailSubject: $subject,
+      content: $content,
+      fromMail: $fromMail,
+      toMail: $toMail
     ));
   }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\BannerSectionController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactInfoSectionController;
 use App\Http\Controllers\Admin\CounterSectionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeaturedAuthorSectionController;
@@ -132,6 +133,7 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
     Route::resource('featured-author-section', FeaturedAuthorSectionController::class);
     Route::resource('counter-section', CounterSectionController::class);
     Route::resource('footer-section', FooterSectionController::class);
+    Route::resource('contact-section', ContactInfoSectionController::class);
 
     Route::put('banner-one-update', [BannerSectionController::class, 'updateBannerOne'])
       ->name('banner-one.update');

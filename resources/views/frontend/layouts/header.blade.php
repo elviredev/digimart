@@ -56,10 +56,10 @@
             <a href="{{ route('products') }}" class="nav-menu__link">{{ __('Products') }}</a>
           </li>
           <li class="nav-menu__item">
-            <a href="contact.html" class="nav-menu__link">Contact</a>
+            <a href="{{ route('contact') }}" class="nav-menu__link">{{ __('Contact') }}</a>
           </li>
           <li class="nav-menu__item">
-            <a href="{{ route('kyc.index') }}" class="nav-menu__link">Start Selling</a>
+            <a href="{{ route('kyc.index') }}" class="nav-menu__link">{{ __('Start Selling') }}</a>
           </li>
         </ul>
       </div>

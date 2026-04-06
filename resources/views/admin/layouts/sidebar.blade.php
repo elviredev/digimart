@@ -453,6 +453,11 @@
                   {{ __('Footer Section') }}
                 </a>
               </div>
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="{{ route('admin.contact-section.index') }}">
+                  {{ __('Contact Section') }}
+                </a>
+              </div>
             </div>
           </div>
         </li>
