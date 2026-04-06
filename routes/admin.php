@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CounterSectionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeaturedAuthorSectionController;
 use App\Http\Controllers\Admin\FeaturedCategoryController;
+use App\Http\Controllers\Admin\FlashSaleBannerController;
 use App\Http\Controllers\Admin\FooterSectionController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\HighlightedProductController;
@@ -143,6 +144,9 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
 
     /** Social Links Routes */
     Route::resource('social-links', SocialLinkController::class);
+
+    /** Flash Sale Banner Routes */
+    Route::resource('flash-banner', FlashSaleBannerController::class);
 
     /** Subscribers Routes */
     Route::get('subscribers', [SubscribersController::class, 'index'])
