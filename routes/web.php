@@ -32,6 +32,8 @@ Route::get('/contact', [ContactController::class, 'index'])
   ->name('contact');
 Route::post('/contact', [ContactController::class, 'sendMail'])
   ->name('contact.send-mail');
+Route::get('/page/{slug}', [HomeController::class, 'page'])
+  ->name('page');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
   // Dashboard Frontend

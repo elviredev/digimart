@@ -1,6 +1,7 @@
 @php
   $footerSection = \App\Models\FooterSection::first();
   $socialLinks = \App\Models\SocialLink::all();
+  $customPages = \App\Models\CustomPage::where(['status' => 1])->latest()->take(5)->get();
 @endphp
 
 <footer class="footer-section "
@@ -62,20 +63,23 @@
           <h5 class="footer-widget__title text-white">{{ __('Useful Link') }}</h5>
           <ul class="footer-lists">
             <li class="footer-lists__item">
-              <a href="all-product.html" class="footer-lists__link">{{ __('Product') }} </a>
+              <a href="{{ url('/') }}" class="footer-lists__link">{{ __('Home') }} </a>
             </li>
             <li class="footer-lists__item">
-              <a href="product-details.html" class="footer-lists__link">{{ __('Product Details') }}</a>
+              <a href="{{ route('products') }}" class="footer-lists__link">{{ __('Product Details') }}</a>
             </li>
             <li class="footer-lists__item">
-              <a href="profile.html" class="footer-lists__link">{{ __('Profile') }}</a>
+              <a href="{{ route('contact') }}" class="footer-lists__link">{{ __('Contact') }}</a>
             </li>
-            <li class="footer-lists__item">
-              <a href="cart.html" class="footer-lists__link">{{ __('Shopping Cart') }}</a>
-            </li>
-            <li class="footer-lists__item">
-              <a href="{{ route('dashboard') }}" class="footer-lists__link">{{ __('Dashboard') }}</a>
-            </li>
+
+            @if(!Auth::check())
+              <li class="footer-lists__item">
+                <a href="{{ route('login') }}" class="footer-lists__link">{{ __('Login') }}</a>
+              </li>
+              <li class="footer-lists__item">
+                <a href="{{ route('register') }}" class="footer-lists__link">{{ __('Register') }}</a>
+              </li>
+            @endif
           </ul>
         </div>
       </div>
@@ -83,21 +87,11 @@
         <div class="footer-widget">
           <h5 class="footer-widget__title text-white">{{ __('Quick Links') }}</h5>
           <ul class="footer-lists">
-            <li class="footer-lists__item">
-              <a href="{{ route('dashboard') }}" class="footer-lists__link">{{ __('Dashboard') }}</a>
-            </li>
-            <li class="footer-lists__item">
-              <a href="{{ route('login') }}" class="footer-lists__link">{{ __('Login') }}</a>
-            </li>
-            <li class="footer-lists__item">
-              <a href="{{ route('register') }}" class="footer-lists__link">{{ __('Register') }}</a>
-            </li>
-            <li class="footer-lists__item">
-              <a href="blog.html" class="footer-lists__link">{{ __('Blog') }}</a>
-            </li>
-            <li class="footer-lists__item">
-              <a href="blog-details.html" class="footer-lists__link">{{ __('Blog Details') }}</a>
-            </li>
+            @foreach ($customPages as $page)
+              <li class="footer-lists__item">
+                <a href="{{ route('page', $page->slug) }}" class="footer-lists__link">{{ $page->name }}</a>
+              </li>
+            @endforeach
           </ul>
         </div>
       </div>

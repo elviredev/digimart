@@ -2,6 +2,7 @@
   $categories = \App\Models\Category::with('subCategories')->get();
   $cartCount = \App\Models\CartItem::where('user_id', user()?->id)->count();
   $flashBanner = \App\Models\FlashSaleBanner::first();
+  $customPages = \App\Models\CustomPage::where(['status' => 1, 'show_at_nav' => 1])->get();
 @endphp
 
 <!-- ============================ Sale Offer Start =========================== -->
@@ -61,6 +62,13 @@
           <li class="nav-menu__item">
             <a href="{{ route('contact') }}" class="nav-menu__link">{{ __('Contact') }}</a>
           </li>
+
+          @foreach ($customPages as $page)
+            <li class="nav-menu__item">
+              <a href="{{ route('page', $page->slug) }}" class="nav-menu__link">{{ $page->name }}</a>
+            </li>
+          @endforeach
+
           <li class="nav-menu__item">
             <a href="{{ route('kyc.index') }}" class="nav-menu__link">{{ __('Start Selling') }}</a>
           </li>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BannerSectionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactInfoSectionController;
 use App\Http\Controllers\Admin\CounterSectionController;
+use App\Http\Controllers\Admin\CustomPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeaturedAuthorSectionController;
 use App\Http\Controllers\Admin\FeaturedCategoryController;
@@ -147,6 +148,9 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
 
     /** Flash Sale Banner Routes */
     Route::resource('flash-banner', FlashSaleBannerController::class);
+
+    /** Custom Pages Routes */
+    Route::resource('custom-page', CustomPageController::class);
 
     /** Subscribers Routes */
     Route::get('subscribers', [SubscribersController::class, 'index'])
