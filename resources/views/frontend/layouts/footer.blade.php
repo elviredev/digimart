@@ -40,7 +40,7 @@
         <div class="footer-widget">
           <div class="footer-widget__logo">
             <a href="{{ route('home') }}">
-              <img src="{{ asset('assets/frontend/images/logo/white-logo.png') }}" alt="">
+              <img src="{{ asset(config('settings.footer_logo')) }}" alt="">
             </a>
           </div>
           <p class="footer-widget__desc">
@@ -66,7 +66,7 @@
               <a href="{{ url('/') }}" class="footer-lists__link">{{ __('Home') }} </a>
             </li>
             <li class="footer-lists__item">
-              <a href="{{ route('products') }}" class="footer-lists__link">{{ __('Product Details') }}</a>
+              <a href="{{ route('products') }}" class="footer-lists__link">{{ __('Products') }}</a>
             </li>
             <li class="footer-lists__item">
               <a href="{{ route('contact') }}" class="footer-lists__link">{{ __('Contact') }}</a>

@@ -181,4 +181,8 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
       ->name('settings.commission.index');
     Route::put('commission-settings', [SettingController::class, 'updateCommissionSettings'])
       ->name('settings.commission.update');
+    Route::get('logo-settings', [SettingController::class, 'logoSettings'])
+      ->name('settings.logo.index');
+    Route::put('logo-settings', [SettingController::class, 'updateLogoSettings'])
+      ->name('settings.logo.update');
   });

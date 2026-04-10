@@ -9,7 +9,7 @@
   <!-- Title -->
   <title> Digital Market Place HTML Template</title>
   <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ asset('assets/frontend/images/logo/favicon-two.png') }}">
+  <link rel="shortcut icon" href="{{ asset(config('settings.favicon')) }}">
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">

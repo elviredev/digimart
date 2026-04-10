@@ -25,6 +25,7 @@
                 <div class="list-group list-group-transparent">
                   <a href="{{ route('admin.settings.index') }}" class="list-group-item list-group-item-action d-flex align-items-center">General Settings</a>
                   <a href="{{ route('admin.settings.commission.index') }}" class="list-group-item list-group-item-action d-flex align-items-center">Author Commission Settings</a>
+                  <a href="{{ route('admin.settings.logo.index') }}" class="list-group-item list-group-item-action d-flex align-items-center">Logo Settings</a>
                 </div>
                 <h4 class="subheader mt-4">Experience</h4>
                 <div class="list-group list-group-transparent">
