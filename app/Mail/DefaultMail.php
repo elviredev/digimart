@@ -29,7 +29,7 @@ class DefaultMail extends Mailable
   public function envelope(): Envelope
   {
     return new Envelope(
-      from: 'admin@example.com',
+      from: config('settings.smtp_sender_email'),
       to: $this->toMail,
       subject: $this->mailSubject
     );

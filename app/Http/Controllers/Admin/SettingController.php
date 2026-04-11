@@ -120,4 +120,40 @@ class SettingController extends Controller
 
     return redirect()->back();
   }
+
+  public function smtpSettings(): View
+  {
+    return view('admin.setting.pages.smtp-setting');
+  }
+
+  public function updateSmtpSettings(Request $request): RedirectResponse
+  {
+    $validatedData = $request->validate([
+      'smtp_sender_name' => ['required', 'string', 'max:255'],
+      'smtp_sender_email' => ['required', 'string', 'max:255'],
+      'smtp_recipient_email' => ['required', 'string', 'max:255'],
+      'smtp_mail_host' => ['required', 'string', 'max:255'],
+      'smtp_user_name' => ['required', 'string', 'max:255'],
+      'smtp_user_password' => ['required', 'string', 'max:255'],
+      'smtp_port' => ['required', 'string', 'max:255'],
+      'smtp_encryption' => ['required', 'string', 'max:255'],
+    ]);
+
+    // Insérer ou mettre à jour les données dans la table settings
+    foreach ($validatedData as $key => $value) {
+      Setting::updateOrCreate(
+        ['key' => $key],
+        ['value' => $value]
+      );
+    }
+
+    // Créer une nouvelle instance de SettingService
+    $setting = app()->make(SettingService::class);
+    // Vider le cache
+    $setting->clearCashedSettings();
+
+    NotificationService::UPDATED();
+
+    return redirect()->back();
+  }
 }

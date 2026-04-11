@@ -185,4 +185,8 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
       ->name('settings.logo.index');
     Route::put('logo-settings', [SettingController::class, 'updateLogoSettings'])
       ->name('settings.logo.update');
+    Route::get('smtp-settings', [SettingController::class, 'smtpSettings'])
+      ->name('settings.smtp.index');
+    Route::put('smtp-settings', [SettingController::class, 'updateSmtpSettings'])
+      ->name('settings.smtp.update');
   });

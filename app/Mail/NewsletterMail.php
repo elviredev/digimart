@@ -26,6 +26,7 @@ class NewsletterMail extends Mailable
   public function envelope(): Envelope
   {
     return new Envelope(
+      from: config('settings.smtp_sender_email'),
       subject: $this->mailSubject,
     );
   }

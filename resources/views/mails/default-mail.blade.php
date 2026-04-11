@@ -10,7 +10,7 @@
   <!-- Header Section -->
   <tr>
     <td align="center" style="padding: 20px; background-color: #007BFF; color: #ffffff; border-radius: 8px 8px 0 0;">
-      <h1 style="margin: 0; font-size: 24px;">DIGIMART</h1>
+      <h1 style="margin: 0; font-size: 24px;">{{ config('settings.smtp_sender_name') }}</h1>
     </td>
   </tr>
 
@@ -28,7 +28,7 @@
   <!-- Footer Section -->
   <tr>
     <td align="center" style="padding: 20px; background-color: #f4f4f4; color: #888; font-size: 14px; border-radius: 0 0 8px 8px;">
-      <p style="margin: 0;">Digimart &copy; {{ date('Y') }}. {{ __('All rights reserved') }}.</p>
+      <p style="margin: 0;">{{ config('settings.smtp_sender_name') }} &copy; {{ date('Y') }}. {{ __('All rights reserved') }}.</p>
     </td>
   </tr>
 </table>
