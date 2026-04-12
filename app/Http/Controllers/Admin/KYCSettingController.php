@@ -8,9 +8,19 @@ use App\Models\KycSetting;
 use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class KYCSettingController extends Controller
+class KYCSettingController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Manage KYC */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage kyc')
+    ];
+  }
+
   /**
    * @desc afficher la page KycSetting
    * @return View

@@ -10,10 +10,20 @@ use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Storage;
 
-class KycController extends Controller
+class KycController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Manage KYC */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage kyc')
+    ];
+  }
+
   /**
    * Display a listing of the resource.
    */

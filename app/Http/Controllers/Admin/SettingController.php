@@ -11,10 +11,20 @@ use App\Traits\FileUploadTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class SettingController extends Controller
+class SettingController extends Controller implements HasMiddleware
 {
   use FileUploadTrait;
+
+  /** Middleware for Permission Manage Settings */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage settings')
+    ];
+  }
 
   public function index(): View
   {

@@ -8,10 +8,20 @@ use App\Services\NotificationService;
 use App\Traits\FileUploadTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class FooterSectionController extends Controller
+class FooterSectionController extends Controller implements HasMiddleware
 {
   use FileUploadTrait;
+
+  /** Middleware for Permission Manage Sections */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage sections')
+    ];
+  }
 
   /**
    * Display a listing of the resource.

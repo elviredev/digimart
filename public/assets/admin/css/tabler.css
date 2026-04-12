@@ -25872,3 +25872,8 @@ a:hover .ti-eye {
 .ez_search {
   width: 320px !important;
 }
+
+.dropdown-item.active {
+  background-color: #00000061 !important;
+  color: var(--tblr-white) !important;
+}

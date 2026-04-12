@@ -162,6 +162,20 @@ if (!function_exists('canAccess')) {
         : config('settings.currency_icon') . $amount;
     }
   }
+
+  /** Set item active in sidebar */
+  if (!function_exists('setSidebarActive')) {
+    function setSidebarActive(array $routes): ?string
+    {
+      foreach ($routes as $route) {
+        if (request()->routeIs($route)) {
+          return 'active';
+        }
+      }
+
+      return null;
+    }
+  }
 }
 
 

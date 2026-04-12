@@ -8,9 +8,19 @@ use App\Models\WithdrawMethod;
 use App\Services\NotificationService;
 use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class WithdrawMethodController extends Controller
+class WithdrawMethodController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Manage Withdraw Method */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage withdraw method')
+    ];
+  }
+
   /**
    * Display a listing of the resource.
    */

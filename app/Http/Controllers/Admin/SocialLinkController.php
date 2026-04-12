@@ -9,9 +9,19 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class SocialLinkController extends Controller
+class SocialLinkController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Manage Socials */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage socials')
+    ];
+  }
+
   /**
    * Display a listing of the resource.
    */

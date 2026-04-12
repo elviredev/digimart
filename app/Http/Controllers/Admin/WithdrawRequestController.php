@@ -9,9 +9,19 @@ use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class WithdrawRequestController extends Controller
+class WithdrawRequestController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Manage Withdraw Request */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage withdraw request')
+    ];
+  }
+
   public function index():View
   {
     $withdrawRequests = Withdraw::paginate(25);

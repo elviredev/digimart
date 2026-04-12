@@ -25,8 +25,8 @@
               <hr>
               <div class="row">
                 @foreach($permissions as $groupName => $permissionItems)
-                  <div class="col-md-4">
-                    <h3>{{ $groupName }}</h3>
+                  <div class="col-md-4 mb-2">
+                    <h3 class="text-cyan">{{ $groupName }}</h3>
 
                     @foreach($permissionItems as $permission)
                       <label class="form-check">
@@ -34,6 +34,7 @@
                         <span class="form-check-label">{{ $permission->name }}</span>
                       </label>
                     @endforeach
+                    <hr>
                   </div>
                 @endforeach
               </div>

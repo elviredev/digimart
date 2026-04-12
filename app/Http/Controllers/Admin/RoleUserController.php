@@ -10,11 +10,21 @@ use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Spatie\Permission\Models\Role;
 use Throwable;
 
-class RoleUserController extends Controller
+class RoleUserController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Access Management */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:access management')
+    ];
+  }
+
   /**
    * Display a listing of the resource.
    */

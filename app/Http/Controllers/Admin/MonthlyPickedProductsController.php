@@ -8,9 +8,19 @@ use App\Models\MonthlyPickedProduct;
 use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class MonthlyPickedProductsController extends Controller
+class MonthlyPickedProductsController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Manage Sections */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage sections')
+    ];
+  }
+
   /**
    * Display a listing of the resource.
    */

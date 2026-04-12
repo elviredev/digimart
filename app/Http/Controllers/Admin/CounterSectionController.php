@@ -7,9 +7,19 @@ use App\Models\CounterSection;
 use App\Services\NotificationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class CounterSectionController extends Controller
+class CounterSectionController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Manage Sections */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage sections')
+    ];
+  }
+
   /**
    * Display a listing of the resource.
    */

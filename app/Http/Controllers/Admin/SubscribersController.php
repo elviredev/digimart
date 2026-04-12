@@ -11,9 +11,19 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class SubscribersController extends Controller
+class SubscribersController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Manage Newsletter */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage newsletter')
+    ];
+  }
+
   /**
    * Display a paginated list of subscribers.
    * @return \Illuminate\View\View

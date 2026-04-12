@@ -10,9 +10,19 @@ use App\Services\NotificationService;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class CustomPageController extends Controller
+class CustomPageController extends Controller implements HasMiddleware
 {
+  /** Middleware for Permission Manage Custom pages */
+  public static function middleware(): array
+  {
+    return [
+      new Middleware('permission:manage custom pages')
+    ];
+  }
+
   /**
    * Display a listing of the resource.
    */
