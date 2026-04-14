@@ -27,7 +27,7 @@
                     <tr>
                       <td>#{{ $order->code }}</td>
                       <td>{{ $order->user->name }}</td>
-                      <td class="text-green fw-semibold text-uppercase">{{ $order->transaction->paid_in_amount }} {{ $order->transaction->paid_in_currency_icon }}</td>
+                      <td class="text-green fw-semibold">{{ $order->transaction->paid_in_amount }} {{ Str::upper($order->transaction->paid_in_currency_icon) }}</td>
                       <td>
                         <span class="badge bg-green text-white">{{ $order->status }}</span>
                       </td>

@@ -80,26 +80,24 @@
       </div>
       <div class="nav-item dropdown">
         <a
-          href="#"
+          href="javascript:;"
           class="nav-link d-flex lh-1 text-reset p-0"
           data-bs-toggle="dropdown"
           aria-label="Open user menu"
         >
           <span
             class="avatar avatar-sm"
-            style="background-image: url({{ asset(auth('admin')->user()->avatar) }})"
+            style="background-image: url({{ asset(admin()->avatar) }})"
           ></span>
           <div class="d-none d-xl-block ps-2">
-            <div>{{ auth('admin')->user()->name }}</div>
-            <div class="mt-1 small text-secondary">UI Designer</div>
+            <div>{{ admin()->name }}</div>
+            <div class="mt-1 small text-secondary">{{ admin()->email }}</div>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-          <a href="#" class="dropdown-item">Status</a>
           <a href="{{ route('admin.profile.index') }}" class="dropdown-item">{{ __('Profile') }}</a>
-          <a href="#" class="dropdown-item">Feedback</a>
           <div class="dropdown-divider"></div>
-          <a href="{{ route('admin.settings.index') }}" class="dropdown-item">Settings</a>
+          <a href="{{ route('admin.settings.index') }}" class="dropdown-item">{{ __('Settings') }}</a>
           <form method="POST" action="{{ route('admin.logout') }}">
             @csrf
 
@@ -107,7 +105,7 @@
             href="javascript:;"
             class="dropdown-item"
             onclick="event.preventDefault(); this.closest('form').submit();"
-            >Logout</a>
+            >{{ __('Logout') }}</a>
           </form>
         </div>
       </div>
@@ -596,24 +594,22 @@
       </div>
       <div class="nav-item dropdown">
         <a
-          href="#"
+          href="javascript:;"
           class="nav-link d-flex lh-1 text-reset p-0"
           data-bs-toggle="dropdown"
           aria-label="Open user menu"
         >
           <span
             class="avatar avatar-sm"
-            style="background-image: url({{ asset(auth('admin')->user()->avatar) }})"
+            style="background-image: url({{ asset(admin()->avatar) }})"
           ></span>
           <div class="d-none d-xl-block ps-2">
-            <div>{{ auth()->user()->name }}</div>
-            <div class="mt-1 small text-secondary">{{ admin()->roles()->first()->name }}</div>
+            <div>{{ admin()->name }}</div>
+            <div class="mt-1 small text-secondary">{{ admin()->email }}</div>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-          <a href="#" class="dropdown-item">Status</a>
           <a href="{{ route('admin.profile.index') }}" class="dropdown-item">{{ __('Profile') }}</a>
-          <a href="#" class="dropdown-item">Feedback</a>
           <div class="dropdown-divider"></div>
           <a href="{{ route('admin.settings.index') }}" class="dropdown-item">{{ __('Settings') }}</a>
 

@@ -12,3 +12,4 @@
 - **Plyr** : Media Player vidéo, audio
 - **Laravel-Paypal** : Implémentation Paypal
 - **Stripe-PHP** : Implémentation Stripe
+- **Apexcharts** : Graphiques

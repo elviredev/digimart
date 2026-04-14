@@ -12,27 +12,8 @@
             Overview
           </div>
           <h2 class="page-title">
-            Vertical layout
+           Dashboard
           </h2>
-        </div>
-        <!-- Page title actions -->
-        <div class="col-auto ms-auto d-print-none">
-          <div class="btn-list">
-            <span class="d-none d-sm-inline">
-              <a href="#" class="btn">
-                New view
-              </a>
-            </span>
-            <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
-              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-              Create new report
-            </a>
-            <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
-              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-            </a>
-          </div>
         </div>
       </div>
     </div>
@@ -49,84 +30,376 @@
                   <div class="row align-items-center">
                     <div class="col-auto">
                       <span class="bg-primary text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" /><path d="M12 3v3m0 12v3" /></svg>
+                        <i class="ti ti-currency-dollar"></i>
                       </span>
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        132 Sales
+                        <b>{{ config('settings.currency_icon') }} {{ $sales['day'] }}</b>
                       </div>
                       <div class="text-secondary">
-                        12 waiting payments
+                        {{ __('Today\'s Sales') }}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-sm-6 col-lg-3">
               <div class="card card-sm">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-auto">
-                      <span class="bg-green text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
+                      <span class="bg-primary text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                        <i class="ti ti-currency-dollar"></i>
                       </span>
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        78 Orders
+                        <b>{{ config('settings.currency_icon') }} {{ $sales['week'] }}</b>
                       </div>
                       <div class="text-secondary">
-                        32 shipped
+                        {{ __('This Week Sales') }}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-sm-6 col-lg-3">
               <div class="card card-sm">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-auto">
-                      <span class="bg-twitter text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c0 -.249 1.51 -2.772 1.818 -4.013z" /></svg>
+                      <span class="bg-primary text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                        <i class="ti ti-currency-dollar"></i>
                       </span>
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        623 Shares
+                        <b>{{ config('settings.currency_icon') }} {{ $sales['month'] }}</b>
                       </div>
                       <div class="text-secondary">
-                        16 today
+                        {{ __('This Month Sales') }}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-sm-6 col-lg-3">
               <div class="card card-sm">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-auto">
-                      <span class="bg-facebook text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
+                      <span class="bg-primary text-white avatar">
+                        <i class="ti ti-currency-dollar"></i>
                       </span>
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        132 Likes
+                        <b>{{ config('settings.currency_icon') }} {{ $sales['year'] }}</b>
                       </div>
                       <div class="text-secondary">
-                        21 today
+                        {{ __('This Year Sales') }}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="bg-primary text-white avatar">
+                        <i class="ti ti-clock"></i>
+                      </span>
+                    </div>
+                    <div class="col">
+                      <div class="font-weight-medium">
+                        <b>{{ $statusCount['pending'] ?? 0 }}</b>
+                      </div>
+                      <div class="text-secondary">
+                        {{ __('Pending Items') }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="bg-primary text-white avatar">
+                        <i class="ti ti-circle-dashed-x"></i>
+                      </span>
+                    </div>
+                    <div class="col">
+                      <div class="font-weight-medium">
+                        <b>{{ $statusCount['soft_rejected'] ?? 0 }}</b>
+                      </div>
+                      <div class="text-secondary">
+                        {{ __('Soft Rejected Items') }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="bg-primary text-white avatar">
+                        <i class="ti ti-cancel"></i>
+                      </span>
+                    </div>
+                    <div class="col">
+                      <div class="font-weight-medium">
+                        <b>{{ $statusCount['hard_rejected'] ?? 0 }}</b>
+                      </div>
+                      <div class="text-secondary">
+                        {{ __('Hard Rejected Items') }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="bg-primary text-white avatar">
+                        <i class="ti ti-rosette-discount-check"></i>
+                      </span>
+                    </div>
+                    <div class="col">
+                      <div class="font-weight-medium">
+                        <b>{{ $statusCount['approved'] ?? 0 }}</b>
+                      </div>
+                      <div class="text-secondary">
+                        {{ __('Approved Items') }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="bg-primary text-white avatar">
+                        <i class="ti ti-certificate-2"></i>
+                      </span>
+                    </div>
+                    <div class="col">
+                      <div class="font-weight-medium">
+                        <b>{{ $kycCount }}</b>
+                      </div>
+                      <div class="text-secondary">
+                        {{ __('KYC Pending') }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="bg-primary text-white avatar">
+                        <i class="ti ti-basket-check"></i>
+                      </span>
+                    </div>
+                    <div class="col">
+                      <div class="font-weight-medium">
+                        <b>{{ $orderCount }}</b>
+                      </div>
+                      <div class="text-secondary">
+                        {{ __('Total Orders') }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="bg-primary text-white avatar">
+                        <i class="ti ti-pig-money"></i>
+                      </span>
+                    </div>
+                    <div class="col">
+                      <div class="font-weight-medium">
+                        <b>{{ $withdrawCount }}</b>
+                      </div>
+                      <div class="text-secondary">
+                        {{ __('Pending Withdrawals') }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="bg-primary text-white avatar">
+                        <i class="ti ti-user-star"></i>
+                      </span>
+                    </div>
+                    <div class="col">
+                      <div class="font-weight-medium">
+                        <b>{{ $subscriberCount }}</b>
+                      </div>
+                      <div class="text-secondary">
+                        {{ __('Total Subscribers') }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">{{ __('Yearly Sales Report') }}</h3>
+                  <div class="card-actions">
+                    <form action="" method="GET" class="year-form">
+                      <select name="year" class="form-select year-select">
+                        @foreach ($years as $year)
+                          <option @selected(request()->year == $year) value="{{ $year }}">{{ $year }}</option>
+                        @endforeach
+                      </select>
+                    </form>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="chart-mentions" class="chart-lg"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card">
+                <div class="table-responsive">
+                  <table class="table table-vcenter card-table table-striped">
+                    <thead>
+                    <tr>
+                      <th>N°</th>
+                      <th>Author</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                      <th class="w-8"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse ($withdrawRequests as $withdrawRequest)
+                      <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>
+                          <div>{{ $withdrawRequest->author->name }}</div>
+                          <div>{{ $withdrawRequest->author->email }}</div>
+                        </td>
+                        <td>{{ currencyPosition($withdrawRequest->amount_formatted) }}</td>
+                        <td>
+                          @if($withdrawRequest->status == 'pending')
+                            <span class="badge bg-yellow text-yellow-fg">{{ __('Pending') }}</span>
+                          @elseif($withdrawRequest->status == 'paid')
+                            <span class="badge bg-green text-green-fg">{{ __('Paid') }}</span>
+                          @else
+                            <span class="badge bg-red text-red-fg">{{ __('Rejected') }}</span>
+                          @endif
+                        </td>
+                        <td>{{ formatDate($withdrawRequest->created_at) }}</td>
+                        <td>
+                          <a href="{{ route('admin.withdraw-requests.show', $withdrawRequest->id) }}">
+                            <i class="ti ti-eye"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    @empty
+                      <tr>
+                        <td colspan="6" class="text-center">{{ __('No withdraw requests found.') }}</td>
+                      </tr>
+                    @endforelse
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card">
+                <div class="table-responsive">
+                  <table class="table table-vcenter card-table table-striped">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Buyer</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th class="w-1"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse($orders as $order)
+                      <tr>
+                        <td>#{{ $order->code }}</td>
+                        <td>{{ $order->user->name }}</td>
+                        <td class="text-green">
+                          {{ $order->transaction->paid_in_amount }}
+                          {{ Str::upper($order->transaction->paid_in_currency_icon) }}
+                        </td>
+                        <td>
+                          <span class="badge bg-green text-white">{{ $order->status }}</span>
+                        </td>
+                        <td>
+                          <a href="{{ route('admin.orders.show', $order->id) }}">
+                            <i class="ti ti-eye"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    @empty
+                      <tr>
+                        <td colspan="5" class="text-center">No orders found</td>
+                      </tr>
+                    @endforelse
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -150,3 +423,111 @@
   </footer>
 </div>
 @endsection
+
+@push('scripts')
+  <script src="{{ asset('assets/admin/libs/apexcharts/dist/apexcharts.min.js') }}" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var options = {
+        chart: {
+          height: 380,
+          type: 'line',
+          stacked: true,
+          toolbar: {
+            show: true,
+            tools: {
+              download: true,
+              selection: true,
+              zoom: true,
+              zoomin: true,
+              zoomout: true,
+              pan: true,
+              reset: true
+            }
+          }
+        },
+        series: @json($chartData['series']),
+        stroke: {
+          width: [0, 4, 3],
+          curve: 'smooth'
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '50%'
+          }
+        },
+        fill: {
+          opacity: [0.85, 1, 0.25],
+          gradient: {
+            inverseColors: false,
+            shade: 'light',
+            type: "vertical",
+            opacityFrom: 0.85,
+            opacityTo: 0.55,
+          }
+        },
+        labels: @json($chartData['months']),
+        markers: {
+          size: 0
+        },
+        xaxis: {
+          title: {
+            text: 'Month'
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Amount ($)'
+          },
+          labels: {
+            formatter: function(value) {
+              return '$' + value.toFixed(2);
+            }
+          },
+          min: 0,
+          max: function(max) {
+            return max * 1;
+          },
+        },
+        tooltip: {
+          shared: true,
+          intersect: false,
+          y: {
+            formatter: function(value) {
+              return '$' + value.toFixed(2);
+            }
+          }
+        },
+        colors: ['#008FFB', '#00E396', '#FEB019'],
+        title: {
+          text: 'This Years Sales Analytics',
+          align: 'center'
+        },
+        legend: {
+          position: 'bottom'
+        },
+        grid: {
+          borderColor: '#e7e7e7',
+          row: {
+            colors: ['#f3f3f3', 'transparent'],
+            opacity: 0.5
+          }
+        }
+      };
+
+      var chart = new ApexCharts(
+        document.querySelector("#chart-mentions"),
+        options
+      )
+
+      chart.render()
+
+      // Formulaire Select Year
+      $('.year-select').on('change', function () {
+        $('.year-form').submit()
+      })
+
+    })
+
+  </script>
+@endpush
