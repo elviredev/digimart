@@ -514,6 +514,17 @@
         </li>
         @endif
 
+        @if(canAccess(['manage settings']))
+          <li class="nav-item">
+            <a class="nav-link {{ setSidebarActive(['admin.wipe-database.index']) }}" href="{{ route('admin.wipe-database.index') }}">
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-database-off"></i>
+            </span>
+              <span class="nav-link-title">{{ __('Wipe Database') }}</span>
+            </a>
+          </li>
+        @endif
+
       </ul>
     </div>
   </div>

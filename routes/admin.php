@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubscribersController;
+use App\Http\Controllers\Admin\WipeDatabaseController;
 use App\Http\Controllers\Admin\WithdrawMethodController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
 use Illuminate\Support\Facades\Route;
@@ -189,4 +190,10 @@ Route::middleware('auth:admin')->prefix('admin')->as('admin.')
       ->name('settings.smtp.index');
     Route::put('smtp-settings', [SettingController::class, 'updateSmtpSettings'])
       ->name('settings.smtp.update');
+
+    /** Wipe Database Routes */
+    Route::get('wipe-database', [WipeDatabaseController::class, 'index'])
+      ->name('wipe-database.index');
+    Route::delete('wipe-database', [WipeDatabaseController::class, 'destroy'])
+      ->name('wipe-database.destroy');
   });
