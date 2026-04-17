@@ -18,6 +18,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 
@@ -71,6 +72,12 @@ class ItemController extends Controller
     $request->validate([
       'file.*' => ['required', 'mimes:' . $extensions],
     ]);
+
+    foreach ($request->file('file') as $file) {
+      if(!in_array($file->getClientOriginalExtension(), explode(',', $extensions))) {
+        throw ValidationException::withMessages(['file' => 'Invalid file type.']);
+      }
+    }
 
     foreach($request->file('file') as $file) {
       $fileInfos = $this->uploadFile($file);

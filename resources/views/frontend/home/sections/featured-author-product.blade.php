@@ -45,9 +45,6 @@
               {{ $featuredAuthorSection?->subtitle }}
             </p>
           </div>
-{{--          <div class="flx-align gap-2 mt-48">--}}
-{{--            <a href="#" class="btn btn-main btn-lg  fw-300">View Profile </a>--}}
-{{--          </div>--}}
         </div>
       </div>
     </div>

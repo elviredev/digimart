@@ -61,11 +61,13 @@
                           <div class="accordion-body pt-0">
                             <div id="carousel-controls" class="carousel slide" data-bs-ride="carousel">
                               <div class="carousel-inner">
-                                @foreach($item->screenshots as $screenshot)
-                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                  <img class="d-block w-100" alt="" src="{{ asset($screenshot) }}">
-                                </div>
-                                @endforeach
+                                @forelse($item?->screenshots ?? [] as $screenshot)
+                                  <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                    <img class="d-block w-100" alt="" src="{{ asset($screenshot) }}">
+                                  </div>
+                                @empty
+                                  <div>Not image found.</div>
+                                @endforelse
                               </div>
                               <a class="carousel-control-prev" href="#carousel-controls" role="button" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

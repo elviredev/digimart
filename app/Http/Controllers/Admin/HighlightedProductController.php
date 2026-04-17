@@ -28,7 +28,7 @@ class HighlightedProductController extends Controller implements HasMiddleware
   {
     $highlightedProduct = HighlightedProduct::first();
     $selectedProducts = Item::select(['id', 'name'])
-      ->whereIn('id', $highlightedProduct->item_ids)
+      ->whereIn('id', $highlightedProduct->item_ids ?? [])
       ->get();
 
     return view('admin.sections.highlighted-product.index', compact('highlightedProduct', 'selectedProducts'));

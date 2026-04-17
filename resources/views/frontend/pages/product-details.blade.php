@@ -299,7 +299,7 @@
                 @if($product->demo_link)
                   <li><a class="live" href="{{ $product->demo_link }}">Live Preview</a></li>
                 @endif
-                <li class="w-100 mb-3">
+                <li class="mb-3">
                   <a class=" add_cart add-cart" data-id="{{ $product->id }}" href="javascript:;">
                     {{ __('add to cart') }}
                   </a>

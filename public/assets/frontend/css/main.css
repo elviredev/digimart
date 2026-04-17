@@ -4449,7 +4449,7 @@ section.dashboard {
 .hero {
     position: relative;
     z-index: 1;
-    padding: 132px 0;
+    padding: 70px 0;
     background: #f3f5f7 !important;
 }
 
@@ -10405,7 +10405,7 @@ header .nav-menu .nav-menu__item:last-child .nav-menu__link:hover {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 20px 35px;
+    gap: 0 35px;
 }
 
 .category_menu .category_menu_link {

@@ -310,6 +310,11 @@
 
             <div class="col-md-6">
               <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    {{ __('Withdraw Requests') }}
+                  </h3>
+                </div>
                 <div class="table-responsive">
                   <table class="table table-vcenter card-table table-striped">
                     <thead>
@@ -360,6 +365,11 @@
 
             <div class="col-md-6">
               <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    {{ __('Latest Orders') }}
+                  </h3>
+                </div>
                 <div class="table-responsive">
                   <table class="table table-vcenter card-table table-striped">
                     <thead>
@@ -413,7 +423,7 @@
           <ul class="list-inline list-inline-dots mb-0">
             <li class="list-inline-item">
               Copyright &copy; {{ date('Y') }}
-              <a href="." class="link-secondary">Tabler</a>.
+              <a href="." class="link-secondary">{{ config('settings.site_name') }}</a>.
               All rights reserved.
             </li>
           </ul>

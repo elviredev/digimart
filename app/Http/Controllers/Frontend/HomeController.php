@@ -28,12 +28,13 @@ class HomeController extends Controller
     }])->where('show_at_featured', 1)->get();
 
     // Filter products by featured sub-categories
-    $subCategory = FeaturedCategory::first()?->category_ids;
+    $subCategory = FeaturedCategory::first()?->category_ids ?? [];
+
     $featuredItems = Item::whereIn('sub_category_id', $subCategory)
+      ->with(['subCategory:id,name', 'author:id,name'])
       ->withCount(['sales', 'reviews'])
       ->withAvg('reviews', 'stars')
       ->where('status', 'approved')
-      ->with('subCategory:id,name')
       ->latest()
       ->take(8 * count($subCategory))
       ->get()
@@ -41,7 +42,8 @@ class HomeController extends Controller
 
     // Get highlighted products
     $highlightedProductSection = HighlightedProduct::first();
-    $highlightedProducts = Item::whereIn('id', $highlightedProductSection->item_ids)
+    $highlightedProducts = Item::whereIn('id', $highlightedProductSection?->item_ids ?? [])
+      ->with(['author:id,name'])
       ->withCount(['sales', 'reviews'])
       ->withAvg('reviews', 'stars')
       ->where('status', 'approved')
@@ -50,7 +52,8 @@ class HomeController extends Controller
 
     // Get monthly picked products
     $monthlyPickedProductSection = MonthlyPickedProduct::first();
-    $monthlyPickedProducts = Item::whereIn('id', $monthlyPickedProductSection->item_ids)
+    $monthlyPickedProducts = Item::whereIn('id', $monthlyPickedProductSection->item_ids ?? [])
+      ->with(['author:id,name'])
       ->withCount(['sales', 'reviews'])
       ->withAvg('reviews', 'stars')
       ->where('status', 'approved')
@@ -59,7 +62,7 @@ class HomeController extends Controller
 
     // Get Featured Author Products
     $featuredAuthorSection = FeaturedAuthorSection::first();
-    $featuredAuthorProducts = Item::where('author_id', $featuredAuthorSection->author_id)
+    $featuredAuthorProducts = Item::where('author_id', $featuredAuthorSection?->author_id)
       ->latest()
       ->take(4)
       ->get();

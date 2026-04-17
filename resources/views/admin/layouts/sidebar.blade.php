@@ -14,10 +14,10 @@
     <h1 class="navbar-brand navbar-brand-autodark">
       <a href=".">
         <img
-          src="{{ asset('assets/admin/img/logo.svg') }}"
+          src="{{ asset(config('settings.logo')) }}"
           width="110"
           height="32"
-          alt="Tabler"
+          alt="{{ config('settings.site_name') }}"
           class="navbar-brand-image"
         />
       </a>

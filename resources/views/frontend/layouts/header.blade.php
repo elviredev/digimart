@@ -1,12 +1,12 @@
 @php
-  $categories = \App\Models\Category::with('subCategories')->get();
+  $categories = \App\Models\Category::with('subCategories')->where('show_at_nav', 1)->get();
   $cartCount = \App\Models\CartItem::where('user_id', user()?->id)->count();
   $flashBanner = \App\Models\FlashSaleBanner::first();
   $customPages = \App\Models\CustomPage::where(['status' => 1, 'show_at_nav' => 1])->get();
 @endphp
 
 <!-- ============================ Sale Offer Start =========================== -->
-@if ($flashBanner->status == 1)
+@if ($flashBanner?->status == 1)
 <div class="sale-offer ">
   <div class="container container-full ">
     <div class="sale-offer__content flx-between position-relative">

@@ -3,7 +3,7 @@
     class="las la-times"></i></button>
   <div class="dashboard-sidebar__inner">
     <a href="{{ route('home') }}" class="logo mb-48">
-      <img src="{{ asset('assets/frontend/images/logo/logo.png') }}" alt="" class="white-version">
+      <img src="{{ asset(config('settings.logo')) }}" alt="" class="white-version">
     </a>
     <a href="{{ route('home') }}" class="logo logo_icon favicon mb-48">
       <img src="{{ asset('assets/frontend/images/thumbs/dashboard_sidebar_icon.png') }}" alt="">
@@ -16,7 +16,7 @@
           <span class="sidebar-list__icon">
             <i class="ti ti-device-heart-monitor"></i>
           </span>
-          <span class="text">Dashboard</span>
+          <span class="text">{{ __('Dashboard') }}</span>
         </a>
       </li>
       <li class="sidebar-list__item">
@@ -24,7 +24,7 @@
           <span class="sidebar-list__icon">
             <i class="ti ti-user"></i>
           </span>
-          <span class="text">Profile</span>
+          <span class="text">{{ __('Profile') }}</span>
         </a>
       </li>
 
@@ -34,7 +34,7 @@
             <span class="sidebar-list__icon">
               <i class="ti ti-building-store"></i>
             </span>
-            <span class="text">My Items</span>
+            <span class="text">{{ __('My Items') }}</span>
           </a>
         </li>
 
@@ -43,7 +43,7 @@
           <span class="sidebar-list__icon">
             <i class="ti ti-report-money"></i>
           </span>
-            <span class="text">Sales</span>
+            <span class="text">{{ __('Sales') }}</span>
           </a>
         </li>
 
@@ -52,7 +52,7 @@
           <span class="sidebar-list__icon">
             <i class="ti ti-pig-money"></i>
           </span>
-            <span class="text">Withdraws</span>
+            <span class="text">{{ __('Withdraws') }}</span>
           </a>
         </li>
       @endif
@@ -60,9 +60,9 @@
       <li class="sidebar-list__item">
         <a href="{{ route('reviews.index') }}" class="sidebar-list__link">
           <span class="sidebar-list__icon">
-            <i class="ti ti-star"></i>
+            <i class="ti ti-stars"></i>
           </span>
-          <span class="text">Reviews</span>
+          <span class="text">{{ __('Reviews') }}</span>
         </a>
       </li>
 
@@ -71,7 +71,7 @@
           <span class="sidebar-list__icon">
             <i class="ti ti-shopping-bag"></i>
           </span>
-          <span class="text">Purchases</span>
+          <span class="text">{{ __('Purchases') }}</span>
         </a>
       </li>
 
@@ -80,32 +80,7 @@
           <span class="sidebar-list__icon">
             <i class="ti ti-cash-register"></i>
           </span>
-          <span class="text">Transactions</span>
-        </a>
-      </li>
-
-      <li class="sidebar-list__item">
-        <a href="setting.html" class="sidebar-list__link">
-          <span class="sidebar-list__icon">
-            <i class="ti ti-settings"></i>
-          </span>
-          <span class="text">Settings</span>
-        </a>
-      </li>
-      <li class="sidebar-list__item">
-        <a href="dashboard-table.html" class="sidebar-list__link">
-          <span class="sidebar-list__icon">
-            <i class="ti ti-list-details"></i>
-          </span>
-          <span class="text">Table Design</span>
-        </a>
-      </li>
-      <li class="sidebar-list__item">
-        <a href="dashboard-form.html" class="sidebar-list__link">
-          <span class="sidebar-list__icon">
-            <i class="ti ti-list"></i>
-          </span>
-          <span class="text">Form Design</span>
+          <span class="text">{{ __('Transactions') }}</span>
         </a>
       </li>
       <li class="sidebar-list__item">

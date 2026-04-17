@@ -20,9 +20,9 @@
           <source src="{{ asset($product->preview_audio) }}" type="audio/mp3" />
         </audio>
       @endif
-      <button type="button" class="product-item__wishlist">
-        <i class="fas fa-heart"></i>
-      </button>
+{{--      <button type="button" class="product-item__wishlist">--}}
+{{--        <i class="fas fa-heart"></i>--}}
+{{--      </button>--}}
     </div>
     <div class="product-item__content">
       <div class="product-item__bottom flx-between gap-2">

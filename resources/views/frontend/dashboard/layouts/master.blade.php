@@ -220,10 +220,10 @@
             <img src="assets/images/icons/angle-right.svg" alt="">
           </button>
           <form action="#" class="search-input d-sm-block d-none">
-                            <span class="icon">
-                                <img src="assets/images/icons/search-dark.svg" alt="" class="white-version">
-                                <img src="assets/images/icons/search-dark-white.svg" alt="" class="dark-version">
-                            </span>
+            <span class="icon">
+                <img src="assets/images/icons/search-dark.svg" alt="" class="white-version">
+                <img src="assets/images/icons/search-dark-white.svg" alt="" class="dark-version">
+            </span>
             <input
             type="text" class="common-input common-input--md common-input--bg pill w-100"
             placeholder="Search here...">
@@ -236,7 +236,7 @@
               <div class="user-profile">
                 <button class="user-profile__button flex-align">
                   <span class="user-profile__thumb">
-                    <img src="{{ asset(auth('web')->user()->avatar) }}" class="cover-img" alt="">
+                    <img src="{{ user()->avatar }}" class="cover-img" alt="">
                   </span>
                 </button>
                 <ul class="user-profile-dropdown">

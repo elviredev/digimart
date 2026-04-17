@@ -2,7 +2,7 @@
   <img src="{{ asset('assets/frontend/images/gradients/banner-gradient.png') }}" alt="" class="bg--gradient white-version">
 
   <div class="container container-two">
-    <div class="row gy-sm-5 gy-4">
+    <div class="row gy-sm-5 gy-4 align-items-center">
       <div class="col-xl-6 col-lg-9 col-12">
         <div class="hero-inner position-relative">
           <div>
@@ -52,7 +52,7 @@
                 }
               @endphp
               <li>
-                <a href="#"><img src="{{ $image }}" alt="" /></a>
+                <a href="{{ route('products.show', $item->slug) }}"><img src="{{ $image }}" alt="" /></a>
               </li>
             @endforeach
           </ul>
@@ -72,7 +72,7 @@
                 }
               @endphp
               <li>
-                <a href="#"><img src="{{ $image }}" alt="" /></a>
+                <a href="{{ route('products.show', $item->slug) }}"><img src="{{ $image }}" alt="" /></a>
               </li>
             @endforeach
           </ul>

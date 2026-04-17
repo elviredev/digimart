@@ -20,11 +20,7 @@
   <!-- welcome balance Content Start -->
   <div class="welcome-balance mt-2 mb-40 flx-between gap-2">
     <div class="welcome-balance__left">
-      <h4 class="welcome-balance__title mb-0"> Welcome back! {{ auth('web')->user()->name }}</h4>
-    </div>
-    <div class="welcome-balance__right flx-align gap-2">
-      <span class="welcome-balance__text fw-500 text-heading">Available Balance:</span>
-      <h4 class="welcome-balance__balance mb-0">$580.00</h4>
+      <h4 class="welcome-balance__title mb-0">{{ __(' Welcome back!') }} {{ user()->name }}</h4>
     </div>
   </div>
   <!-- welcome balance Content End -->
@@ -37,12 +33,12 @@
         <div class="col-xl-3 col-sm-6">
           <div class="dashboard-widget green">
             <span class="dashboard-widget__icon">
-              <i class="ti ti-list-details"></i>
+              <i class="ti ti-basket-check"></i>
             </span>
             <div class="dashboard-widget__content flx-between gap-1 align-items-end">
               <div>
-                <h4 class="dashboard-widget__number mb-1 mt-3">2M+</h4>
-                <span class="dashboard-widget__text font-14">Total Products</span>
+                <h4 class="dashboard-widget__number mb-1 mt-3">{{ $purchaseCount }}</h4>
+                <span class="dashboard-widget__text font-14">{{ __('Total Purchase') }}</span>
               </div>
             </div>
           </div>
@@ -50,12 +46,12 @@
         <div class="col-xl-3 col-sm-6">
           <div class="dashboard-widget orange">
             <span class="dashboard-widget__icon">
-              <i class="ti ti-currency-dollar"></i>
+              <i class="ti ti-star"></i>
             </span>
             <div class="dashboard-widget__content flx-between gap-1 align-items-end">
               <div>
-                <h4 class="dashboard-widget__number mb-1 mt-3">$5289.00</h4>
-                <span class="dashboard-widget__text font-14">Total Earnings</span>
+                <h4 class="dashboard-widget__number mb-1 mt-3">{{ $reviewCount }}</h4>
+                <span class="dashboard-widget__text font-14">{{ __('Total Reviews') }}</span>
               </div>
             </div>
           </div>
@@ -63,12 +59,12 @@
         <div class="col-xl-3 col-sm-6">
           <div class="dashboard-widget blue">
             <span class="dashboard-widget__icon">
-              <i class="ti ti-download"></i>
+              <i class="ti ti-cash-register"></i>
             </span>
             <div class="dashboard-widget__content flx-between gap-1 align-items-end">
               <div>
-                <h4 class="dashboard-widget__number mb-1 mt-3">5,2458</h4>
-                <span class="dashboard-widget__text font-14">Total Downloads</span>
+                <h4 class="dashboard-widget__number mb-1 mt-3">{{ currencyPosition($totalSpent) }}</h4>
+                <span class="dashboard-widget__text font-14">{{ __('Total Spent') }}</span>
               </div>
             </div>
           </div>
@@ -76,12 +72,12 @@
         <div class="col-xl-3 col-sm-6">
           <div class="dashboard-widget red">
             <span class="dashboard-widget__icon">
-              <i class="ti ti-basket-check"></i>
+              <i class="ti ti-transaction-dollar"></i>
             </span>
             <div class="dashboard-widget__content flx-between gap-1 align-items-end">
               <div>
-                <h4 class="dashboard-widget__number mb-1 mt-3">2,589</h4>
-                <span class="dashboard-widget__text font-14">Total Sales</span>
+                <h4 class="dashboard-widget__number mb-1 mt-3">{{ $totalTransaction }}</h4>
+                <span class="dashboard-widget__text font-14">{{ __('Total Transactions') }}</span>
               </div>
             </div>
           </div>

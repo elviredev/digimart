@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Title -->
-  <title> Digital Market Place HTML Template</title>
+  <title>{{ config('settings.site_name') }}</title>
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ asset(config('settings.favicon')) }}">
 
@@ -67,8 +67,8 @@
 <div class="mobile-menu d-lg-none d-block">
   <button type="button" class="close-button"> <i class="las la-times"></i> </button>
   <div class="mobile-menu__inner">
-    <a href="index.html" class="mobile-menu__logo">
-      <img src="assets/images/logo/logo-two.png" alt="Logo" class="white-version">
+    <a href="{{ url('/') }}" class="mobile-menu__logo">
+      <img src="{{ asset(config('settings.logo')) }}" alt="Logo" class="white-version">
     </a>
     <div class="mobile-menu__menu">
       <div class="header-right__inner d-lg-none my-3 gap-1 d-flex flx-align">
@@ -76,81 +76,43 @@
         <div class="dropdown">
           <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
           aria-expanded="false">
-            <img src="assets/images/icons/user.svg" alt="">
+            <img src="{{ asset('assets/frontend/images/icons/user.svg') }}" alt="">
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Sign Up</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
+            @guest
+              <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('Sign In') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('register') }}">{{ __('Sign Up') }}</a></li>
+            @endguest
+            @auth
+              <li><a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('profile') }}">{{ __('Profile') }}</a></li>
+            @endauth
           </ul>
         </div>
       </div>
 
       <ul class="nav-menu flx-align nav-menu--mobile">
-        <li class="nav-menu__item has-submenu">
-          <a href="javascript:void(0)" class="nav-menu__link">Home</a>
-          <ul class="nav-submenu">
-            <li class="nav-submenu__item">
-              <a href="index.html" class="nav-submenu__link"> Home One</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="index-two.html" class="nav-submenu__link"> Home Two</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="index-three.html" class="nav-submenu__link"> Home Three</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-menu__item has-submenu">
-          <a href="javascript:void(0)" class="nav-menu__link">Products</a>
-          <ul class="nav-submenu">
-            <li class="nav-submenu__item">
-              <a href="all-product.html" class="nav-submenu__link"> All Products</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="product-details.html" class="nav-submenu__link"> Product Details</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-menu__item has-submenu">
-          <a href="javascript:void(0)" class="nav-menu__link">Pages</a>
-          <ul class="nav-submenu">
-            <li class="nav-submenu__item">
-              <a href="profile.html" class="nav-submenu__link"> Profile</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="cart.html" class="nav-submenu__link"> Shopping Cart</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="cart-personal.html" class="nav-submenu__link"> Mailing Address</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="cart-payment.html" class="nav-submenu__link"> Payment Method</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="cart-thank-you.html" class="nav-submenu__link"> Preview Order</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="dashboard.html" class="nav-submenu__link"> Dashboard</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-menu__item has-submenu">
-          <a href="javascript:void(0)" class="nav-menu__link">Blog</a>
-          <ul class="nav-submenu">
-            <li class="nav-submenu__item">
-              <a href="blog.html" class="nav-submenu__link"> Blog</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="blog-details.html" class="nav-submenu__link"> Blog Details</a>
-            </li>
-            <li class="nav-submenu__item">
-              <a href="blog-details-sidebar.html" class="nav-submenu__link"> Blog Details Sidebar</a>
-            </li>
-          </ul>
+        <li class="nav-menu__item">
+          <a href="{{ route('home') }}" class="nav-menu__link">{{ __('Home') }}</a>
         </li>
         <li class="nav-menu__item">
-          <a href="contact.html" class="nav-menu__link">Contact</a>
+          <a href="{{ route('products') }}" class="nav-menu__link">{{ __('Products') }}</a>
+        </li>
+        <li class="nav-menu__item">
+          <a href="{{ route('contact') }}" class="nav-menu__link">{{ __('Contact') }}</a>
+        </li>
+
+        @php
+          $customPages = \App\Models\CustomPage::where(['status' => 1, 'show_at_nav' => 1])->get();
+        @endphp
+        @foreach ($customPages as $page)
+          <li class="nav-menu__item">
+            <a href="{{ route('page', $page->slug) }}" class="nav-menu__link">{{ $page->name }}</a>
+          </li>
+        @endforeach
+
+        <li class="nav-menu__item">
+          <a href="{{ route('kyc.index') }}" class="nav-menu__link">{{ __('Start Selling') }}</a>
         </li>
       </ul>
     </div>
@@ -205,6 +167,78 @@
 <script src="{{ asset('assets/frontend/js/default/default-variables.js') }}"></script>
 <!-- cart JS  -->
 <script src="{{ asset('assets/frontend/js/default/cart.js') }}"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const players = new Map();
+    const hoverTimers = new Map(); // Store timeout IDs for each video
+
+    document.querySelectorAll(".player").forEach((el) => {
+      const source = el.querySelector("source");
+      if (source) {
+        source.dataset.src = source.src; // Store actual source
+        source.removeAttribute("src"); // Prevent preloading
+      }
+
+      const player = new Plyr(el, { controls: [] });
+      players.set(el, player);
+    });
+
+    $(function () {
+      $(".product-video").on("mouseover", function () {
+        const videoElement = $(this).find(".player")[0];
+        if (videoElement && players.has(videoElement)) {
+          // Set a delay before loading the video
+          const timeoutId = setTimeout(() => {
+            const player = players.get(videoElement);
+            const source = videoElement.querySelector("source");
+            if (source && !videoElement.getAttribute("src")) {
+              source.setAttribute("src", source.dataset.src);
+              videoElement.load();
+            }
+            player.muted = true;
+            player.play();
+          }, 500); // Delay of 500ms
+
+          hoverTimers.set(videoElement, timeoutId);
+        }
+      });
+
+      $(".product-video").on("mouseout", function () {
+        const videoElement = $(this).find(".player")[0];
+        if (videoElement && players.has(videoElement)) {
+          const player = players.get(videoElement);
+          player.pause();
+
+          // Clear the timeout if the user moves away before loading
+          if (hoverTimers.has(videoElement)) {
+            clearTimeout(hoverTimers.get(videoElement));
+            hoverTimers.delete(videoElement);
+          }
+        }
+      });
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    let currentPlayer = null // Store reference to the currently playing player
+
+    //Initialize audio players with play, mute, and progress controls
+    document.querySelectorAll('.audio-player').forEach((el) => {
+      const player = new Plyr(el, {
+        controls: ['play', 'progress', 'mute']
+      })
+
+      // Listen for play event and pause other audio if it's playing
+      player.on('play', () => {
+        if (currentPlayer && currentPlayer !== player) {
+          currentPlayer.pause() // Pause the currently playing player
+        }
+        currentPlayer = player // Update the current player reference
+      })
+    })
+  })
+</script>
 
 @stack('scripts')
 

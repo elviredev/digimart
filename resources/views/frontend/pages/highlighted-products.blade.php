@@ -65,26 +65,5 @@
   <!-- ======================== All Product Section End ====================== -->
 @endsection
 
-@push('scripts')
-  <script>
-    const player = new Plyr('.player', {
-      controls: []
-    });
 
-    const audio = new Plyr('.audio-player', {
-      controls: ['play', 'progress', 'mute', 'current-time']
-    });
-
-    $(function() {
-      $('.product-video').on('mouseover', function() {
-        player.muted = true
-        player.play()
-      })
-
-      $('.product-video').on('mouseout', function() {
-        player.pause()
-      })
-    })
-  </script>
-@endpush
 

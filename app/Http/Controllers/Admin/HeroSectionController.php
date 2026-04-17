@@ -28,8 +28,8 @@ class HeroSectionController extends Controller implements HasMiddleware
   public function index(): View
   {
     $hero = HeroSection::first();
-    $featuredItemsOne = Item::select(['id', 'name'])->whereIn('id', $hero->featured_items_one)->get();
-    $featuredItemsTwo = Item::select(['id', 'name'])->whereIn('id', $hero->featured_items_two)->get();
+    $featuredItemsOne = Item::select(['id', 'name'])->whereIn('id', $hero->featured_items_one ?? [])->get();
+    $featuredItemsTwo = Item::select(['id', 'name'])->whereIn('id', $hero->featured_items_two ?? [])->get();
 
     return view('admin.sections.hero.index', compact('hero', 'featuredItemsOne', 'featuredItemsTwo'));
   }
