@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    Options -Indexes
+
+    # Protection des fichiers sensibles (.env, .git, fichiers cachés)
+    <FilesMatch "^\.">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+
+    <Files .env>
+        Order allow,deny
+        Deny from all
+    </Files>
+
+    # Si fichier ou dossier existe → ne pas rediriger
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Redirection vers public
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+

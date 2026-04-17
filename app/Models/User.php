@@ -96,4 +96,12 @@ class User extends Authenticatable
   {
     return $this->hasMany(AuthorSale::class, 'author_id', 'id');
   }
+
+  /**
+   * Obtenir les achats d'un utilisateur
+   */
+  public function purchaseItems(): HasMany
+  {
+    return $this->hasMany(PurchaseItem::class, 'user_id');
+  }
 }

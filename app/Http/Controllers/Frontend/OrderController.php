@@ -7,12 +7,18 @@ use App\Models\AuthorSale;
 use App\Models\PurchaseItem;
 use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
   public function index(): View
   {
-    $purchases = PurchaseItem::where('user_id', user()->id)->paginate(15);
+    $purchases = PurchaseItem::with([
+      'item.category:id,name',
+      'item.subCategory:id,name'
+    ])
+      ->where('user_id', user()->id)
+      ->paginate(15);
     return view('frontend.dashboard.order.index', compact('purchases'));
   }
 
@@ -34,5 +40,18 @@ class OrderController extends Controller
 
     $sales = AuthorSale::where('author_id', user()->id)->latest()->paginate(15);
     return view('frontend.dashboard.order.sales', compact('sales'));
+  }
+
+  public function downloadPurchasedItem(string $id)
+  {
+    $purchaseItem = user()->purchaseItems()
+      ->where('item_id', $id)
+      ->firstOrFail();
+
+    if (Storage::disk('local')->exists($purchaseItem->item->main_file)) {
+      return Storage::disk('local')->download($purchaseItem->item->main_file);
+    }
+
+    abort(404);
   }
 }

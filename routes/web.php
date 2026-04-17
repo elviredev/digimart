@@ -76,6 +76,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     ->name('transactions.index');
   Route::get('sales', [OrderController::class, 'sales'])
     ->name('sales.index');
+  Route::get('download-item/{id}', [OrderController::class, 'downloadPurchasedItem'])
+    ->name('order.download-item');
 
   /** Item Comments Routes */
   Route::post('item/{id}/comment', [ItemCommentController::class, 'store'])

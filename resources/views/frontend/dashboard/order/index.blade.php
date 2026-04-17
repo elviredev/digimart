@@ -62,7 +62,7 @@
               <a class="btn btn-sm btn-primary " href="{{ route('orders.show', $purchase->id) }}">
                 <i class="ti ti-eye font-4"></i>
               </a>
-              <a class="btn btn-sm btn-success" href="{{ route('user.items.edit', $purchase->item->id) }}">
+              <a class="btn btn-sm btn-success" href="{{ route('order.download-item', $purchase->item->id) }}">
                 <i class="ti ti-download font-4"></i>
               </a>
             </td>
